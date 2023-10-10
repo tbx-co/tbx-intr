@@ -38,6 +38,12 @@ npm run lint
 
 5. Open the `{repo}` directory in your favorite IDE and start coding :)
 
+## Before submitting code
+
+- run `npm run lint:fix` to fix the fixable stylelin css & js errors with --fix option
+- run `npm run lint` to ensure that no eslint error exists
+- run `npm run test` to double-check & avoid failing tests
+
 ## References
 
 1. Developer Tutorial: https://www.hlx.live/developer/tutorial

@@ -57,7 +57,7 @@
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xs: 16px;
 
   /* nav sizes */
   --nav-font-size: 19px;
@@ -84,6 +84,7 @@
   --spacing-xxxl: 104px;
 
   /* z-index */
+  --nav-z-index: 9999;
 
   /* border-radius */
   --border-radius-m: 20px;
@@ -364,17 +365,24 @@ main .section.highlight {
 .heading-l {
   font-family: var(--heading-font-family);
   font-feature-settings: "salt" on;
-  font-size: clamp(64px, 6.4vw, 110px);
+  font-size: clamp(42px, 4vw, 52px);
   line-height: 1;
   font-weight: 700;
   letter-spacing: -0.03em;
+}
+
+@media (min-width: 900px) {
+  .heading-l {
+    font-size: clamp(64px, 6.4vw, 110px);
+  }
 }
 
 .deco-bold-circle strong {
   position: relative;
 }
 
-.deco-bold-circle strong::before {
+.deco-bold-circle strong::before,
+.deco-bold-circle svg {
   content: url("/assets/img/scribble-circle-center.svg");
   position: absolute;
   bottom: -45%;

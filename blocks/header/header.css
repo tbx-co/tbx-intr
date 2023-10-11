@@ -1,5 +1,5 @@
 :root {
-  --nav-font-size: 16px;
+  --nav-font-size: 32px;
 }
 
 @media (min-width: 900px) {
@@ -11,10 +11,38 @@
 /* header and nav layout */
 header .nav-wrapper {
   width: 100%;
-  z-index: 2;
+  z-index: var(--nav-z-index);
   position: fixed;
   color: var(--color-white);
   background: var(--color-black);
+}
+
+/* header theme setup, default theme as theme-dark */
+header .theme-dark .nav-wrapper {
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+header .intr-logo.white,
+header .intr-logo.black {
+  opacity: 0;
+} 
+
+header .theme-dark .intr-logo.white{
+  opacity: 1;
+}
+
+header .theme-light .nav-wrapper {
+  color: var(--color-black);
+  background: var(--color-white);
+}
+
+header .theme-light .intr-logo.black{
+  opacity: 1;
+}
+
+header .theme-light .primary-button {
+  border-color: black;
 }
 
 header nav {
@@ -40,10 +68,14 @@ header nav[aria-expanded="true"] {
   min-height: 100vh;
 }
 
-@media (min-width: 600px) {
-  /* header nav {
-    padding: 0 2rem;
-  } */
+@media (max-width: 899px) {
+  header nav[aria-expanded="true"] .nav-sections {
+    padding: var(--spacing-s) 0;
+  }
+
+  header nav[aria-expanded="true"] .nav-sections li{
+    margin-bottom: var(--spacing-s);
+  }
 }
 
 @media (min-width: 900px) {
@@ -170,6 +202,21 @@ header nav .nav-brand img {
   height: 18px;
 }
 
+header .intr-logo-wrapper {
+  position: relative;
+}
+
+header .intr-logo {
+  position: absolute;
+  inset: 0;
+}
+
+header .intr-logo.placeholder {
+  position: relative;
+  opacity: 0;
+  z-index: -1;
+}
+
 @media (min-width: 900px) {
   header nav .nav-brand img {
     width: auto;
@@ -210,6 +257,12 @@ header .nav-link {
   font-size: var(--nav-font-size);
   letter-spacing: -0.028em;
   line-height: 1.2;
+  opacity: 1;
+}
+
+/* todo active style */
+header .nav-link.active {
+  opacity: 1;
 }
 
 @media (min-width: 900px) {

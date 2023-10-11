@@ -9,10 +9,6 @@ function decorateFooterContent(footer) {
   const footerContentRows = footerContent.querySelectorAll(":scope > div");
   const topContent = footerContentRows[0].querySelector("div");
   topContent.classList.add("footer-top-content", "heading-l");
-  // const topContentTextElements = topContent.querySelectorAll('p')
-  // topContentTextElements.forEach((el) => {
-
-  // })
 
   const bottomContent = footerContentRows[1];
   bottomContent.classList.add("footer-bottom-content");
@@ -27,14 +23,51 @@ function decorateFooterContent(footer) {
 function decorateFooterDecoText(footer) {
   const footerDecoText = footer.querySelector(".deco-text");
   if (!footerDecoText) return;
-  const footerDecoTextContent = createTag(
-    "p",
-    { class: "deco-text-content" },
+
+  const footerDecoTextWrapper = createTag(
+    "span",
+    { class: "deco-text-element" },
     footerDecoText.textContent
   );
+  const footerDecoTextMarqueeContent = createTag(
+    "div",
+    { class: "deco-text-content marquee-content" },
+    ""
+    // footerDecoTextWrapper
+  );
+
+  const requiredContentAmount = 8;
+  const arrayOfRequiredContent = Array.from(
+    Array(requiredContentAmount).keys()
+  );
+  arrayOfRequiredContent.forEach((el) => {
+    let marqueeContent = footerDecoTextWrapper.cloneNode(true);
+    footerDecoTextMarqueeContent.appendChild(marqueeContent);
+  });
+
+  const decoTextMarquee = createTag(
+    "div",
+    { className: "marquee" },
+    footerDecoTextMarqueeContent
+  );
+
   footerDecoText.innerHTML = "";
-  footerDecoText.appendChild(footerDecoTextContent);
+  footerDecoText.appendChild(decoTextMarquee);
+
   return footerDecoText;
+}
+
+function animateFooterDecoText(footerDecoText) {
+  const target = footerDecoText.querySelector(".marquee-content");
+
+  // let marqueeTween = gsap
+  //   .to(target, {
+  //     xPercent: -100,
+  //     repeat: -1,
+  //     duration: 40,
+  //     ease: "linear",
+  //   })
+  //   .totalProgress(0.5);
 }
 
 /**
@@ -63,8 +96,11 @@ export default async function decorate(block) {
     // reorganize block structure
     const footerContent = decorateFooterContent(footer);
     const footerDecoText = decorateFooterDecoText(footer);
+    animateFooterDecoText(footerDecoText);
 
     block.append(footerContent);
     block.append(footerDecoText);
+
+    console.log(gsap);
   }
 }

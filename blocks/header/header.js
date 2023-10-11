@@ -1,7 +1,11 @@
 import { getMetadata, decorateIcons } from "../../scripts/aem.js";
 
 const BRAND_LOGO =
-  '<img loading="lazy" alt="Intr" class="intr-logo" src="/assets/img/intr-logo-white.svg">';
+  '<img loading="lazy" alt="Intr" class="intr-logo placeholder" src="/assets/img/intr-logo-white.svg">';
+const BRAND_LOGO_WHITE =
+  '<img loading="lazy" alt="Intr" class="intr-logo white" src="/assets/img/intr-logo-white.svg">';
+const BRAND_LOGO_BLACK =
+  '<img loading="lazy" alt="Intr" class="intr-logo black" src="/assets/img/intr-logo-black.svg">';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia("(min-width: 900px)");
@@ -12,9 +16,11 @@ function decorateBrandLogo(nav) {
 
   const brandLink = brandBlock.querySelector("a");
   if (!brandLink) return;
-  brandLink.classList.add("nav-brand-logo-link");
+  brandLink.classList.add("nav-brand-logo-link", "intr-logo-wrapper");
   brandLink.innerHTML = `<span class="d-none">${brandLink.textContent}</span>`;
   brandLink.insertAdjacentHTML("afterbegin", BRAND_LOGO);
+  brandLink.insertAdjacentHTML("afterbegin", BRAND_LOGO_WHITE);
+  brandLink.insertAdjacentHTML("afterbegin", BRAND_LOGO_BLACK);
   brandBlock.innerHTML = "";
   brandBlock.appendChild(brandLink);
 }
@@ -174,6 +180,7 @@ export default async function decorate(block) {
       const navSectionLinks = navSections.querySelectorAll("a");
       navSectionLinks.forEach((navLink) => {
         navLink.classList.add("nav-link");
+        if (document.URL === navLink.href) navLink.classList.add('active');
       });
     }
 
@@ -196,6 +203,9 @@ export default async function decorate(block) {
     const navWrapper = document.createElement("div");
     navWrapper.className = "nav-wrapper";
     navWrapper.append(nav);
+
+    // TODO: update theme
+    block.classList.add("theme-dark");
     block.append(navWrapper);
   }
 }

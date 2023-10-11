@@ -11,7 +11,7 @@ export function createTag(tag, attributes, html) {
     if (html instanceof HTMLElement) {
       el.append(html);
     } else {
-      el.insertAdjacentHTML("beforeend", html);
+      el.insertAdjacentHTML('beforeend', html);
     }
   }
   if (attributes) {
@@ -34,13 +34,13 @@ export function returnLinkTarget(url) {
   // take in pathname that should be opened in new tab, in redirects excel
   const redirectExternalPaths = [];
   const redirectToExternalPath = redirectExternalPaths.includes(
-    urlObject.pathname
+    urlObject.pathname,
   );
 
   if (!isSameHost || redirectToExternalPath) {
-    return "_blank";
+    return '_blank';
   }
-  return "_self";
+  return '_self';
 }
 
 // Animation related
@@ -51,7 +51,7 @@ export function addInviewObserverToTriggerElement(triggerElement) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
+        entry.target.classList.add('in-view');
         observer.unobserve(entry.target);
       }
     });

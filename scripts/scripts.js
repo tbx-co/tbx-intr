@@ -19,9 +19,9 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 // custom methods
 async function loadGsapLib() {
-  const gsapCDN = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+  const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
   await loadScript(gsapCDN);
-  const initScript = createTag("script", {}, "");
+  const initScript = createTag('script', {}, '');
   document.body.append(initScript);
 }
 
@@ -80,14 +80,13 @@ export function decorateMain(main) {
 }
 
 // load external libraries
-function loadExternalLibraries() { 
+function loadExternalLibraries() {
   loadGsapLib();
 }
 
-// TODO: set theme
-function updateNavMenuTheme() {
-  
-}
+// TODO: set theme based on page's first section
+// function updateNavMenuTheme() {
+// }
 
 /**
  * Loads everything needed to get to LCP.

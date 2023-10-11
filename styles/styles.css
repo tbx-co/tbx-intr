@@ -10,24 +10,46 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+@font-face {
+  font-family: inter-fallback;
+  size-adjust: 100.06%;
+  ascent-override: 95%;
+  src: local("Arial");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-primary-blue: #1e85ff;
+  --color-accent-light-blue: #8ec2ff;
+  --link-color: var(--color-primary-blue);
+  --link-hover-color: var(--color-primary-blue);
+  --background-color-white: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #000;
 
+  /* styelint rule is preventing font setup like this, TODO: see if we can switch to better one: --body-font-family: inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
+
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: inter, -apple-system, "Segoe UI", roboto, inter-fallback,
+    sans-serif;
+  --nav-font-family: var(--body-font-family);
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --fixed-font-family: var(--body-font-family);
 
   /* body sizes */
-  --body-font-size-m: 22px;
+  --body-font-size-m: 20px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
+  --body-font-size-xxs: 14px;
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -35,29 +57,72 @@
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xs: 16px;
 
-  /* nav height */
+  /* nav sizes */
+  --nav-font-size: 19px;
   --nav-height: 64px;
+  --nav-max-width: 94vw;
 
+  /* max-width */
+  --section-mobile-max-width: 90vw;
+  --section-tablet-max-width: 90vw;
+  --section-laptop-max-width: 92vw;
+  --section-desktop-max-width: 1440px;
+  --section-max-width: var(--section-mobile-max-width);
+
+  /* Spacing (Consonant) */
+  --spacing-xxxs: 4px;
+  --spacing-xxs: 8px;
+  --spacing-xs: 16px;
+  --spacing-s: 24px;
+  --spacing-m: 32px;
+  --spacing-ml: 38px;
+  --spacing-l: 48px;
+  --spacing-xl: 56px;
+  --spacing-xxl: 80px;
+  --spacing-xxxl: 104px;
+
+  /* z-index */
+  --nav-z-index: 9999;
+
+  /* border-radius */
+  --border-radius-m: 20px;
+  --border-radius-xl: 50px;
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
-  src: local('Arial');
+@media (min-width: 600px) {
+  :root {
+    --section-max-width: var(--section-tablet-max-width);
+  }
 }
-
 
 @media (min-width: 900px) {
   :root {
+    /* headings */
     --heading-font-size-xxl: 60px;
     --heading-font-size-xl: 48px;
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
+
+    /* body */
+    --body-font-size-xs: 20px;
+    --body-font-size-xxs: 16px;
+
+    /* nav */
+    --nav-font-size: 19px;
+    --nav-max-width: 1440px;
+
+    /* max-width */
+    --section-max-width: var(--section-laptop-max-width);
+  }
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --section-max-width: var(--section-desktop-max-width);
   }
 }
 
@@ -69,6 +134,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  min-height: 100vh;
 }
 
 body.appear {
@@ -79,24 +145,50 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
   margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
 
-p, dl, ol, ul, pre, blockquote {
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -108,13 +200,16 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
-  padding: .125em;
+code,
+samp {
+  padding: 0.125em;
 }
 
 pre {
@@ -124,23 +219,24 @@ pre {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
 }
 
+a,
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
   color: var(--link-hover-color);
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -160,20 +256,25 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
 
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 main input {
@@ -232,6 +333,13 @@ main .section {
   padding: 64px 16px;
 }
 
+/* section max-width */
+.section > div {
+  max-width: var(--section-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (min-width: 600px) {
   main .section {
     padding: 64px 32px;
@@ -240,7 +348,6 @@ main .section {
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
     margin: auto;
   }
 }
@@ -249,3 +356,59 @@ main .section {
 main .section.highlight {
   background-color: var(--highlight-background-color);
 }
+
+/* --------------- Utility Classes -------------- */
+.d-none {
+  display: none;
+}
+
+.heading-l {
+  font-family: var(--heading-font-family);
+  font-feature-settings: "salt" on;
+  font-size: clamp(42px, 4vw, 52px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 900px) {
+  .heading-l {
+    font-size: clamp(64px, 6.4vw, 110px);
+  }
+}
+
+.deco-bold-circle strong {
+  position: relative;
+}
+
+.deco-bold-circle strong::before,
+.deco-bold-circle svg {
+  content: url("/assets/img/scribble-circle-center.svg");
+  position: absolute;
+  bottom: -45%;
+  left: -23%;
+  width: 190%;
+  z-index: 5;
+}
+
+.primary-button {
+  color: var(--color-white);
+  background: transparent;
+  border: 1px solid var(--color-white);
+  padding: 10px 20px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xxs);
+  line-height: 1.2;
+  font-weight: 700;
+  border-radius: var(--border-radius-xl);
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 900px) {
+  .primary-button {
+    font-size: var(--body-font-size-xxs);
+    padding: 14px 30px;
+  }
+}
+
+/* -------------- Utility Classes Ends -------------- */

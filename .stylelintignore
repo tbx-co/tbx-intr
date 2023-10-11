@@ -1,0 +1,4 @@
+/libs/*.js
+/libs/*.css
+/libs/**/*.js
+/libs/**/*.css

@@ -1,14 +1,117 @@
 footer {
-  padding: 2rem;
-  background-color: var(--overlay-background-color);
-  font-size: var(--body-font-size-s);
+  width: 100%;
 }
 
 footer .footer {
-  max-width: 1200px;
-  margin: auto;
+  width: 100%;
+  min-height: 95vh;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 footer .footer p {
   margin: 0;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-top: var(--spacing-m);
+}
+
+/* top content text */
+.footer-top-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* location & email */
+.footer-bottom-content {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: var(--heading-font-size-xs);
+  font-feature-settings: "salt" on;
+  letter-spacing: -0.03em;
+  padding: var(--spacing-s) 0;
+}
+
+.footer-bottom-content ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+}
+
+.footer-bottom-content ul li {
+  margin-right: var(--spacing-xxxs);
+}
+
+.footer-bottom-content ul li::after {
+  content: ".";
+}
+
+.footer-bottom-content a {
+  color: var(--color-white);
+}
+
+@media (min-width: 900px) {
+  .footer-bottom-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--spacing-m) 0;
+  }
+
+  .footer-bottom-content ul li {
+    margin-right: var(--spacing-xxs);
+  }
+}
+
+/* bottom deco text */
+.deco-text {
+  font-family: var(--body-font-family);
+  font-feature-settings: "salt" on;
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  /* font-size: 51px;
+  transform: translate(-1.5%, 10%); 
+  transform: translate(-3%, 10%); */
+
+  font-size: 105px;
+  transform: translateY(10%);
+}
+
+@media (min-width: 900px) {
+  .deco-text {
+    font-size: clamp(150px, 13.8vw, 237px);
+  }
+}
+
+/* marquee animation */
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: auto;
+  width: fit-content;
 }

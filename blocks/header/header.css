@@ -1,38 +1,80 @@
+:root {
+  --nav-font-size: 32px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --nav-font-size: clamp(16px, 2vw, 19px);
+  }
+}
+
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
   width: 100%;
-  z-index: 2;
+  z-index: var(--nav-z-index);
   position: fixed;
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+/* header theme setup, default theme as theme-dark */
+header .theme-dark .nav-wrapper {
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+header .intr-logo.white,
+header .intr-logo.black {
+  opacity: 0;
+} 
+
+header .theme-dark .intr-logo.white{
+  opacity: 1;
+}
+
+header .theme-light .nav-wrapper {
+  color: var(--color-black);
+  background: var(--color-white);
+}
+
+header .theme-light .intr-logo.black{
+  opacity: 1;
+}
+
+header .theme-light .primary-button {
+  border-color: black;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+    "hamburger brand cta" var(--nav-height)
+    "sections sections sections" 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 2em;
+  gap: 0 1em;
   margin: auto;
-  max-width: 1264px;
+  max-width: var(--section-max-width);
   height: var(--nav-height);
-  padding: 0 1rem;
-  font-family: var(--body-font-family);
+  font-family: var(--nav-font-family);
 }
 
 header nav[aria-expanded="true"] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    "hamburger brand" var(--nav-height)
+    "sections sections" 1fr
+    "cta cta" var(--nav-height) / auto 1fr;
   overflow-y: auto;
   min-height: 100vh;
 }
 
-@media (min-width: 600px) {
-  header nav {
-    padding: 0 2rem;
+@media (max-width: 899px) {
+  header nav[aria-expanded="true"] .nav-sections {
+    padding: var(--spacing-s) 0;
+  }
+
+  header nav[aria-expanded="true"] .nav-sections li{
+    margin-bottom: var(--spacing-s);
   }
 }
 
@@ -40,6 +82,7 @@ header nav[aria-expanded="true"] {
   header nav {
     display: flex;
     justify-content: space-between;
+    padding: var(--spacing-ml) 0;
   }
 
   header nav[aria-expanded="true"] {
@@ -67,18 +110,21 @@ header nav .nav-hamburger {
 
 header nav .nav-hamburger button {
   height: 22px;
+  width: auto;
+  aspect-ratio: 1 / 1;
   margin: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 50%;
   padding: 0;
-  background-color: var(--background-color);
   color: inherit;
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
 }
 
-header nav .nav-hamburger-icon,
+/* TODO: see if we want to keep the mobile hambuger menu */
+
+/* header nav .nav-hamburger-icon,
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
   box-sizing: border-box;
@@ -89,7 +135,7 @@ header nav .nav-hamburger-icon::after {
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   background: currentcolor;
 }
@@ -129,7 +175,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   top: unset;
   bottom: 3px;
   transform: rotate(-45deg);
-}
+} */
 
 @media (min-width: 900px) {
   header nav .nav-hamburger {
@@ -141,15 +187,41 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: 54px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
-  line-height: 1;
+}
+
+header .nav-brand-logo-link {
+  display: flex;
+  align-items: center;
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 18px;
+}
+
+header .intr-logo-wrapper {
+  position: relative;
+}
+
+header .intr-logo {
+  position: absolute;
+  inset: 0;
+}
+
+header .intr-logo.placeholder {
+  position: relative;
+  opacity: 0;
+  z-index: -1;
+}
+
+@media (min-width: 900px) {
+  header nav .nav-brand img {
+    width: auto;
+    height: 24px;
+  }
 }
 
 /* sections */
@@ -167,11 +239,9 @@ header nav[aria-expanded="true"] .nav-sections {
   align-self: start;
 }
 
-header nav .nav-sections ul  {
+header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
-  font-weight: 500;
 }
 
 header nav .nav-sections ul > li {
@@ -182,13 +252,24 @@ header nav .nav-sections ul > li > ul {
   margin-top: 0;
 }
 
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 500;
+header .nav-link {
+  font-weight: 600;
+  font-size: var(--nav-font-size);
+  letter-spacing: -0.028em;
+  line-height: 1.2;
+  opacity: 1;
+}
+
+/* todo active style */
+header .nav-link.active {
+  opacity: 1;
 }
 
 @media (min-width: 900px) {
-  header nav .nav-sections {
-    display: block;
+  header nav .nav-sections,
+  header nav[aria-expanded="true"] .nav-sections {
+    display: flex;
+    justify-content: center;
     visibility: visible;
     white-space: nowrap;
   }
@@ -204,10 +285,10 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections .nav-drop::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
-    top: .5em;
+    top: 0.5em;
     right: 2px;
     transform: rotate(135deg);
     width: 6px;
@@ -219,7 +300,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
     top: unset;
-    bottom: .5em;
+    bottom: 0.5em;
     transform: rotate(315deg);
   }
 
@@ -253,7 +334,7 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections > ul > li > ul::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -8px;
     left: 8px;
@@ -270,6 +351,6 @@ header nav .nav-sections ul > li > ul > li {
 }
 
 /* tools */
-header nav .nav-tools {
-  grid-area: tools;
+header nav .nav-cta {
+  grid-area: cta;
 }

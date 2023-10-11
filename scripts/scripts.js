@@ -11,9 +11,19 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  loadScript,
 } from './aem.js';
+import { createTag } from './helpers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
+
+// custom methods
+async function loadGsapLib() {
+  const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+  await loadScript(gsapCDN);
+  const initScript = createTag('script', {}, '');
+  document.body.append(initScript);
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -69,6 +79,15 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+// load external libraries
+function loadExternalLibraries() {
+  loadGsapLib();
+}
+
+// TODO: set theme based on page's first section
+// function updateNavMenuTheme() {
+// }
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -91,6 +110,8 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+
+  loadExternalLibraries();
 }
 
 /**

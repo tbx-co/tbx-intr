@@ -40,9 +40,16 @@ If you have used helix/franklin before:
 
 ## Before submitting code
 
-- run `npm run lint:fix` to fix the fixable stylelin css & js errors with --fix option
+- run `npm run lint:fix` to fix the fixable stylelint css & eslint js errors with --fix option
 - run `npm run lint` to ensure that no eslint error exists
-- run `npm run test` to double-check & avoid failing tests
+
+## Other setup
+
+### Eslint Setup 
+
+- Disabled `max-len` rule: as most of the time some codes / comments are long by nature (esp. for shorthand one-liner js methods), disabled for more convenient implementation 
+- Allowed `console.warn`: please use `console.warn` to alert user input error, like something is missing from the google doc side & alert user to input correctly -> easier to debug. Format prefix the error like `Content Input Alert in block_name: xxxx` so that we know it's intended & can spot out the user input error right away
+
 
 ## References
 

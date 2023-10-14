@@ -1,0 +1,110 @@
+:root {
+  --split-title-grid-col-gap: 15px;
+  --split-title-grid-row-gap: 5px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --split-title-grid-col-gap: 40px;
+    --split-title-grid-row-gap: 15px;
+  }
+}
+
+.split-title-section {
+  width: 100%;
+  max-width: var(--contained-content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow-x: hidden;
+  margin-bottom: var(--spacing-ml);
+}
+
+.split-title {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "topLeft topRight"
+    "bottomLeft bottomRight";
+  position: relative;
+  gap: var(--split-title-grid-row-gap) var(--split-title-grid-col-gap);
+  margin-bottom: var(--spacing-m);
+}
+
+.split-title .top-left {
+  grid-area: topLeft;
+  text-align: right;
+}
+
+.split-title .top-right {
+  grid-area: topRight;
+  text-align: left;
+}
+
+.split-title .bottom-left {
+  grid-area: bottomLeft;
+  text-align: right;
+}
+
+.split-title .bottom-right {
+  grid-area: bottomRight;
+  text-align: left;
+  position: relative;
+}
+
+.split-title-section.deco-bold-curly .split-title::before {
+  content: url("/assets/img/scribble-curly-horizontal.svg");
+  position: absolute;
+  width: clamp(150px, 35vw, 160px);
+  top: 50%;
+  left: 50%;
+  transform: rotate(-30.25deg) translate(-10%, -60%);
+}
+
+.caligraphy-text {
+  display: none;
+  position: absolute;
+}
+
+@media (min-width: 600px) {
+  .split-title {
+    margin-bottom: 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  .split-title {
+    margin-bottom: 70px;
+  }
+
+  .split-title-section {
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .split-title-section.deco-bold-curly .split-title::before {
+    width: clamp(280px, 22vw, 400px);
+    transform: rotate(-30.26deg) translate(-12%, -63%);
+  }
+}
+
+.split-title-section .description {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.split-title-section .description-text.left {
+  grid-area: left;
+}
+
+.split-title-section .description-text.right {
+  grid-area: right;
+}
+
+@media (min-width: 768px) {
+  .split-title-section .description {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "left right";
+    gap: 0 var(--split-title-grid-col-gap);
+  }
+}

@@ -1,29 +1,52 @@
+:root {
+  --columns-gap: 24px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --columns-gap: 36px 7vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --columns-gap: clamp(36px, 3vw, 46px) clamp(72px, 7vw, 120px);
+  }
+}
+
 .columns > div {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--columns-gap);
+}
+
+.columns .heading {
+  color: var(--color-primary-blue);
 }
 
 .columns img {
   width: 100%;
 }
 
-.columns > div > div {
-  order: 1;
+/* dark mode, text = white */
+.columns.dark-mode {
+  color: var(--color-white);
 }
 
-.columns > div > .columns-img-col {
-  order: 0;
+.columns.dark-mode .heading {
+  color: var(--color-white);
 }
 
-.columns > div > .columns-img-col img {
-  display: block;
-}
-
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .columns > div {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .columns > div > div {

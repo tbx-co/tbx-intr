@@ -1,0 +1,126 @@
+.project-card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-s);
+}
+
+.project-card-link-wrapper {
+  display: block;
+  position: relative;
+}
+
+.project-card .project-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+}
+
+.project-card .project-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+.project-card-link-wrapper:hover .project-card-media img {
+  transform: scale(1.04);
+}
+
+.project-card .project-card-info-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1.5rem 1rem;
+  width: 100%;
+  color: var(--color-white);
+  display: grid;
+  gap: var(--spacing-s);
+}
+
+.project-card-title-wrapper h4 {
+  line-height: 0.9;
+  font-size: clamp(24px, 5.4vw, 36px);
+  letter-spacing: -0.04em;
+  position: relative;
+  width: fit-content;
+}
+
+.project-card-title-wrapper h4::before {
+  content: url("/assets/img/scribble-circle-single-cross.svg");
+  position: absolute;
+  width: clamp(100px, 125%, 370px);
+  height: fit-content;
+  opacity: 0;
+  top: 0%;
+  right: 0%;
+  transform: rotate(-19.4deg) translate(10%, 5%);
+  transition: var(--transition-cubic-bezier-1);
+}
+
+.project-card-link-wrapper:hover h4::before {
+  opacity: 1;
+}
+
+.project-card-title-wrapper p {
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.project-card-title-wrapper p span {
+  margin-right: 12px;
+}
+
+.project-card-description-wrapper {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .project-card-description-wrapper {
+    display: block;
+    max-width: 500px;
+  }
+
+  .project-card-description-wrapper h5 {
+    font-size: var(--heading-font-size-s);
+    line-height: 1;
+  }
+
+  .project-card-description-wrapper p {
+    margin: 10px 0 0;
+  }
+
+  .project-card .project-card-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .project-card .project-card-info-wrapper {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .project-card .project-card-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-card-title-wrapper h4 {
+    font-size: clamp(32px, 6vw, 96px);
+  }
+
+  .project-card-title-wrapper p span {
+    margin-right: 17px;
+  }
+
+  .project-card .project-card-info-wrapper {
+    gap: var(--spacing-s);
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .project-card .project-card-info-wrapper {
+    gap: var(--spacing-m);
+  }
+}

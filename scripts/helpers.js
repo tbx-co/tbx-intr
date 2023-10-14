@@ -11,7 +11,7 @@ export function createTag(tag, attributes, html) {
     if (html instanceof HTMLElement) {
       el.append(html);
     } else {
-      el.insertAdjacentHTML('beforeend', html);
+      el.insertAdjacentHTML("beforeend", html);
     }
   }
   if (attributes) {
@@ -21,6 +21,37 @@ export function createTag(tag, attributes, html) {
   }
   return el;
 }
+
+// replace ALL innerHTML of the parentElement with childNodes {HTMLElement} provided
+export function replaceAllChildElements(parentElement, ...childNodes) {
+  if (parentElement && childNodes) {
+    parentElement.innerHTML = "";
+    childNodes.forEach((child) => {
+      parentElement.append(child);
+    });
+  }
+}
+
+/**
+ * Replace element type. ex) <p> -> <div>
+ * @param {Element} el The original element that subject to replace.
+ * @param {string} type The nodeName to be set for el.
+ * @returns newEl Updated Element
+ */
+export const replaceElementType = (el, type) => {
+  // If they are same, no need to replace.
+  if (el === null || el.nodeName === type.toUpperCase()) {
+    return el;
+  }
+  const newEl = document.createElement(type);
+  newEl.innerHTML = el.innerHTML;
+  el.parentNode.replaceChild(newEl, el);
+  // copy all attributes from el to newEl
+  [...el.attributes].forEach((attr) =>
+    newEl.setAttribute(attr.nodeName, attr.nodeValue)
+  );
+  return newEl;
+};
 
 /**
  * * @param {string} url the href of a link element
@@ -34,13 +65,13 @@ export function returnLinkTarget(url) {
   // take in pathname that should be opened in new tab, in redirects excel
   const redirectExternalPaths = [];
   const redirectToExternalPath = redirectExternalPaths.includes(
-    urlObject.pathname,
+    urlObject.pathname
   );
 
   if (!isSameHost || redirectToExternalPath) {
-    return '_blank';
+    return "_blank";
   }
-  return '_self';
+  return "_self";
 }
 
 // Animation related
@@ -51,7 +82,7 @@ export function addInviewObserverToTriggerElement(triggerElement) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
+        entry.target.classList.add("in-view");
         observer.unobserve(entry.target);
       }
     });

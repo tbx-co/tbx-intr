@@ -14,21 +14,21 @@ header .nav-wrapper {
   z-index: var(--nav-z-index);
   position: fixed;
   color: var(--color-white);
-  background: var(--color-black);
+  background: var(--color-primary-blue);
 }
 
 /* header theme setup, default theme as theme-dark */
 header .theme-dark .nav-wrapper {
   color: var(--color-white);
-  background: var(--color-black);
+  background: var(--color-primary-blue);
 }
 
 header .intr-logo.white,
 header .intr-logo.black {
   opacity: 0;
-} 
+}
 
-header .theme-dark .intr-logo.white{
+header .theme-dark .intr-logo.white {
   opacity: 1;
 }
 
@@ -37,7 +37,7 @@ header .theme-light .nav-wrapper {
   background: var(--color-white);
 }
 
-header .theme-light .intr-logo.black{
+header .theme-light .intr-logo.black {
   opacity: 1;
 }
 
@@ -73,7 +73,7 @@ header nav[aria-expanded="true"] {
     padding: var(--spacing-s) 0;
   }
 
-  header nav[aria-expanded="true"] .nav-sections li{
+  header nav[aria-expanded="true"] .nav-sections li {
     margin-bottom: var(--spacing-s);
   }
 }
@@ -109,7 +109,7 @@ header nav .nav-hamburger {
 }
 
 header nav .nav-hamburger button {
-  height: 22px;
+  height: 16px;
   width: auto;
   aspect-ratio: 1 / 1;
   margin: 0;
@@ -120,6 +120,7 @@ header nav .nav-hamburger button {
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
+  background: var(--color-white);
 }
 
 /* TODO: see if we want to keep the mobile hambuger menu */

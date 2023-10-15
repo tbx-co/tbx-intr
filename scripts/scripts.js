@@ -33,7 +33,11 @@ function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  if (
+    h1
+    && picture
+    && h1.compareDocumentPosition(picture) && Node.DOCUMENT_POSITION_PRECEDING
+  ) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
@@ -65,6 +69,40 @@ function buildAutoBlocks(main) {
   }
 }
 
+// decorate function
+export function decorateTitleSection(main) {
+  const titleSections = main.querySelectorAll('.title-section');
+  if (!titleSections) return;
+  titleSections.forEach((section) => {
+    const elements = section.querySelectorAll('h1,h2,h3,h4,h5,h6,p');
+    if (!elements) return;
+
+    const headingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+    elements.forEach((el) => {
+      const currentTag = el.tagName.toLowerCase();
+      if (headingTags.includes(currentTag)) {
+        if (currentTag === 'h1' || currentTag === 'h2') {
+          el.classList.add('heading-xl', 'section-title');
+        } else {
+          el.classList.add('heading-l');
+        }
+      } else {
+        el.classList.add('section-description');
+      }
+    });
+
+    // const eyebrow = elements[0];
+    // const headline = elements[1];
+    // if (eyebrow) {
+    //   eyebrow.classList.add('icon-eyebrow');
+    // }
+    // if (headline) {
+    //   headline.classList.add('main-headline');
+    // }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -77,6 +115,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateTitleSection(main);
 }
 
 // load external libraries

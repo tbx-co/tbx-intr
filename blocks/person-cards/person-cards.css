@@ -1,0 +1,148 @@
+.person-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-l);
+}
+
+.person-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.person-card-col-2 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing-xs);
+}
+
+.person-card-wrapper .description {
+  flex-grow: 1;
+}
+
+.person-card-wrapper .description:first-of-type {
+  margin-top: 0;
+}
+
+.person-card-title {
+  margin-bottom: var(--spacing-xs);
+}
+
+.person-card-person-info {
+  margin-top: var(--spacing-s);
+  font-feature-settings: "salt" on;
+  letter-spacing: -0.04em;
+}
+
+.person-card-person-info em {
+  color: var(--color-white);
+}
+
+.person-card-person-info .person-name {
+  margin-bottom: var(--spacing-xxs);
+}
+
+.person-card-person-info .person-title {
+  font-weight: 400;
+}
+
+@media (min-width: 600px) {
+  .person-card-person-info .person-name {
+    margin-bottom: 12px;
+  }
+
+  .person-card-col-2 {
+    padding-top: var(--spacing-s);
+  }
+}
+
+@media (min-width: 768px) {
+  .person-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-s);
+  }
+
+  .person-card-person-info {
+    margin-top: var(--spacing-m);
+  }
+}
+
+@media (min-width: 900px) {
+  .person-cards {
+    gap: clamp(48px, 6.4vw, 110px);
+  }
+
+  .person-card-col-2 {
+    padding-top: var(--spacing-m);
+  }
+
+  .person-card-title {
+    margin-bottom: var(--spacing-s);
+  }
+}
+
+/* image-card */
+.person-cards.image-card .person-card-col-1 {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+}
+
+.person-cards.image-card .person-card-col-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .person-cards.image-card .person-card-col-1 {
+    aspect-ratio: 17 / 20;
+  }
+}
+
+/* testimonial */
+.person-cards.testimonial .person-card-col-1 img {
+  width: clamp(120px, 7vw, 140px);
+}
+
+.person-cards.testimonial .person-card-person-info {
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  gap: 12px;
+}
+
+.person-cards.testimonial .person-info-icon {
+  display: grid;
+  place-items: center;
+}
+
+.person-cards.testimonial .person-info-icon picture {
+  display: flex;
+  width: 55px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 768px) {
+  .person-cards.testimonial .person-card-person-info {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .person-cards.testimonial .person-info-icon {
+    place-items: baseline;
+  }
+}
+
+@media (min-width: 1024px) {
+  .person-cards.testimonial .person-card-person-info {
+    grid-template-columns: 55px 1fr;
+    gap: 12px;
+  }
+
+  .person-cards.testimonial .person-info-icon {
+    place-items: center;
+  }
+}

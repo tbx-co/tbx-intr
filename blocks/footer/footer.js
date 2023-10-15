@@ -60,14 +60,15 @@ function decorateFooterDecoText(footer) {
 
 // TODO: animate
 // function animateFooterDecoText(footerDecoText) {
-//   const target = footerDecoText.querySelector('.marquee-content');
+//   const target = footerDecoText.querySelector(".marquee-content");
 
-//   gsap.to(target, {
-//     xPercent: -100,
-//     repeat: -1,
-//     duration: 40,
-//     ease: 'linear',
-//   })
+//   gsap
+//     .to(target, {
+//       xPercent: -100,
+//       repeat: -1,
+//       duration: 100,
+//       ease: "linear",
+//     })
 //     .totalProgress(0.5);
 // }
 

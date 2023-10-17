@@ -1,3 +1,25 @@
 .section-description {
   width: 100%;
+  margin-bottom: var(--section-spacing-l);
+}
+
+.section-description .row-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.section-description .text-wrapper {
+  max-width: 560px;
+}
+
+@media (min-width: 900px) {
+  .section-description {
+    margin-bottom: var(--spacing-5xl);
+  }
+
+  .section-description .row-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-m);
+  }
 }

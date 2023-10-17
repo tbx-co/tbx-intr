@@ -88,6 +88,9 @@
   --spacing-4xl: 104px;
   --spacing-5xl: 128px;
 
+  /* Section spacing */
+  --section-spacing-l: var(--spacing-l);
+
   /* gap */
   --columns-gap: 24px;
 
@@ -137,6 +140,9 @@
     /* max-width */
     --section-max-width: var(--section-laptop-max-width);
     --contained-content-max-width: 1080px;
+
+    /* Section spacing */
+    --section-spacing-l: var(--spacing-4xl);
   }
 }
 
@@ -403,6 +409,11 @@ main .section.highlight {
   color: var(--color-white);
 }
 
+.bg-grey {
+  background: var(--color-light-grey);
+  color: var(--color-black);
+}
+
 .section-description {
   font-size: var(--body-font-size-xs);
   text-align: left;
@@ -436,24 +447,26 @@ main .section.highlight {
 }
 
 .heading-s {
-  font-size: clamp(22px, 3.5vw, 26px);
+  font-size: clamp(21px, 3.5vw, 24px);
   letter-spacing: -0.04em;
 }
 
 .heading-m {
-  font-size: 50px;
+  font-size: clamp(26px, 3.8vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .heading-ml {
   font-feature-settings: "salt" on;
-  font-size: clamp(36px, 5.4vw, 52px);
+  font-size: clamp(34px, 5.4vw, 52px);
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
 .heading-l {
   font-feature-settings: "salt" on;
-  font-size: clamp(42px, 4vw, 52px);
+  font-size: clamp(36px, 5.8vw, 52px);
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -486,11 +499,11 @@ main .section.highlight {
   }
 
   .heading-s {
-    font-size: 32px;
+    font-size: clamp(26px, 2.1vw, 32px);
   }
 
   .heading-m {
-    font-size: 50px;
+    font-size: clamp(32px, 3.4vw, 42px);
   }
 
   .heading-ml {
@@ -511,11 +524,13 @@ main .section.highlight {
 /* ---------- drawing styles, .deco-bold-xxxx ----------- */
 .deco-bold-curly strong,
 .deco-bold-circle strong,
+.deco-bold-circle-triple strong,
 .deco-bold-y-sign strong,
 .deco-bold-y-sign-white strong,
 .deco-bold-y-sign-fill-right strong,
 .deco-bold-zigzag strong,
-.deco-bold-circle-single-cross strong {
+.deco-bold-circle-single-cross strong,
+.deco-bold-pigtail strong {
   position: relative;
 }
 
@@ -528,6 +543,17 @@ main .section.highlight {
   left: -23%;
   width: 190%;
   z-index: 5;
+}
+
+/* triple circle */
+.deco-bold-circle-triple strong::before {
+  content: url("/assets/img/scribble-circle-triple.svg");
+  width: 180%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: rotate(-180deg) translate(19%, -33%);
+  z-index: 2;
 }
 
 /* circle single cross */
@@ -608,6 +634,22 @@ main .section.highlight {
   transform: scaleX(-1) translate(62.5%, 0);
 }
 
+/* pigtail */
+.deco-bold-pigtail strong::after {
+  content: url("/assets/img/scribble-pigtail.svg");
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: clamp(80px, 15vw, 220px);
+  transform: translate(0%, -15%) rotate(-150deg);
+}
+
+@media (min-width: 900px) {
+  .deco-bold-pigtail strong::after {
+    width: clamp(220px, 15vw, 250px);
+  }
+}
+
 /* ------- drawing styles, .deco-bold-xxxx ends ------- */
 
 /* buttons */
@@ -638,7 +680,11 @@ main .section.highlight {
 /* -------------- Utility Classes Ends -------------- */
 
 /* -------------- Section Specific Styles -------------- */
-.home-hero {
+
+/* hero */
+.home-hero,
+.services-hero,
+.work-hero {
   min-height: calc(100vh - 115px);
   max-height: 990px;
   display: flex;
@@ -657,6 +703,12 @@ main .section.highlight {
   margin-bottom: 80px;
 }
 
+main .section.services-hero,
+main .section.work-hero {
+  min-height: 60vh;
+  padding-top: 20%;
+}
+
 @media (min-width: 600px) {
   .home-hero .section-description {
     width: 60%;
@@ -665,7 +717,7 @@ main .section.highlight {
 
 @media (min-width: 900px) {
   .home-hero {
-    height: 95vh;
+    min-height: 90vh;
   }
 
   .home-hero .section-description {
@@ -676,8 +728,15 @@ main .section.highlight {
   .home-hero .default-content-wrapper {
     padding: 10% 0 15%;
   }
+
+  main .section.services-hero,
+  main .section.work-hero {
+    min-height: 80vh;
+    padding-top: 12.5%;
+  }
 }
 
+/* testimonial */
 main .section.testimonial-section {
   padding-bottom: 96px;
 }
@@ -685,6 +744,16 @@ main .section.testimonial-section {
 @media (min-width: 900px) {
   main .section.testimonial-section {
     padding-bottom: 192px;
+  }
+}
+
+/* offering blade */
+@media (min-width: 900px) {
+  .offering-blade .free-style-title,
+  .offering-blade .section-description {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

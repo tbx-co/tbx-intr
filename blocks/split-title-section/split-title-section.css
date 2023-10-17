@@ -52,6 +52,7 @@
   position: relative;
 }
 
+/* deco-bold */
 .split-title-section.deco-bold-curly .split-title::before {
   content: url("/assets/img/scribble-curly-horizontal.svg");
   position: absolute;
@@ -59,6 +60,15 @@
   top: 50%;
   left: 50%;
   transform: rotate(-30.25deg) translate(-10%, -60%);
+}
+
+.split-title-section.deco-bold-sign-y-long .split-title::before {
+  content: url("/assets/img/scribble-sign-y-long.svg");
+  position: absolute;
+  width: clamp(150px, 40vw, 500px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-30%, -54%);
 }
 
 .caligraphy-text {

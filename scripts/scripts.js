@@ -91,15 +91,6 @@ export function decorateTitleSection(main) {
         el.classList.add('section-description');
       }
     });
-
-    // const eyebrow = elements[0];
-    // const headline = elements[1];
-    // if (eyebrow) {
-    //   eyebrow.classList.add('icon-eyebrow');
-    // }
-    // if (headline) {
-    //   headline.classList.add('main-headline');
-    // }
   });
 }
 

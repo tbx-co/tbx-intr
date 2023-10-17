@@ -34,7 +34,7 @@ header .theme-dark .intr-logo.white {
 
 header .theme-light .nav-wrapper {
   color: var(--color-black);
-  background: var(--color-white);
+  background: var(--color-light-grey);
 }
 
 header .theme-light .intr-logo.black {
@@ -43,6 +43,13 @@ header .theme-light .intr-logo.black {
 
 header .theme-light .primary-button {
   border-color: black;
+}
+
+header .theme-light .nav-btn {
+  background: black;
+  
+  /* background: transparent;
+  border: 1px solid black; */
 }
 
 header nav {
@@ -260,12 +267,31 @@ header .nav-link {
   font-size: var(--nav-font-size);
   letter-spacing: -0.028em;
   line-height: 1.2;
+  position: relative;
+}
+
+/* TODO: active status */
+header .nav-link::after{
+  content: url('/assets/img/scribble-sketch-lines.svg');
+  width: 120%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(0, 35%) rotate(0);
+  opacity: 0;
+}
+
+header .nav-link.active::after{
   opacity: 1;
 }
 
 /* todo active style */
 header .nav-link.active {
   opacity: 1;
+}
+
+header .theme-light .nav-link.active::after {
+  filter: brightness(0);
 }
 
 @media (min-width: 900px) {

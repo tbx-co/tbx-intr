@@ -181,7 +181,7 @@ export default async function decorate(block) {
     // TODO: hamburger for mobile
     const hamburger = document.createElement('div');
     hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
+    hamburger.innerHTML = `<button type="button" class="nav-btn" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
       </button>`;
     hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
@@ -196,8 +196,15 @@ export default async function decorate(block) {
     navWrapper.className = 'nav-wrapper';
     navWrapper.append(nav);
 
-    // TODO: update theme
-    block.classList.add('theme-dark');
+    // update theme based on nav-theme setting in Metadata table
+    const navThemeSetting = document.querySelector('meta[name="nav-theme"]');
+    if (navThemeSetting && navThemeSetting.getAttribute('content')) {
+      const navTheme = navThemeSetting.getAttribute('content')
+      block.classList.add(navTheme);
+    } else {
+      block.classList.add('theme-dark');
+    }
+    
     block.append(navWrapper);
   }
 }

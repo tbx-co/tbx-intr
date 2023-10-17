@@ -112,6 +112,7 @@ export function decorateMain(main) {
 // load external libraries
 function loadExternalLibraries() {
   loadGsapLib();
+  loadScript('/libs/circularNav.js');  // TODO: see if that works
 }
 
 // TODO: set theme based on page's first section

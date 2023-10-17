@@ -201,6 +201,8 @@ header .nav-brand-logo-link {
 header nav .nav-brand img {
   width: auto;
   height: 18px;
+  aspect-ratio: 2.1 / 1;
+  object-fit: contain;
 }
 
 header .intr-logo-wrapper {

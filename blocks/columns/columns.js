@@ -8,7 +8,9 @@ export default function decorate(block) {
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
-      const title = col.querySelector('h1, h2, h3, h4, h5, h6');
+      const bigTitle = col.querySelector('h1, h2, h3, h4');
+      if (bigTitle) bigTitle.classList.add('heading-m', 'big-heading');
+      const title = col.querySelector('h5, h6');
       if (title) title.classList.add('heading-s', 'heading');
 
       const description = col.querySelector('p');

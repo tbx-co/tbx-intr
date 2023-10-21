@@ -8,6 +8,8 @@
   }
 }
 
+/* logic: keep nav as top nav, create another div for circular reveal */
+
 /* header and nav layout */
 header .nav-wrapper {
   width: 100%;
@@ -15,8 +17,14 @@ header .nav-wrapper {
   position: fixed;
   color: var(--color-white);
   background: var(--color-primary-blue);
+  transition: var(--transition-cubic-bezier-1);
 }
 
+header .nav-wrapper.hide {
+  transform: translateY(-100%);
+}
+
+/* TODO: animation */
 header .mobile-menu-wrapper {
   position: fixed;
   inset: 0;
@@ -24,6 +32,13 @@ header .mobile-menu-wrapper {
   height: 100%;
   z-index: 5;
   display: none;
+
+  /* visibility: hidden;
+  clip-path: circle(var(--radius) at calc(100% - 55px) 47px); */
+}
+
+header .mobile-menu-wrapper[data-active="true"] {
+  visibility: visible;
 }
 
 /* header theme setup, default theme as theme-dark */
@@ -42,6 +57,13 @@ header .theme-dark .intr-logo.white {
   opacity: 1;
 }
 
+header .theme-dark .nav-btn {
+  background: var(--color-white);
+  border: 1px solid var(--color-white);
+  transition: var(--transition-cubic-bezier-1);
+}
+
+/* theme-light */
 header .theme-light .nav-wrapper,
 header .theme-light .mobile-menu-wrapper {
   color: var(--color-black);
@@ -57,10 +79,19 @@ header .theme-light .primary-button {
 }
 
 header .theme-light .nav-btn {
-  background: black;
+  background: var(--color-black);
+  border: 1px solid var(--color-black);
+  transition: var(--transition-cubic-bezier-1);
+}
 
-  /* background: transparent;
-  border: 1px solid black; */
+header .theme-dark .nav-btn[data-open="true"],
+header .theme-light .nav-btn[data-open="true"] {
+  background: transparent;
+}
+
+/* theme-transparent, TODO: see if it's really transparent */
+header .theme-transparent .nav-wrapper {
+  background: transparent;
 }
 
 header nav {
@@ -282,8 +313,8 @@ header .nav-link {
 }
 
 /* TODO: active status */
-header .nav-link::after{
-  content: url('/assets/img/scribble-sketch-lines.svg');
+header .nav-link::after {
+  content: url("/assets/img/scribble-sketch-lines.svg");
   width: 120%;
   position: absolute;
   right: 0;
@@ -292,7 +323,7 @@ header .nav-link::after{
   opacity: 0;
 }
 
-header .nav-link.active::after{
+header .nav-link.active::after {
   opacity: 1;
 }
 
@@ -393,4 +424,15 @@ header .theme-light .nav-link.active::after {
 /* tools */
 header nav .nav-cta {
   grid-area: cta;
+}
+
+/* TODO: not sure if that's in use */
+@keyframes scale {
+  from {
+    transform: scale(0%);
+  }
+
+  to {
+    transform: scale(100%);
+  }
 }

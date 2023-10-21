@@ -101,6 +101,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     "aria-label",
     expanded ? "Open navigation" : "Close navigation"
   );
+  button.setAttribute("data-open", expanded ? "false" : "true");
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll(".nav-drop");
   if (isDesktop.matches) {
@@ -144,7 +145,11 @@ function createMobileMenu(nav) {
   // setup toggle mobile menu logic
   const hamburger = mobileMenu.querySelector(".nav-btn");
   const navSections = mobileMenu.querySelector(".nav-sections");
-  hamburger.addEventListener("click", () => toggleMenu(nav, navSections));
+
+  hamburger.addEventListener("click", () => {
+    console.log("clicked");
+    toggleMenu(nav, navSections);
+  });
 
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
@@ -154,6 +159,47 @@ function createMobileMenu(nav) {
 
   return mobileMenuWrapper;
 }
+
+// TODO: circular nav animation
+function initCircularNavAnimation() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealerNav = window.revealer({
+      revealElementSelector: ".mobile-nav-js",
+      options: {
+        anchorSelector: ".nav-btn-js",
+      },
+    });
+
+    const actionBtn = document.querySelector(".nav-btn-js");
+    actionBtn.addEventListener("click", () => {
+      if (!revealerNav.isRevealed()) {
+        revealerNav.reveal();
+        actionBtn.setAttribute("data-open", true);
+      } else {
+        revealerNav.hide();
+        actionBtn.setAttribute("data-open", false);
+      }
+    });
+  });
+}
+
+// scroll & reveal header
+const setScrollRevealAnimation = (navWrapper) => {
+  let scrollY = window.scrollY;
+  const myFunc = () => {
+    if (scrollY > 80) {
+      if (scrollY < window.scrollY) {
+        // topbars.forEach((topbar) => topbar.classList.add("hidden"));
+        navWrapper.classList.add("hide");
+      } else {
+        // topbars.forEach((topbar) => topbar.classList.remove("hidden"));
+        navWrapper.classList.remove("hide");
+      }
+    }
+    scrollY = window.scrollY;
+  };
+  window.addEventListener("scroll", myFunc);
+};
 
 /**
  * decorates the header, mainly the nav
@@ -172,7 +218,6 @@ export default async function decorate(block) {
     const nav = document.createElement("nav");
     nav.id = "nav";
     nav.innerHTML = html;
-    // console.log(nav);
 
     const classes = ["brand", "sections", "cta"];
     classes.forEach((c, i) => {
@@ -239,7 +284,11 @@ export default async function decorate(block) {
     const navWrapper = document.createElement("div");
     navWrapper.className = "nav-wrapper";
     navWrapper.append(nav);
+
+    // append newly created menu here
     navWrapper.append(mobileMenuWrapper);
+
+    setScrollRevealAnimation(navWrapper);
 
     // update theme based on nav-theme setting in Metadata table
     const navThemeSetting = document.querySelector('meta[name="nav-theme"]');

@@ -92,6 +92,7 @@
 
   /* Section spacing */
   --section-spacing-l: var(--spacing-l);
+  --section-spacing-xl: var(--spacing-2xl);
 
   /* gap */
   --columns-gap: 24px;
@@ -146,6 +147,7 @@
 
     /* Section spacing */
     --section-spacing-l: var(--spacing-4xl);
+    --section-spacing-xl: var(--spacing-4xl);
   }
 }
 
@@ -417,6 +419,16 @@ main .section.highlight {
   color: var(--color-black);
 }
 
+.pt-l {
+  padding-top: var(--spacing-s);
+}
+
+@media (min-width: 768px) {
+  .pt-l {
+    padding-top: var(--spacing-l);
+  }
+}
+
 .section-description {
   font-size: var(--body-font-size-xs);
   text-align: left;
@@ -439,6 +451,7 @@ main .section.highlight {
 .heading-m,
 .heading-ml,
 .heading-l,
+.heading-sl,
 .heading-xl {
   font-family: var(--heading-font-family);
   font-weight: 700;
@@ -460,11 +473,18 @@ main .section.highlight {
   letter-spacing: -0.04em;
 }
 
+.heading-sl {
+  font-feature-settings: "salt" on;
+  font-size: clamp(28px, 6vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
 .heading-ml {
   font-feature-settings: "salt" on;
   font-size: clamp(34px, 5.4vw, 52px);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .heading-l {
@@ -509,6 +529,11 @@ main .section.highlight {
     font-size: clamp(32px, 3.4vw, 42px);
   }
 
+  .heading-sl {
+    font-size: clamp(32px, 6vw, 90px);
+    line-height: 0.9;
+  }
+
   .heading-ml {
     font-size: clamp(64px, 5.4vw, 110px);
   }
@@ -527,11 +552,15 @@ main .section.highlight {
 /* ---------- drawing styles, .deco-bold-xxxx ----------- */
 .deco-bold-curly strong,
 .deco-bold-circle strong,
+.deco-bold-circle-inline strong,
 .deco-bold-circle-triple strong,
 .deco-bold-y-sign strong,
 .deco-bold-y-sign-white strong,
 .deco-bold-y-sign-fill-right strong,
 .deco-bold-zigzag strong,
+.deco-bold-zigzag-left strong,
+.deco-bold-zigzag-top-left strong,
+.deco-bold-zigzag-right strong,
 .deco-bold-circle-single-cross strong,
 .deco-bold-pigtail strong {
   position: relative;
@@ -539,13 +568,23 @@ main .section.highlight {
 
 /* center circle */
 .deco-bold-circle strong::before,
-.deco-bold-circle svg {
+.deco-bold-circle-inline strong::before {
   content: url("/assets/img/scribble-circle-center.svg");
   position: absolute;
   bottom: -45%;
   left: -23%;
   width: 190%;
   z-index: 5;
+}
+
+/* inline circle */
+.deco-bold-circle-inline strong::before {
+  width: 190%;
+  top: 0;
+  right: 0;
+  left: auto;
+  bottom: auto;
+  transform: scale(-1, -1) translate(-15%, 15%);
 }
 
 /* triple circle */
@@ -629,12 +668,48 @@ main .section.highlight {
 }
 
 /* long-zigzag  */
-.deco-bold-zigzag strong::after {
+.deco-bold-zigzag strong::after,
+.deco-bold-zigzag-left strong::after,
+.deco-bold-zigzag-right strong::after,
+.deco-bold-zigzag-top-left strong::after {
   width: 120%;
   content: url("/assets/img/scribble-long-zigzag.svg");
   position: absolute;
   left: 0;
   transform: scaleX(-1) translate(62.5%, 0);
+}
+
+/* long-zigzag - left */
+.deco-bold-zigzag-left strong {
+  padding-left: 15%;
+}
+
+.deco-bold-zigzag-left strong::after {
+  width: 94%;
+  max-width: 480px;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(-1) translate(-7.5%, 0);
+}
+
+/* long-zigzag - right */
+.deco-bold-zigzag-right strong {
+  padding-right: 10%;
+}
+
+.deco-bold-zigzag-right strong::after {
+  width: 100%;
+  left: 0;
+  top: 0;
+  transform: scaleX(-1) translate(-15%, 0);
+}
+
+/* long-zigzag - top-right */
+.deco-bold-zigzag-top-left strong::after {
+  width: 100%;
+  left: 0;
+  top: 0;
+  transform: scaleX(-1) translate(25%, -20%);
 }
 
 /* pigtail */
@@ -813,6 +888,12 @@ main .section.testimonial-section {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/* Project Detail - blocks */
+.section .project-hero-wrapper,
+.section .project-summary-wrapper {
+  max-width: unset;
 }
 
 /* -------------- Section Classes Ends -------------- */

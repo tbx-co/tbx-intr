@@ -89,9 +89,14 @@ header .theme-light .nav-btn[data-open="true"] {
   background: transparent;
 }
 
-/* theme-transparent, TODO: see if it's really transparent */
+/* TODO: fit into header */
 header .theme-transparent .nav-wrapper {
-  background: transparent;
+  color: var(--color-white);
+  background: linear-gradient(to bottom, #121212, transparent);
+}
+
+header .theme-transparent .intr-logo.white {
+  opacity: 1;
 }
 
 header nav {

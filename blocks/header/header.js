@@ -197,7 +197,11 @@ export default async function decorate(block) {
     navWrapper.append(nav);
 
     // TODO: update theme
-    block.classList.add('theme-dark');
+    if (document.body.classList.contains('project-detail')) {
+      block.classList.add('theme-transparent');
+    } else {
+      block.classList.add('theme-dark');
+    }
     block.append(navWrapper);
   }
 }

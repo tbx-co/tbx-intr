@@ -2,11 +2,11 @@ import { getMetadata, decorateIcons } from "../../scripts/aem.js";
 import { createTag } from "../../scripts/helpers.js";
 
 const BRAND_LOGO =
-  '<img loading="lazy" alt="Intr" class="intr-logo placeholder" src="/assets/logo/intr-logo-white.svg">';
+  '<img loading="lazy" alt="Intr" class="intr-logo placeholder" src="/assets/logo/intr-white-black-logo.svg">';
 const BRAND_LOGO_WHITE =
-  '<img loading="lazy" alt="Intr" class="intr-logo white" src="/assets/logo/intr-logo-white.svg">';
+  '<img loading="lazy" alt="Intr" class="intr-logo white" src="/assets/logo/intr-white-black-logo.svg">';
 const BRAND_LOGO_BLACK =
-  '<img loading="lazy" alt="Intr" class="intr-logo black" src="/assets/logo/intr-logo-black.svg">';
+  '<img loading="lazy" alt="Intr" class="intr-logo black" src="/assets/logo/intr-blue-black-logo.svg">';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia("(min-width: 900px)");

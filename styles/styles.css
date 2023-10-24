@@ -589,13 +589,14 @@ main .section.highlight {
 
 /* triple circle */
 .deco-bold-circle-triple strong::before {
-  content: url("/assets/img/scribble-circle-triple.svg");
+  content: url("/assets/img/scribble-circle-center.svg");
   width: 180%;
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: rotate(-180deg) translate(19%, -33%);
+  transform: rotate(-180deg) translate(19%, -30%);
   z-index: 2;
+  filter: brightness(0);
 }
 
 /* circle single cross */

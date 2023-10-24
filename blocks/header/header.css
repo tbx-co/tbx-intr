@@ -250,13 +250,17 @@ header .nav-brand {
 header .nav-brand-logo-link {
   display: flex;
   align-items: center;
+  margin-bottom: -5px;
 }
 
 header nav .nav-brand img {
   width: auto;
-  height: 18px;
-  aspect-ratio: 2.1 / 1;
+  height: 25px;
   object-fit: contain;
+
+  /* TODO: cleanup if confirmed new logo 
+  aspect-ratio: 2.1 / 1; */
+  
 }
 
 header .intr-logo-wrapper {
@@ -275,9 +279,13 @@ header .intr-logo.placeholder {
 }
 
 @media (min-width: 900px) {
+  header .nav-brand-logo-link {
+    margin-bottom: -7px;
+  }
+
   header nav .nav-brand img {
     width: auto;
-    height: 24px;
+    height: 35px;
   }
 }
 

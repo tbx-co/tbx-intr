@@ -1,0 +1,23 @@
+/* hi */
+.embed-hbspot-form {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+}
+
+.embed-hbspot-form label {
+  padding-bottom: var(--spacing-xxs);
+  display: block;
+  text-transform: capitalize;
+  margin-top: var(--spacing-s);
+}
+
+.embed-hbspot-form input {
+  border-bottom: 1px solid var(--color-black);
+  padding: var(--spacing-xs) var(--spacing-xxs);
+}
+
+.embed-hbspot-form .hs-form-required {
+  color: var(--color-red);
+  margin-left: var(--spacing-xxxs);
+}

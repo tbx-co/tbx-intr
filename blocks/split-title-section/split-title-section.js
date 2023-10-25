@@ -30,17 +30,17 @@ export function addRevealWrapperToAnimationTarget(element) {
 
 export function addAnimationWithGsap(block) {
   const target = block.querySelectorAll(".animate-target");
-  console.log(gsap);
+  console.log(window.gsap);
 
-  // gsap.to(target, {
-  //   scrollTrigger: {
-  //     markers: true,
-  //     trigger: block,
-  //     start: "top center",
-  //     end: "bottom center",
-  //     toggleClass: "in-view",
-  //   },
-  // });
+  gsap.to(target, {
+    scrollTrigger: {
+      markers: true,
+      trigger: block,
+      start: "top center",
+      end: "bottom center",
+      toggleClass: "in-view",
+    },
+  });
 }
 
 export default function decorate(block) {

@@ -21,7 +21,9 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 async function loadGsapLib() {
   const gsapCDN =
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
-  await loadScript(gsapCDN);
+  await loadScript(gsapCDN, {
+    rel: "preload",
+  });
   const initScript = createTag("script", {}, "");
   document.body.append(initScript);
 }
@@ -154,7 +156,6 @@ export function decorateMain(main) {
 // load external libraries
 function loadExternalLibraries() {
   loadGsapLib();
-  loadScript("/libs/circularNav.js"); // TODO: see if that works
   console.log("im loaded");
 }
 
@@ -194,7 +195,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector("main");
-  await loadBlocks(main);
+  await loadBlocks(main); // load all blocks
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

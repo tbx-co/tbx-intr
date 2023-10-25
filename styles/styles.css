@@ -28,10 +28,12 @@
   --color-black: #000;
   --color-white: #fff;
   --color-primary-blue: #1e85ff;
-
-  /* --color-primary-blue: #89bcfa; */
+  --color-red: red;
   --color-accent-light-blue: #8ec2ff;
   --color-light-grey: #eee;
+  --color-grey: #ccc;
+
+  /* preset color setting */
   --link-color: var(--color-primary-blue);
   --link-hover-color: var(--color-primary-blue);
   --background-color-white: #fff;
@@ -320,17 +322,16 @@ em {
 }
 
 main input {
+  all: unset;
+  color: var(--color-black);
   font-size: 1.25rem;
   width: 100%;
   max-width: 50rem;
   display: block;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;
-  border-radius: 0.25rem;
+  padding: var(--spacing-xs) var(--spacing-xxs);
   box-sizing: border-box;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-  background-color: var(--background-color);
+  border: 0;
+  border-bottom: 1px solid var(--color-black);
 }
 
 main input:hover {
@@ -731,7 +732,9 @@ main .section.highlight {
 
 /* ------- drawing styles, .deco-bold-xxxx ends ------- */
 
-/* buttons */
+/* ------- buttons ------- */
+
+/* primary-button: white */
 .primary-button {
   color: var(--color-white);
   background: transparent;
@@ -781,6 +784,47 @@ main .section.highlight {
   transition-delay: 0.175s;
 }
 
+/* primary button: transparent */
+.theme-transparent .primary-button,
+.primary-button.transparent {
+  color: var(--color-white);
+  border-color: var(--color-white);
+  background: transparent;
+}
+
+.theme-transparent .primary-button::before,
+.primary-button.transparent::before {
+  background: var(--color-grey);
+}
+
+.theme-transparent .primary-button:hover,
+.primary-button.transparent:hover {
+  color: var(--color-black);
+}
+
+/* primary button: black */
+.theme-light .primary-button,
+.primary-button.black {
+  color: var(--color-black);
+  border-color: var(--color-black);
+  background: transparent;
+}
+
+.theme-light .primary-button::before,
+.primary-button.black::before {
+  background: var(--color-primary-blue);
+}
+
+.theme-light .primary-button::after,
+.primary-button.black::after {
+  background: var(--color-black);
+}
+
+.theme-light .primary-button:hover,
+.primary-button.black:hover {
+  color: var(--color-white);
+}
+
 @media (min-width: 900px) {
   .primary-button {
     font-size: var(--body-font-size-xs);
@@ -803,8 +847,8 @@ main .section.highlight {
 
 .slide-reveal-inner {
   display: inline-block;
-  transform: translateY(102%);
-  transition: var(--transition-cubic-bezier-1);
+  transform: perspective(10em) rotateX(-60deg) translateY(102%);
+  transition: all 0.8s var(--cubic-bezier-1);
 }
 
 .in-view .slide-reveal-inner {
@@ -922,7 +966,7 @@ main .section.testimonial-section {
   top: calc(var(--size) / 2 * -1);
   left: calc(var(--size) / 2 * -1);
   border-radius: 50%;
-  border: 1.5px solid var(--color-black);
+  border: 1.5px solid var(--color-white);
   background: var(--color-black);
   transition: transform 250ms cubic-bezier(0.25, 1, 0.4, -0.1);
 }
@@ -935,6 +979,13 @@ main .section.testimonial-section {
 @media (min-width: 900px) {
   .cursor-wrapper {
     display: block;
+  }
+}
+
+/* hide custom cursor on mobile */
+@media (pointer: coarse) {
+  .cursor-wrapper {
+    display: none;
   }
 }
 

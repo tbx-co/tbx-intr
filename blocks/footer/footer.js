@@ -1,19 +1,19 @@
-import { readBlockConfig, decorateIcons } from "../../scripts/aem.js";
-import { createTag } from "../../scripts/helpers.js";
+import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
+import { createTag } from '../../scripts/helpers.js';
 
 // decorate
 function decorateFooterContent(footer) {
-  const footerContent = footer.querySelector(".footer-content");
+  const footerContent = footer.querySelector('.footer-content');
   if (!footerContent) return null;
 
-  const footerContentRows = footerContent.querySelectorAll(":scope > div");
-  const topContent = footerContentRows[0].querySelector("div");
-  topContent.classList.add("footer-top-content", "heading-l");
+  const footerContentRows = footerContent.querySelectorAll(':scope > div');
+  const topContent = footerContentRows[0].querySelector('div');
+  topContent.classList.add('footer-top-content', 'heading-l');
 
   const bottomContent = footerContentRows[1];
-  bottomContent.classList.add("footer-bottom-content");
+  bottomContent.classList.add('footer-bottom-content');
 
-  footerContent.innerHTML = "";
+  footerContent.innerHTML = '';
   footerContent.appendChild(topContent);
   footerContent.appendChild(bottomContent);
 
@@ -21,55 +21,57 @@ function decorateFooterContent(footer) {
 }
 
 function decorateFooterDecoText(footer) {
-  const footerDecoText = footer.querySelector(".deco-text");
+  const footerDecoText = footer.querySelector('.deco-text');
   if (!footerDecoText) return null;
 
   const footerDecoTextWrapper = createTag(
-    "div",
-    { class: "deco-text-element" },
-    footerDecoText.textContent
+    'div',
+    { class: 'deco-text-element' },
+    footerDecoText.textContent,
   );
   const footerDecoTextMarqueeContent = createTag(
-    "div",
-    { class: "deco-text-content marquee-inner-wrapper" },
-    ""
+    'div',
+    { class: 'deco-text-content marquee-inner-wrapper' },
+    '',
   );
 
   const requiredContentAmount = 8;
   const arrayOfRequiredContent = Array.from(
-    Array(requiredContentAmount).keys()
+    Array(requiredContentAmount).keys(),
   );
   arrayOfRequiredContent.forEach((_, index) => {
     const marqueeContent = footerDecoTextWrapper.cloneNode(true);
-    marqueeContent.classList.add(`marquee-content-${index}`, "marquee-content");
+    marqueeContent.classList.add(`marquee-content-${index}`, 'marquee-content');
     footerDecoTextMarqueeContent.appendChild(marqueeContent);
   });
 
   const decoTextMarquee = createTag(
-    "div",
-    { className: "marquee" },
-    footerDecoTextMarqueeContent
+    'div',
+    { className: 'marquee' },
+    footerDecoTextMarqueeContent,
   );
 
-  footerDecoText.innerHTML = "";
+  footerDecoText.innerHTML = '';
   footerDecoText.appendChild(decoTextMarquee);
 
   return footerDecoText;
 }
 
 function animateFooterDecoText(footerDecoText) {
-  const targetElements = footerDecoText.querySelectorAll(".marquee-content");
+  const targetElements = footerDecoText.querySelectorAll('.marquee-content');
 
+  // eslint-disable-next-line no-undef
   gsap
     .to(targetElements, {
       xPercent: -100,
       repeat: -1,
       duration: 15,
-      ease: "linear",
+      ease: 'linear',
     })
     .totalProgress(0.5);
 
-  gsap.set(".marquee-inner-wrapper", { xPercent: -50 });
+  // eslint-disable-next-line no-undef
+  gsap.set('.marquee-inner-wrapper', { xPercent: -50 });
 }
 
 /**
@@ -78,20 +80,20 @@ function animateFooterDecoText(footerDecoText) {
  */
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
-  block.textContent = "";
+  block.textContent = '';
 
   // fetch footer content
-  const footerPath = cfg.footer || "/footer";
+  const footerPath = cfg.footer || '/footer';
   const resp = await fetch(
     `${footerPath}.plain.html`,
-    window.location.pathname.endsWith("/footer") ? { cache: "reload" } : {}
+    window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {},
   );
 
   if (resp.ok) {
     const html = await resp.text();
 
     // get document from drive
-    const footer = document.createElement("div");
+    const footer = document.createElement('div');
     footer.innerHTML = html;
     decorateIcons(footer);
 

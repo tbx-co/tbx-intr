@@ -803,6 +803,8 @@ main .section.highlight {
 }
 
 /* primary button: black */
+
+/* stylelint-disable-next-line */
 .theme-light .primary-button,
 .primary-button.black {
   color: var(--color-black);

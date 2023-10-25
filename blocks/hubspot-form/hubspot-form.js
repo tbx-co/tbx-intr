@@ -1,41 +1,40 @@
-import { loadScript } from "../../scripts/aem.js";
-import { createTag } from "../../scripts/helpers.js";
+import { loadScript } from '../../scripts/aem.js';
+import { createTag } from '../../scripts/helpers.js';
 
 const initHubspotSetting = (infoLines) => {
-  let hubspotSetting = {
-    region: "",
-    portalId: "",
-    formId: "",
-    target: ".hubspot-form",
+  const hubspotSetting = {
+    region: '',
+    portalId: '',
+    formId: '',
+    target: '.hubspot-form',
   };
 
   infoLines.forEach((line) => {
-    for (let key in hubspotSetting) {
-      let innerText = line.textContent.trim();
+    Object.keys(hubspotSetting).forEach((key) => {
+      const innerText = line.textContent.trim();
 
       if (innerText.startsWith(`${key}:`)) {
-        let value = innerText.replace(new RegExp(`^${key}:`), "").trim();
-
+        const value = innerText.replace(new RegExp(`^${key}:`), '').trim();
         hubspotSetting[key] = value;
       }
-    }
+    });
   });
 
   return hubspotSetting;
 };
 
 async function loadHubsportLibrary(hubspotSetting) {
-  const hubspotScript = "https://js.hsforms.net/forms/embed/v2.js";
+  const hubspotScript = 'https://js.hsforms.net/forms/embed/v2.js';
   await loadScript(hubspotScript, {
-    type: "text/javascript",
-    charset: "utf-8",
+    type: 'text/javascript',
+    charset: 'utf-8',
   });
 
   // css: "" -> disable using embed & render form directly on page instead*
 
   // TODO: styling for form
   const initHubSpotScript = createTag(
-    "script",
+    'script',
     {},
     `
         hbspt.forms.create({
@@ -45,36 +44,36 @@ async function loadHubsportLibrary(hubspotSetting) {
             target: "${hubspotSetting.target}",
             cssClass: "embed-hbspot-form"
         });
-    `
+    `,
   );
-
-  console.log(initHubSpotScript);
 
   document.body.append(initHubSpotScript);
 }
 
 const validateHubspotSettingInput = (hubspotSetting) => {
-  for (let key in hubspotSetting) {
-    if (hubspotSetting[key] === "") {
+  let isValid = true;
+
+  Object.keys(hubspotSetting).forEach((key) => {
+    if (hubspotSetting[key] === '') {
       console.warn(`Missing "${key}: xxxxx" in Hubspot Form Block`);
-      return false;
+      isValid = false;
     }
-  }
-  return true;
+  });
+
+  return isValid;
 };
 
 // TODO: need higher access to style, may need to restyle on hubspot instead
 
 // docs: https://legacydocs.hubspot.com/docs/methods/forms/advanced_form_options
 export default async function decorate(block) {
-  const infoLines = block.querySelectorAll("p");
+  const infoLines = block.querySelectorAll('p');
   if (infoLines.length <= 0) {
-    console.warn(`Content Input Alert in Hubspot Form: need user input`);
+    console.warn('Content Input Alert in Hubspot Form: need user input');
     return;
   }
 
   const hubspotSetting = initHubspotSetting(infoLines);
-  console.log(hubspotSetting);
   const isHubsportSettingValid = validateHubspotSettingInput(hubspotSetting);
 
   if (isHubsportSettingValid) await loadHubsportLibrary(hubspotSetting);

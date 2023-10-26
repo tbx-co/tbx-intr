@@ -15,12 +15,20 @@ import {
 } from './aem.js';
 import { createTag } from './helpers.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-// custom methods
+// custom methods, TODO: see best way to load in gsap library
 async function loadGsapLib() {
-  const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-  await loadScript(gsapCDN);
+  // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+  const gsapScript = '/libs/gsap/gsap.min.js';
+  await loadScript(gsapScript, {
+    rel: 'preload',
+  });
+
+  // const gsapScrollTriggerScript = "/libs/gsap/gsapScrollTrigger.min.js";
+  // await loadScript(gsapScrollTriggerScript, {
+  //   rel: 'preload',
+  // });
   const initScript = createTag('script', {}, '');
   document.body.append(initScript);
 }
@@ -36,7 +44,8 @@ function buildHeroBlock(main) {
   if (
     h1
     && picture
-    && h1.compareDocumentPosition(picture) && Node.DOCUMENT_POSITION_PRECEDING
+    && h1.compareDocumentPosition(picture)
+    && Node.DOCUMENT_POSITION_PRECEDING
   ) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
@@ -69,7 +78,7 @@ function buildAutoBlocks(main) {
   }
 }
 
-// decorate function
+// decorate functions here:
 export function decorateTitleSection(main) {
   const titleSections = main.querySelectorAll('.title-section');
   if (!titleSections) return;
@@ -95,6 +104,42 @@ export function decorateTitleSection(main) {
 }
 
 /**
+ * Looks for a meta tag with the given name and returns styles the body background color
+ * @param main
+ */
+function decoratePageTheme() {
+  const theme = document.querySelector('meta[name="page-theme-color"]');
+  if (theme) {
+    document.body.style.backgroundColor = theme.getAttribute('content');
+  }
+}
+
+// TODO: testing custom cursor
+function setupCustomCursor() {
+  const defaultCursor = createTag('div', {
+    class: 'default-cursor',
+  });
+  const cursorWrapper = createTag(
+    'div',
+    {
+      class: 'cursor-wrapper default',
+    },
+    defaultCursor,
+  );
+
+  // see if throttle function is needed
+  document.body.append(cursorWrapper);
+
+  // eslint-disable-next-line no-undef
+  window.addEventListener('pointermove', (e) => gsap.to(cursorWrapper, {
+    x: e.clientX,
+    y: e.clientY,
+    duration: 0.3,
+    ease: 'power1.out',
+  }));
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -107,16 +152,16 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateTitleSection(main);
+
+  // TODO: test if that's needed
+  setupCustomCursor();
 }
 
 // load external libraries
 function loadExternalLibraries() {
   loadGsapLib();
+  // console.log('im loaded');
 }
-
-// TODO: set theme based on page's first section
-// function updateNavMenuTheme() {
-// }
 
 /**
  * Loads everything needed to get to LCP.
@@ -140,8 +185,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-
-  loadExternalLibraries();
 }
 
 /**
@@ -150,7 +193,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  await loadBlocks(main);
+  await loadBlocks(main); // load all blocks
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -159,8 +202,13 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
+  decoratePageTheme();
+
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // copied how 3rd library is loaded in Adobe Helix official site
+  loadExternalLibraries();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

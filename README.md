@@ -49,6 +49,7 @@ If you have used helix/franklin before:
 
 - Disabled `max-len` rule: as most of the time some codes / comments are long by nature (esp. for shorthand one-liner js methods), disabled for more convenient implementation 
 - Allowed `console.warn`: please use `console.warn` to alert user input error, like something is missing from the google doc side & alert user to input correctly -> easier to debug. Format prefix the error like `Content Input Alert in block_name: xxxx` so that we know it's intended & can spot out the user input error right away
+- Bumped circularNav library's reveal clipPath ratio from `2` to `2.2`
 
 
 ## References

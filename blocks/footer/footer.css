@@ -107,11 +107,13 @@ footer .footer p {
   overflow: hidden;
 }
 
-.marquee-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex: auto;
+.marquee-inner-wrapper {
   width: fit-content;
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+}
+
+.marquee-content {
+  flex-shrink: 0;
 }

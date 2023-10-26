@@ -25,15 +25,14 @@ function decorateFooterDecoText(footer) {
   if (!footerDecoText) return null;
 
   const footerDecoTextWrapper = createTag(
-    'span',
+    'div',
     { class: 'deco-text-element' },
     footerDecoText.textContent,
   );
   const footerDecoTextMarqueeContent = createTag(
     'div',
-    { class: 'deco-text-content marquee-content' },
+    { class: 'deco-text-content marquee-inner-wrapper' },
     '',
-    // footerDecoTextWrapper
   );
 
   const requiredContentAmount = 8;
@@ -42,7 +41,7 @@ function decorateFooterDecoText(footer) {
   );
   arrayOfRequiredContent.forEach((_, index) => {
     const marqueeContent = footerDecoTextWrapper.cloneNode(true);
-    marqueeContent.classList.add(`marquee-content-${index}`);
+    marqueeContent.classList.add(`marquee-content-${index}`, 'marquee-content');
     footerDecoTextMarqueeContent.appendChild(marqueeContent);
   });
 
@@ -58,19 +57,22 @@ function decorateFooterDecoText(footer) {
   return footerDecoText;
 }
 
-// TODO: animate
-// function animateFooterDecoText(footerDecoText) {
-//   const target = footerDecoText.querySelector(".marquee-content");
+function animateFooterDecoText(footerDecoText) {
+  const targetElements = footerDecoText.querySelectorAll('.marquee-content');
 
-//   gsap
-//     .to(target, {
-//       xPercent: -100,
-//       repeat: -1,
-//       duration: 100,
-//       ease: "linear",
-//     })
-//     .totalProgress(0.5);
-// }
+  // eslint-disable-next-line no-undef
+  gsap
+    .to(targetElements, {
+      xPercent: -100,
+      repeat: -1,
+      duration: 15,
+      ease: 'linear',
+    })
+    .totalProgress(0.5);
+
+  // eslint-disable-next-line no-undef
+  gsap.set('.marquee-inner-wrapper', { xPercent: -50 });
+}
 
 /**
  * loads and decorates the footer
@@ -98,7 +100,7 @@ export default async function decorate(block) {
     // reorganize block structure
     const footerContent = decorateFooterContent(footer);
     const footerDecoText = decorateFooterDecoText(footer);
-    // animateFooterDecoText(footerDecoText);
+    animateFooterDecoText(footerDecoText);
 
     block.append(footerContent);
     block.append(footerDecoText);

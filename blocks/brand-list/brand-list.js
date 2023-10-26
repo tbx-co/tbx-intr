@@ -1,4 +1,4 @@
-import { createTag } from '../../scripts/helpers.js';
+import { createTag, returnLinkTarget } from '../../scripts/helpers.js';
 
 export default function decorate(block) {
   const blockRows = block.querySelectorAll(':scope > div');
@@ -22,6 +22,7 @@ export default function decorate(block) {
         {
           href: linkEl.href,
           title: linkEl.title,
+          target: returnLinkTarget(linkEl.href),
         },
         picture,
       );

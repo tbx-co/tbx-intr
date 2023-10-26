@@ -1,5 +1,6 @@
 :root {
   --nav-font-size: 32px;
+  --circular-nav-radius: 8px;
 }
 
 @media (min-width: 900px) {
@@ -8,6 +9,8 @@
   }
 }
 
+/* logic: keep nav as top nav, create another div for circular reveal */
+
 /* header and nav layout */
 header .nav-wrapper {
   width: 100%;
@@ -15,37 +18,77 @@ header .nav-wrapper {
   position: fixed;
   color: var(--color-white);
   background: var(--color-primary-blue);
+  transition: var(--transition-cubic-bezier-1);
+}
+
+/* hide nav on scroll */
+header .nav-wrapper.hide {
+  transform: translateY(-100%);
+}
+
+/* mobile nav: circular animation */
+header .mobile-menu-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  /* setting for circular nav animation to work */
+  visibility: hidden;
+  clip-path: circle(var(--circular-nav-radius) at calc(100% - 55px) 47px);
+}
+
+header .mobile-menu-wrapper[data-active="true"] {
+  visibility: visible;
 }
 
 /* header theme setup, default theme as theme-dark */
-header .theme-dark .nav-wrapper {
+header .theme-dark .nav-wrapper,
+header .theme-dark .mobile-menu-wrapper {
   color: var(--color-white);
   background: var(--color-primary-blue);
 }
 
 header .intr-logo.white,
-header .intr-logo.black {
+header .intr-logo.white-black,
+header .intr-logo.blue-black {
   opacity: 0;
 }
 
-header .theme-dark .intr-logo.white {
+header .theme-dark .intr-logo.white-black {
   opacity: 1;
 }
 
-header .theme-light .nav-wrapper {
-  color: var(--color-black);
+header .theme-dark .nav-btn {
   background: var(--color-white);
+  border: 1px solid var(--color-white);
+  transition: var(--transition-cubic-bezier-1);
 }
 
-header .theme-light .intr-logo.black {
+/* theme-light */
+header .theme-light .nav-wrapper,
+header .theme-light .mobile-menu-wrapper {
+  color: var(--color-black);
+  background: var(--color-light-grey);
+}
+
+header .theme-light .intr-logo.blue-black {
   opacity: 1;
 }
 
-header .theme-light .primary-button {
-  border-color: black;
+header .theme-light .nav-btn {
+  background: var(--color-black);
+  border: 1px solid var(--color-black);
+  transition: var(--transition-cubic-bezier-1);
 }
 
-/* TODO: fit into header */
+header .theme-dark .nav-btn[data-open="true"],
+header .theme-light .nav-btn[data-open="true"] {
+  background: transparent;
+}
+
+/* theme-transparent */
 header .theme-transparent .nav-wrapper {
   color: var(--color-white);
   background: linear-gradient(to bottom, #121212, transparent);
@@ -69,7 +112,7 @@ header nav {
   font-family: var(--nav-font-family);
 }
 
-header nav[aria-expanded="true"] {
+header nav.mobile-menu {
   grid-template:
     "hamburger brand" var(--nav-height)
     "sections sections" 1fr
@@ -79,11 +122,11 @@ header nav[aria-expanded="true"] {
 }
 
 @media (max-width: 899px) {
-  header nav[aria-expanded="true"] .nav-sections {
+  header nav.mobile-menu .nav-sections {
     padding: var(--spacing-s) 0;
   }
 
-  header nav[aria-expanded="true"] .nav-sections li {
+  header nav.mobile-menu .nav-sections li {
     margin-bottom: var(--spacing-s);
   }
 }
@@ -95,7 +138,7 @@ header nav[aria-expanded="true"] {
     padding: var(--spacing-ml) 0;
   }
 
-  header nav[aria-expanded="true"] {
+  header nav.mobile-menu {
     min-height: 0;
     overflow: visible;
   }
@@ -113,13 +156,17 @@ header nav a:any-link {
 /* hamburger */
 header nav .nav-hamburger {
   grid-area: hamburger;
+  width: calc(var(--circular-nav-radius) * 2);
   height: 22px;
   display: flex;
   align-items: center;
+
+  /* higher z-index to allow clicking when mobile menu expanded  */
+  z-index: 5;
 }
 
 header nav .nav-hamburger button {
-  height: 16px;
+  height: calc(var(--circular-nav-radius) * 2);
   width: auto;
   aspect-ratio: 1 / 1;
   margin: 0;
@@ -206,13 +253,16 @@ header .nav-brand {
 header .nav-brand-logo-link {
   display: flex;
   align-items: center;
+  margin-bottom: -5px;
 }
 
 header nav .nav-brand img {
   width: auto;
-  height: 18px;
-  aspect-ratio: 2.1 / 1;
+  height: 25px;
   object-fit: contain;
+
+  /* TODO: cleanup if confirmed new logo 
+  aspect-ratio: 2.1 / 1; */
 }
 
 header .intr-logo-wrapper {
@@ -231,9 +281,13 @@ header .intr-logo.placeholder {
 }
 
 @media (min-width: 900px) {
+  header .nav-brand-logo-link {
+    margin-bottom: -7px;
+  }
+
   header nav .nav-brand img {
     width: auto;
-    height: 24px;
+    height: 35px;
   }
 }
 
@@ -246,7 +300,7 @@ header nav .nav-sections {
   background-color: var(--overlay-color);
 }
 
-header nav[aria-expanded="true"] .nav-sections {
+header nav.mobile-menu .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
@@ -261,15 +315,26 @@ header nav .nav-sections ul > li {
   font-weight: 700;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
-
 header .nav-link {
   font-weight: 600;
   font-size: var(--nav-font-size);
   letter-spacing: -0.028em;
   line-height: 1.2;
+  position: relative;
+}
+
+/* TODO: active status */
+header .nav-link::after {
+  content: url("/assets/img/scribble-sketch-lines.svg");
+  width: 120%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(0, 35%) rotate(0);
+  opacity: 0;
+}
+
+header .nav-link.active::after {
   opacity: 1;
 }
 
@@ -278,43 +343,21 @@ header .nav-link.active {
   opacity: 1;
 }
 
+header .theme-light .nav-link.active::after {
+  filter: brightness(0);
+}
+
 @media (min-width: 900px) {
   header nav .nav-sections,
-  header nav[aria-expanded="true"] .nav-sections {
+  header nav.mobile-menu .nav-sections {
     display: flex;
     justify-content: center;
     visibility: visible;
     white-space: nowrap;
   }
 
-  header nav[aria-expanded="true"] .nav-sections {
+  header nav.mobile-menu .nav-sections {
     align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
   }
 
   header nav .nav-sections ul {
@@ -329,41 +372,20 @@ header .nav-link.active {
     position: relative;
     font-weight: 500;
   }
-
-  header nav .nav-sections > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections > ul > li[aria-expanded="true"] > ul {
-    display: block;
-    position: absolute;
-    left: -1em;
-    width: 200px;
-    margin-top: 12px;
-    padding: 1em;
-    background-color: var(--highlight-background-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections > ul > li > ul::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: 8px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--highlight-background-color);
-  }
-
-  header nav .nav-sections > ul > li > ul > li {
-    padding: 8px 0;
-  }
 }
 
 /* tools */
 header nav .nav-cta {
   grid-area: cta;
+}
+
+/* TODO: not sure if that's in use */
+@keyframes scale {
+  from {
+    transform: scale(0%);
+  }
+
+  to {
+    transform: scale(100%);
+  }
 }

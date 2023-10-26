@@ -98,6 +98,10 @@ header .theme-transparent .intr-logo.white {
   opacity: 1;
 }
 
+header .theme-transparent .mobile-menu-wrapper {
+  background: var(--color-black);
+}
+
 header nav {
   box-sizing: border-box;
   display: grid;

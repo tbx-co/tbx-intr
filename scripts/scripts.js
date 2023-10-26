@@ -20,7 +20,7 @@ const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 // custom methods, TODO: see best way to load in gsap library
 async function loadGsapLib() {
   // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-  const gsapScript = "/libs/gsap/gsap.min.js";
+  const gsapScript = '/libs/gsap/gsap.min.js';
   await loadScript(gsapScript, {
     rel: 'preload',
   });

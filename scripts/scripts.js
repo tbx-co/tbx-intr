@@ -15,14 +15,20 @@ import {
 } from './aem.js';
 import { createTag } from './helpers.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-// custom methods
+// custom methods, TODO: see best way to load in gsap library
 async function loadGsapLib() {
-  const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-  await loadScript(gsapCDN, {
+  // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+  const gsapScript = "/libs/gsap/gsap.min.js";
+  await loadScript(gsapScript, {
     rel: 'preload',
   });
+
+  // const gsapScrollTriggerScript = "/libs/gsap/gsapScrollTrigger.min.js";
+  // await loadScript(gsapScrollTriggerScript, {
+  //   rel: 'preload',
+  // });
   const initScript = createTag('script', {}, '');
   document.body.append(initScript);
 }
@@ -157,10 +163,6 @@ function loadExternalLibraries() {
   // console.log('im loaded');
 }
 
-// TODO: set theme based on page's first section
-// function updateNavMenuTheme() {
-// }
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -183,8 +185,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-
-  loadExternalLibraries();
 }
 
 /**
@@ -206,6 +206,9 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // copied how 3rd library is loaded in Adobe Helix official site
+  loadExternalLibraries();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

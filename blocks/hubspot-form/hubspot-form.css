@@ -1,23 +1,99 @@
 /* hi */
 .embed-hbspot-form {
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-s);
   line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .embed-hbspot-form label {
   padding-bottom: var(--spacing-xxs);
   display: block;
   text-transform: capitalize;
+  font-weight: 500;
   margin-top: var(--spacing-s);
 }
 
-.embed-hbspot-form input {
+.embed-hbspot-form .hs-input {
   border-bottom: 1px solid var(--color-black);
-  padding: var(--spacing-xs) var(--spacing-xxs);
+  padding: var(--spacing-xxs) 0 !important;
 }
 
 .embed-hbspot-form .hs-form-required {
   color: var(--color-red);
-  margin-left: var(--spacing-xxxs);
+  margin-left: 2px;
+
+  /* margin-left: var(--spacing-xxxs); */
+}
+
+.embed-hbspot-form li {
+  list-style: none;
+}
+
+.embed-hbspot-form .hs-error-msg {
+  color: var(--color-red);
+  margin-top: var(--spacing-xxs);
+  font-size: 12px;
+}
+
+.embed-hbspot-form .hs-submit {
+  margin-top: var(--spacing-xs);
+}
+
+/* button */
+.embed-hbspot-form .hs-button {
+  all: unset;
+  width: 100%;
+  height: 100%;
+}
+
+.embed-hbspot-form .actions {
+  color: var(--color-white);
+  background: var(--color-primary-blue);
+  border: 1px solid var(--color-white);
+  padding: 10px 20px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  line-height: 1.2;
+  font-weight: 700;
+  border-radius: var(--border-radius-xl);
+  letter-spacing: -0.03em;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  text-align: center;
+}
+
+.embed-hbspot-form .actions::before,
+.embed-hbspot-form .actions::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 100%;
+  left: 0;
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.embed-hbspot-form .actions::before {
+  background: var(--color-accent-light-blue);
+}
+
+.embed-hbspot-form .actions::after {
+  background: var(--color-white);
+}
+
+.embed-hbspot-form .actions:hover {
+  color: var(--color-primary-blue);
+}
+
+.embed-hbspot-form .actions:hover::before,
+.embed-hbspot-form .actions:hover::after {
+  transform: translate3d(0, 100%, 0);
+}
+
+.embed-hbspot-form .actions:hover::after {
+  transition-delay: 0.175s;
 }

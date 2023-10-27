@@ -14,23 +14,32 @@ import {
   loadScript,
 } from './aem.js';
 import { createTag } from './helpers.js';
+import initAnimationInBlocks from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
 // custom methods, TODO: see best way to load in gsap library
-async function loadGsapLib() {
+export async function loadGsapLib() {
   // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
   const gsapScript = '/libs/gsap/gsap.min.js';
   await loadScript(gsapScript, {
     rel: 'preload',
   });
 
-  // const gsapScrollTriggerScript = "/libs/gsap/gsapScrollTrigger.min.js";
-  // await loadScript(gsapScrollTriggerScript, {
-  //   rel: 'preload',
-  // });
+  const gsapScrollTriggerScript = '/libs/gsap/scrollTrigger.min.js';
+  await loadScript(gsapScrollTriggerScript, {
+    rel: 'preload',
+  });
+
+  const gsapFlipPluginScript = '/libs/gsap/flip.min.js';
+  await loadScript(gsapFlipPluginScript, {
+    rel: 'preload',
+  });
+
   const initScript = createTag('script', {}, '');
   document.body.append(initScript);
+
+  initAnimationInBlocks();
 }
 
 /**
@@ -160,7 +169,6 @@ export function decorateMain(main) {
 // load external libraries
 function loadExternalLibraries() {
   loadGsapLib();
-  // console.log('im loaded');
 }
 
 /**
@@ -193,7 +201,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  await loadBlocks(main); // load all blocks
+  await loadBlocks(main); // NOTE: load all blocks
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

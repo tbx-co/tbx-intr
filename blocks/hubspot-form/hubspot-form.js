@@ -30,7 +30,7 @@ async function loadHubsportLibrary(hubspotSetting) {
     charset: 'utf-8',
   });
 
-  // css: "" -> disable using embed & render form directly on page instead*
+  // disable using embed & render form directly on page instead*
 
   // TODO: styling for form
   const initHubSpotScript = createTag(
@@ -42,7 +42,20 @@ async function loadHubsportLibrary(hubspotSetting) {
             portalId: "${hubspotSetting.portalId}",
             formId: "${hubspotSetting.formId}",
             target: "${hubspotSetting.target}",
-            cssClass: "embed-hbspot-form"
+            css: "",
+            cssClass: "embed-hbspot-form",
+            onFormReady: function() {
+              const submitButton = document.querySelector('.hs-button');
+              
+              if (submitButton) {
+                // submitButton.setAttribute('tagName', 'button');
+                // const innerSpan = document.createElement('span');
+                // innerSpan.innerText = "Submit"
+                // submitButton.innerHTML = "";
+                // submitButton.append(innerSpan);
+                // submitButton.classList.add('primary-button');
+              }
+            }
         });
     `,
   );
@@ -76,5 +89,7 @@ export default async function decorate(block) {
   const hubspotSetting = initHubspotSetting(infoLines);
   const isHubsportSettingValid = validateHubspotSettingInput(hubspotSetting);
 
-  if (isHubsportSettingValid) await loadHubsportLibrary(hubspotSetting);
+  if (isHubsportSettingValid) {
+    await loadHubsportLibrary(hubspotSetting);
+  }
 }

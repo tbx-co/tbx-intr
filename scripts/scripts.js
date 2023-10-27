@@ -14,7 +14,7 @@ import {
   loadScript,
 } from './aem.js';
 import { createTag } from './helpers.js';
-import initAnimationInBlocks from './animation.js';
+import { initAnimationInBlocks } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 

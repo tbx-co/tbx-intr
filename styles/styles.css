@@ -419,6 +419,10 @@ main .section.highlight {
   color: var(--color-black);
 }
 
+.bg-white {
+  background: var(--color-white);
+}
+
 .pt-l {
   padding-top: var(--spacing-s);
 }

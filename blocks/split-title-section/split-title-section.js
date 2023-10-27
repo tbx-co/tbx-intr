@@ -1,20 +1,6 @@
 // testing
 import { createTag } from '../../scripts/helpers.js';
-
-// export function addInviewObserverToTriggerElement(triggerElement) {
-//   const observerOptions = {
-//     threshold: 0.25, // show when is 25% in view
-//   };
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         entry.target.classList.add('in-view');
-//         observer.unobserve(entry.target);
-//       }
-//     });
-//   }, observerOptions);
-//   observer.observe(triggerElement);
-// }
+// import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 export function addRevealWrapperToAnimationTarget(element) {
   const revealWrapper = createTag(

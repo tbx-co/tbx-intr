@@ -1,7 +1,7 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 import { createTag } from '../../scripts/helpers.js';
 
-function addRevealBottomAnimation() {
+export function addFooterRevealAnimation() {
   // eslint-disable-next-line no-undef
   const gsapInstance = gsap;
 
@@ -88,7 +88,9 @@ function animateFooterDecoText(footerDecoText) {
   const gsapInstance = gsap;
 
   const targetElements = footerDecoText.querySelectorAll('.marquee-content');
+  const marqueeInnerWrapper = footerDecoText.querySelector('.marquee-inner-wrapper');
 
+  gsapInstance.set(marqueeInnerWrapper, { xPercent: -50 });
   gsapInstance
     .to(targetElements, {
       xPercent: -100,
@@ -97,8 +99,6 @@ function animateFooterDecoText(footerDecoText) {
       ease: 'linear',
     })
     .totalProgress(0.5);
-
-  gsapInstance.set('.marquee-inner-wrapper', { xPercent: -50 });
 }
 
 /**
@@ -131,7 +131,5 @@ export default async function decorate(block) {
 
     block.append(footerContent);
     block.append(footerDecoText);
-
-    addRevealBottomAnimation();
   }
 }

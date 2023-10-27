@@ -123,31 +123,6 @@ function decoratePageTheme() {
   }
 }
 
-// TODO: testing custom cursor
-function setupCustomCursor() {
-  const defaultCursor = createTag('div', {
-    class: 'default-cursor',
-  });
-  const cursorWrapper = createTag(
-    'div',
-    {
-      class: 'cursor-wrapper default',
-    },
-    defaultCursor,
-  );
-
-  // see if throttle function is needed
-  document.body.append(cursorWrapper);
-
-  // eslint-disable-next-line no-undef
-  window.addEventListener('pointermove', (e) => gsap.to(cursorWrapper, {
-    x: e.clientX,
-    y: e.clientY,
-    duration: 0.3,
-    ease: 'power1.out',
-  }));
-}
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -161,9 +136,6 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateTitleSection(main);
-
-  // TODO: test if that's needed
-  setupCustomCursor();
 }
 
 // load external libraries

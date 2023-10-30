@@ -29,12 +29,20 @@
   width: 100%;
 }
 
+.columns .heading.text-blue {
+  color: var(--color-primary-blue);
+}
+
 /* all text white */
 .columns.text-white {
   color: var(--color-white);
 }
 
 .columns.text-white .heading {
+  color: var(--color-white);
+}
+
+.columns.text-white .heading.heading.text-blue {
   color: var(--color-white);
 }
 

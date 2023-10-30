@@ -11,7 +11,7 @@ const BRAND_LOGO_BLUE_BLACK = '<img loading="lazy" alt="Intr" class="intr-logo b
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
 function getMobileMenuExpandedStatus() {
-  const mobileMenu = document.querySelector('..mobile-menu-wrapper .mobile-menu');
+  const mobileMenu = document.querySelector('.mobile-menu-wrapper .mobile-menu');
   const isMobileMenuExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
   return isMobileMenuExpanded;
 }

@@ -31,10 +31,10 @@ export async function loadGsapLib() {
     rel: 'preload',
   });
 
-  const gsapFlipPluginScript = '/libs/gsap/flip.min.js';
-  await loadScript(gsapFlipPluginScript, {
-    rel: 'preload',
-  });
+  // const gsapFlipPluginScript = '/libs/gsap/flip.min.js';
+  // await loadScript(gsapFlipPluginScript, {
+  //   rel: 'preload',
+  // });
 
   const initScript = createTag('script', {}, '');
   document.body.append(initScript);
@@ -119,7 +119,8 @@ export function decorateTitleSection(main) {
 function decoratePageTheme() {
   const theme = document.querySelector('meta[name="page-theme-color"]');
   if (theme) {
-    document.body.style.backgroundColor = theme.getAttribute('content');
+    const main = document.querySelector('main');
+    main.style.backgroundColor = theme.getAttribute('content');
   }
 }
 
@@ -189,6 +190,7 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
+  
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

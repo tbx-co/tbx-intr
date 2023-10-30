@@ -83,15 +83,18 @@ function decorateFooterDecoText(footer) {
   return footerDecoText;
 }
 
-function animateFooterDecoText(footerDecoText) {
+export function animateFooterDecoText() {
+  const decoText = document.querySelector('.deco-text');
+  if (!decoText) return;
+
+  const targetElements = decoText.querySelectorAll('.marquee-content');
+  const marqueeInnerWrapper = decoText.querySelector('.marquee-inner-wrapper');
+
   // eslint-disable-next-line no-undef
-  const gsapInstance = gsap;
+  gsap.set(marqueeInnerWrapper, { xPercent: -50 });
 
-  const targetElements = footerDecoText.querySelectorAll('.marquee-content');
-  const marqueeInnerWrapper = footerDecoText.querySelector('.marquee-inner-wrapper');
-
-  gsapInstance.set(marqueeInnerWrapper, { xPercent: -50 });
-  gsapInstance
+  // eslint-disable-next-line no-undef
+  gsap
     .to(targetElements, {
       xPercent: -100,
       repeat: -1,
@@ -127,9 +130,9 @@ export default async function decorate(block) {
     // reorganize block structure
     const footerContent = decorateFooterContent(footer);
     const footerDecoText = decorateFooterDecoText(footer);
-    animateFooterDecoText(footerDecoText);
+    // animateFooterDecoText(footerDecoText);
 
     block.append(footerContent);
-    block.append(footerDecoText);
+    block.append(footerDecoText);    
   }
 }

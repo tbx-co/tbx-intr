@@ -852,7 +852,7 @@ main .section.highlight {
 
 .slide-reveal-inner {
   display: inline-block;
-  transform: perspective(10em) rotateX(-60deg) translateY(102%);
+  transform: rotate(5deg) translateY(120%);
   transition: all 0.8s var(--cubic-bezier-1);
 }
 

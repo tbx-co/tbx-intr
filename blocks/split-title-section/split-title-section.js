@@ -1,6 +1,6 @@
 // testing
 import { createTag } from '../../scripts/helpers.js';
-// import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 export function addRevealWrapperToAnimationTarget(element) {
   const revealWrapper = createTag(
@@ -15,6 +15,7 @@ export function addRevealWrapperToAnimationTarget(element) {
 
 export function addAnimationToSplitTitleSection() {
   const target = document.querySelectorAll('.animate-target');
+  if (target.length <= 0) return;
 
   // eslint-disable-next-line no-undef
   gsap.to(target, {
@@ -52,4 +53,5 @@ export default function decorate(block) {
   });
 
   // addInviewObserverToTriggerElement(block);
+  // addAnimationToSplitTitleSection();
 }

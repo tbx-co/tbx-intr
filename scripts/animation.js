@@ -1,10 +1,11 @@
 import { addAnimationToSplitTitleSection } from '../blocks/split-title-section/split-title-section.js';
-import { addFooterRevealAnimation } from '../blocks/footer/footer.js';
+import { addFooterRevealAnimation, animateFooterDecoText } from '../blocks/footer/footer.js';
 
 // call all animations at once after block has loaded in
 export function initAnimationInBlocks() {
-  addAnimationToSplitTitleSection();
-  addFooterRevealAnimation();
+    addAnimationToSplitTitleSection();
+    animateFooterDecoText();
+    addFooterRevealAnimation();
 }
 
 // add animation using intersectionObserver

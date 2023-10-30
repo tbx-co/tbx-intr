@@ -5,7 +5,7 @@ Notes:
 ##### Custom Classes 
 |  Class | Function   |  
 |--------|------------|
-| N/A | Default Logo Wall Layout |  
+| N/A | Default Layout |  
 
 #### Example:
 See Live output (Link):

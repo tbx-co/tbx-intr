@@ -1,4 +1,4 @@
-## Hubspot Form
+## Next Project
 
 Notes:
 
@@ -17,13 +17,11 @@ See Content in Document (Link):
 https://docs.google.com/document/d/1Xbj3zpuhZ-wMyM5la0EboB8N0sqAjWhk9f_tVKDnDAI/edit
 
 #### Code:
-Content in table need to be like this to be rendered as hubspot form:
-`region:` xxxx
-`portalId:` xxxxx
-`formId:` xxxx
+- Project Title: link to next project
+- Project image: image
 
-[Decoration Code](hubspot-form.js)
+[Decoration Code](next-project.js)
 
 The CSS Styling is very project specific and gets adjusted as needed for a project or block by block.
 
-[Styling Code](hubspot-form.css)
+[Styling Code](next-project.css)

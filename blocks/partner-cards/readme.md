@@ -19,7 +19,7 @@ https://docs.google.com/document/d/10O8tLSH4FAAIQ1Edft7evcK_FSRlSjiuE47J3u3-Dqw/
 #### Code:
 - Each Partner Card: each row
     - logo: image in 1st column
-    - text: normal text in 2nd column
+    - description: normal text in 2nd column
     - list: ul in 2nd column
 
 [Decoration Code](partner-cards.js)

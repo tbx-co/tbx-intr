@@ -11,7 +11,12 @@ export default function decorate(block) {
       const bigTitle = col.querySelector('h1, h2, h3, h4');
       if (bigTitle) bigTitle.classList.add('heading-m', 'big-heading');
       const title = col.querySelector('h5, h6');
-      if (title) title.classList.add('heading-s', 'heading');
+      if (title) {
+        title.classList.add('heading-s', 'heading');
+        if (!bigTitle) {
+          title.classList.add('text-blue');
+        }
+      }
 
       const description = col.querySelector('p');
       if (description) description.classList.add('description-m', 'description');

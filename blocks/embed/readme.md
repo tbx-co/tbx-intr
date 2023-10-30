@@ -1,0 +1,1 @@
+* Block from adobe helix template

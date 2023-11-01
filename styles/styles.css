@@ -313,6 +313,8 @@ button.secondary {
 
 main {
   margin-top: calc(var(--nav-height) * -1);
+  z-index: 2;
+  position: relative;
 }
 
 /* highlight for italic element */
@@ -324,18 +326,15 @@ em {
 main input {
   all: unset;
   color: var(--color-black);
-  font-size: 1.25rem;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
   width: 100%;
   max-width: 50rem;
   display: block;
-  padding: var(--spacing-xs) var(--spacing-xxs);
+  padding: var(--spacing-xs) 0;
   box-sizing: border-box;
   border: 0;
   border-bottom: 1px solid var(--color-black);
-}
-
-main input:hover {
-  border: 1px solid var(--text-color);
 }
 
 main blockquote {
@@ -418,6 +417,14 @@ main .section.highlight {
 .bg-grey {
   background: var(--color-light-grey);
   color: var(--color-black);
+}
+
+.bg-white {
+  background: var(--color-white);
+}
+
+.text-blue {
+  color: var(--color-primary-blue);
 }
 
 .pt-l {
@@ -555,6 +562,7 @@ main .section.highlight {
 .deco-bold-circle strong,
 .deco-bold-circle-inline strong,
 .deco-bold-circle-triple strong,
+.deco-bold-circle-single-cross strong,
 .deco-bold-y-sign strong,
 .deco-bold-y-sign-white strong,
 .deco-bold-y-sign-fill-right strong,
@@ -562,7 +570,6 @@ main .section.highlight {
 .deco-bold-zigzag-left strong,
 .deco-bold-zigzag-top-left strong,
 .deco-bold-zigzag-right strong,
-.deco-bold-circle-single-cross strong,
 .deco-bold-pigtail strong {
   position: relative;
 }
@@ -849,7 +856,7 @@ main .section.highlight {
 
 .slide-reveal-inner {
   display: inline-block;
-  transform: perspective(10em) rotateX(-60deg) translateY(102%);
+  transform: rotate(5deg) translateY(120%);
   transition: all 0.8s var(--cubic-bezier-1);
 }
 
@@ -864,7 +871,8 @@ main .section.highlight {
 /* hero */
 .home-hero,
 .services-hero,
-.work-hero {
+.work-hero,
+.contact-hero {
   min-height: calc(100vh - 115px);
   max-height: 990px;
   display: flex;
@@ -941,6 +949,29 @@ main .section.testimonial-section {
 .section .project-hero-wrapper,
 .section .project-summary-wrapper {
   max-width: unset;
+}
+
+/* Contact */
+.contact-hero .section-description {
+  margin-top: var(--spacing-m);
+}
+
+main .section.contact-info-section {
+  padding-bottom: 0;
+}
+
+.contact-info-section .split-title-section {
+  margin-bottom: var(--spacing-s);
+}
+
+.locations-container {
+  background: var(--color-white);
+}
+
+@media (min-width: 900px) {
+  .contact-info-section .split-title-section {
+    margin-bottom: var(--spacing-ml);
+  }
 }
 
 /* -------------- Section Classes Ends -------------- */

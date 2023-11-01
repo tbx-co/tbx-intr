@@ -6,7 +6,7 @@ const initHubspotSetting = (infoLines) => {
     region: '',
     portalId: '',
     formId: '',
-    target: '.hubspot-form',
+    target: '.contact-form-wrapper',
   };
 
   infoLines.forEach((line) => {
@@ -18,6 +18,7 @@ const initHubspotSetting = (infoLines) => {
         hubspotSetting[key] = value;
       }
     });
+    line.remove();
   });
 
   return hubspotSetting;
@@ -30,9 +31,8 @@ async function loadHubsportLibrary(hubspotSetting) {
     charset: 'utf-8',
   });
 
-  // css: "" -> disable using embed & render form directly on page instead*
-
-  // TODO: styling for form
+  /** disable using embed & render form directly on page instead
+   *  css: "" to allow render form directly & not use default hubspot styles * */
   const initHubSpotScript = createTag(
     'script',
     {},
@@ -42,7 +42,8 @@ async function loadHubsportLibrary(hubspotSetting) {
             portalId: "${hubspotSetting.portalId}",
             formId: "${hubspotSetting.formId}",
             target: "${hubspotSetting.target}",
-            cssClass: "embed-hbspot-form"
+            css: "",
+            cssClass: "embed-hbspot-form",
         });
     `,
   );
@@ -63,7 +64,15 @@ const validateHubspotSettingInput = (hubspotSetting) => {
   return isValid;
 };
 
-// TODO: need higher access to style, may need to restyle on hubspot instead
+const decorateHeadings = (headings) => {
+  headings.forEach((heading, i) => {
+    if (i === 0) {
+      heading.classList.add('heading', 'text-blue', 'heading-s');
+    } else {
+      heading.classList.add('subheading', 'description-m');
+    }
+  });
+};
 
 // docs: https://legacydocs.hubspot.com/docs/methods/forms/advanced_form_options
 export default async function decorate(block) {
@@ -73,8 +82,31 @@ export default async function decorate(block) {
     return;
   }
 
+  const headings = block.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  if (headings.length > 0) {
+    decorateHeadings(headings);
+  }
+
+  const contactFormWrapper = createTag('div', {
+    class: 'contact-form-wrapper',
+  }, '');
+  block.append(contactFormWrapper);
+
   const hubspotSetting = initHubspotSetting(infoLines);
   const isHubsportSettingValid = validateHubspotSettingInput(hubspotSetting);
 
-  if (isHubsportSettingValid) await loadHubsportLibrary(hubspotSetting);
+  if (isHubsportSettingValid) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadHubsportLibrary(hubspotSetting);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '300px',
+    });
+    observer.observe(block);
+  }
 }

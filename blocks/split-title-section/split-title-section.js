@@ -1,23 +1,8 @@
 // testing
 import { createTag } from '../../scripts/helpers.js';
-
-export function addInviewObserverToTriggerElement(triggerElement) {
-  const observerOptions = {
-    threshold: 0.25, // show when is 25% in view
-  };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  observer.observe(triggerElement);
-}
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 export function addRevealWrapperToAnimationTarget(element) {
-  // console.log("split-title loaded");
   const revealWrapper = createTag(
     'span',
     { class: 'slide-reveal-inner' },
@@ -28,20 +13,22 @@ export function addRevealWrapperToAnimationTarget(element) {
   element.append(revealWrapper);
 }
 
-// export function addAnimationWithGsap(block) {
-//   const target = block.querySelectorAll('.animate-target');
-// console.log(window.gsap);
+export function addAnimationToSplitTitleSection() {
+  const target = document.querySelectorAll('.animate-target');
+  if (target.length <= 0) return;
 
-// gsap.to(target, {
-//   scrollTrigger: {
-//     markers: true,
-//     trigger: block,
-//     start: 'top center',
-//     end: 'bottom center',
-//     toggleClass: 'in-view',
-//   },
-// });
-// }
+  // eslint-disable-next-line no-undef
+  gsap.to(target, {
+    scrollTrigger: {
+      // markers: true,
+      trigger: '.split-title-section',
+      start: 'top center',
+      end: 'bottom center',
+      toggleClass: 'in-view',
+      once: true,
+    },
+  });
+}
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -65,6 +52,6 @@ export default function decorate(block) {
     });
   });
 
-  // addAnimationWithGsap(block);
-  addInviewObserverToTriggerElement(block);
+  addInviewObserverToAnimatedElement(block);
+  // addAnimationToSplitTitleSection();
 }

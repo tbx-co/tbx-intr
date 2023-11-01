@@ -17,10 +17,13 @@ See Content in Document (Link):
 https://docs.google.com/document/d/1XdmWDbTiDj8u4pWL8DCSYhtVEbq8CqaRo4_4Mktb7q4/edit
 
 #### Code:
-Content in table need to be like this to be rendered as hubspot form:
-`region:` xxxx
+- Title: 1st heading element
+- SubTitle:: 2nd heading element
+- Content in table need to be like this to be rendered as hubspot form:
+`region:` xxxx 
 `portalId:` xxxxx
 `formId:` xxxx
+xxx = normal text
 
 [Decoration Code](hubspot-form.js)
 

@@ -16,7 +16,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   margin-bottom: var(--spacing-ml);
 }
 

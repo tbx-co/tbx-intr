@@ -130,7 +130,7 @@ export default async function decorate(block) {
     // reorganize block structure
     const footerContent = decorateFooterContent(footer);
     const footerDecoText = decorateFooterDecoText(footer);
-    // animateFooterDecoText(footerDecoText);
+    animateFooterDecoText(footerDecoText);
 
     block.append(footerContent);
     block.append(footerDecoText);    

@@ -423,6 +423,10 @@ main .section.highlight {
   background: var(--color-white);
 }
 
+.text-blue {
+  color: var(--color-primary-blue);
+}
+
 .pt-l {
   padding-top: var(--spacing-s);
 }
@@ -558,6 +562,7 @@ main .section.highlight {
 .deco-bold-circle strong,
 .deco-bold-circle-inline strong,
 .deco-bold-circle-triple strong,
+.deco-bold-circle-single-cross strong,
 .deco-bold-y-sign strong,
 .deco-bold-y-sign-white strong,
 .deco-bold-y-sign-fill-right strong,
@@ -565,7 +570,6 @@ main .section.highlight {
 .deco-bold-zigzag-left strong,
 .deco-bold-zigzag-top-left strong,
 .deco-bold-zigzag-right strong,
-.deco-bold-circle-single-cross strong,
 .deco-bold-pigtail strong {
   position: relative;
 }
@@ -867,7 +871,8 @@ main .section.highlight {
 /* hero */
 .home-hero,
 .services-hero,
-.work-hero {
+.work-hero,
+.contact-hero {
   min-height: calc(100vh - 115px);
   max-height: 990px;
   display: flex;
@@ -944,6 +949,25 @@ main .section.testimonial-section {
 .section .project-hero-wrapper,
 .section .project-summary-wrapper {
   max-width: unset;
+}
+
+/* Contact */
+.contact-hero .section-description {
+  margin-top: var(--spacing-m);
+}
+
+main .section.contact-info-section {
+  padding-bottom: 0;
+}
+
+.contact-info-section .split-title-section {
+  margin-bottom: var(--spacing-s);
+}
+
+@media (min-width: 900px) {
+  .contact-info-section .split-title-section {
+  margin-bottom: var(--spacing-ml);
+}
 }
 
 /* -------------- Section Classes Ends -------------- */

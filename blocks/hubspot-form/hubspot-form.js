@@ -6,7 +6,7 @@ const initHubspotSetting = (infoLines) => {
     region: '',
     portalId: '',
     formId: '',
-    target: '.hubspot-form',
+    target: '.contact-form-wrapper',
   };
 
   infoLines.forEach((line) => {
@@ -18,6 +18,7 @@ const initHubspotSetting = (infoLines) => {
         hubspotSetting[key] = value;
       }
     });
+    line.remove();
   });
 
   return hubspotSetting;
@@ -76,7 +77,15 @@ const validateHubspotSettingInput = (hubspotSetting) => {
   return isValid;
 };
 
-// TODO: need higher access to style, may need to restyle on hubspot instead
+const decorateHeadings = (headings) => { 
+  headings.forEach((heading, i) => {
+    if (i == 0) {
+      heading.classList.add('heading', 'text-blue', 'heading-s');
+    } else {
+      heading.classList.add('subheading', 'description-m');
+    }
+  })
+}
 
 // docs: https://legacydocs.hubspot.com/docs/methods/forms/advanced_form_options
 export default async function decorate(block) {
@@ -85,6 +94,16 @@ export default async function decorate(block) {
     console.warn('Content Input Alert in Hubspot Form: need user input');
     return;
   }
+
+  const headings = block.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  if (headings.length > 0) { 
+    decorateHeadings(headings);
+  }
+
+  const contactFormWrapper = createTag('div', {
+    class: 'contact-form-wrapper'
+  }, '')
+  block.append(contactFormWrapper);
 
   const hubspotSetting = initHubspotSetting(infoLines);
   const isHubsportSettingValid = validateHubspotSettingInput(hubspotSetting);

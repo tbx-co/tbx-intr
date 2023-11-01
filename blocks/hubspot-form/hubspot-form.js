@@ -32,7 +32,7 @@ async function loadHubsportLibrary(hubspotSetting) {
   });
 
   /** disable using embed & render form directly on page instead
-   *  css: "" to allow render form directly & not use default hubspot styles **/
+   *  css: "" to allow render form directly & not use default hubspot styles * */
   const initHubSpotScript = createTag(
     'script',
     {},
@@ -96,6 +96,17 @@ export default async function decorate(block) {
   const isHubsportSettingValid = validateHubspotSettingInput(hubspotSetting);
 
   if (isHubsportSettingValid) {
-    await loadHubsportLibrary(hubspotSetting);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadHubsportLibrary(hubspotSetting);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '300px',
+    });
+    observer.observe(block);
   }
 }

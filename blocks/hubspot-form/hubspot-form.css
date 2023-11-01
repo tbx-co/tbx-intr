@@ -6,6 +6,7 @@
 
 .contact-form-wrapper{
   margin-top: var(--spacing-xxs);
+  min-height: 565px;
 }
 
 /* style on hubspot form */
@@ -125,6 +126,7 @@
 @media (min-width: 600px) {
   .contact-form-wrapper {
     margin-top: var(--spacing-s);
+    min-height: 465px;
   }
 
   .embed-hbspot-form {
@@ -146,6 +148,7 @@
     margin-top: var(--spacing-m);
     width: 80%;
     max-width: 940px;
+    min-height: 500px;
   }
 
   .embed-hbspot-form {

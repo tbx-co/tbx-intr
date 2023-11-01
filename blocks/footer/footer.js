@@ -1,31 +1,33 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 import { createTag } from '../../scripts/helpers.js';
+// addRevealAnimationToSection
+import { addMarqueeAnimationToElements } from '../../scripts/animation.js';
 
-export function addFooterRevealAnimation() {
-  // eslint-disable-next-line no-undef
-  const gsapInstance = gsap;
+// export function addFooterRevealAnimation() {
+//   // eslint-disable-next-line no-undef
+//   const gsapInstance = gsap;
 
-  gsapInstance.set('footer', { yPercent: -50 });
+//   gsapInstance.set('footer', { yPercent: -50 });
 
-  const uncover = gsapInstance.timeline({ paused: true });
-  uncover.to('footer', { yPercent: 0, ease: 'none' });
+//   const uncover = gsapInstance.timeline({ paused: true });
+//   uncover.to('footer', { yPercent: 0, ease: 'none' });
 
-  const allSections = document.querySelectorAll('main > div');
-  const lastSection = allSections[allSections.length - 1];
-  gsapInstance.set(lastSection, { zIndex: 10 });
+//   const allSections = document.querySelectorAll('main > div');
+//   const lastSection = allSections[allSections.length - 1];
+//   gsapInstance.set(lastSection, { zIndex: 10 });
 
-  // eslint-disable-next-line no-undef
-  gsapInstance.registerPlugin(ScrollTrigger);
-  // eslint-disable-next-line no-undef
-  ScrollTrigger.create({
-    // markers: true,
-    trigger: lastSection,
-    start: 'bottom bottom',
-    end: '+=75%',
-    animation: uncover,
-    scrub: true,
-  });
-}
+//   // eslint-disable-next-line no-undef
+//   gsapInstance.registerPlugin(ScrollTrigger);
+//   // eslint-disable-next-line no-undef
+//   ScrollTrigger.create({
+//     // markers: true,
+//     trigger: lastSection,
+//     start: 'bottom bottom',
+//     end: '+=75%',
+//     animation: uncover,
+//     scrub: true,
+//   });
+// }
 
 // decorate
 function decorateFooterContent(footer) {
@@ -83,27 +85,6 @@ function decorateFooterDecoText(footer) {
   return footerDecoText;
 }
 
-export function animateFooterDecoText() {
-  const decoText = document.querySelector('.deco-text');
-  if (!decoText) return;
-
-  const targetElements = decoText.querySelectorAll('.marquee-content');
-  const marqueeInnerWrapper = decoText.querySelector('.marquee-inner-wrapper');
-
-  // eslint-disable-next-line no-undef
-  gsap.set(marqueeInnerWrapper, { xPercent: -50 });
-
-  // eslint-disable-next-line no-undef
-  gsap
-    .to(targetElements, {
-      xPercent: -100,
-      repeat: -1,
-      duration: 15,
-      ease: 'linear',
-    })
-    .totalProgress(0.5);
-}
-
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -130,7 +111,15 @@ export default async function decorate(block) {
     // reorganize block structure
     const footerContent = decorateFooterContent(footer);
     const footerDecoText = decorateFooterDecoText(footer);
-    animateFooterDecoText(footerDecoText);
+
+    // add marquee animation
+    const targetElements = footerDecoText.querySelectorAll('.marquee-content');
+    const marqueeTime = 15000;
+    addMarqueeAnimationToElements(targetElements, marqueeTime);
+
+    // const allSections = document.querySelectorAll('main > div');
+    // const revealTriggerSection = allSections[allSections.length - 1];
+    // addRevealAnimationToSection(block, revealTriggerSection);
 
     block.append(footerContent);
     block.append(footerDecoText);

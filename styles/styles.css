@@ -964,10 +964,14 @@ main .section.contact-info-section {
   margin-bottom: var(--spacing-s);
 }
 
+.locations-container {
+  background: var(--color-white);
+}
+
 @media (min-width: 900px) {
   .contact-info-section .split-title-section {
-  margin-bottom: var(--spacing-ml);
-}
+    margin-bottom: var(--spacing-ml);
+  }
 }
 
 /* -------------- Section Classes Ends -------------- */

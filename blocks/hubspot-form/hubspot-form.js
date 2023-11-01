@@ -77,15 +77,15 @@ const validateHubspotSettingInput = (hubspotSetting) => {
   return isValid;
 };
 
-const decorateHeadings = (headings) => { 
+const decorateHeadings = (headings) => {
   headings.forEach((heading, i) => {
-    if (i == 0) {
+    if (i === 0) {
       heading.classList.add('heading', 'text-blue', 'heading-s');
     } else {
       heading.classList.add('subheading', 'description-m');
     }
-  })
-}
+  });
+};
 
 // docs: https://legacydocs.hubspot.com/docs/methods/forms/advanced_form_options
 export default async function decorate(block) {
@@ -96,13 +96,13 @@ export default async function decorate(block) {
   }
 
   const headings = block.querySelectorAll('h1,h2,h3,h4,h5,h6');
-  if (headings.length > 0) { 
+  if (headings.length > 0) {
     decorateHeadings(headings);
   }
 
   const contactFormWrapper = createTag('div', {
-    class: 'contact-form-wrapper'
-  }, '')
+    class: 'contact-form-wrapper',
+  }, '');
   block.append(contactFormWrapper);
 
   const hubspotSetting = initHubspotSetting(infoLines);

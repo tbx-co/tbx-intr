@@ -3,9 +3,9 @@ import { addFooterRevealAnimation, animateFooterDecoText } from '../blocks/foote
 
 // call all animations at once after block has loaded in
 export function initAnimationInBlocks() {
-    addAnimationToSplitTitleSection();
-    animateFooterDecoText();
-    // addFooterRevealAnimation();
+  addAnimationToSplitTitleSection();
+  animateFooterDecoText();
+  // addFooterRevealAnimation();
 }
 
 // add animation using intersectionObserver
@@ -25,21 +25,19 @@ export function addInviewObserverToAnimatedElement(triggerElement, animateOnce =
   observer.observe(triggerElement);
 }
 
-
 export function addParallaxAnimationToElement(translateX = 0, translateY = 0) {
-    const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            // 1 above viewpoint, -1: inview or below viewpoint
-            const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
-            const translateX = (translateXpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint)
-            const translateY = (translateYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint)
-            target.style.transform = `translateX(${translateX}%) translateY(${translateY}%)`;
-        } else {
-            target.style.transform = `translateX(0) translateY(0)`;
-        }
+      if (entry.isIntersecting) {
+        // 1 above viewpoint, -1: inview or below viewpoint
+        const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
+        const translateX = (translateXpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint);
+        const translateY = (translateYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint);
+        target.style.transform = `translateX(${translateX}%) translateY(${translateY}%)`;
+      } else {
+        target.style.transform = 'translateX(0) translateY(0)';
+      }
     });
   }, observerOptions);
   observer.observe(triggerElement);
 }
-

@@ -1,6 +1,6 @@
 // testing
 import { createTag } from '../../scripts/helpers.js';
-import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
+// import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 export function addRevealWrapperToAnimationTarget(element) {
   const revealWrapper = createTag(

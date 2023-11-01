@@ -190,7 +190,6 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
-  
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

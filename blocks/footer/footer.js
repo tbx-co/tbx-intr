@@ -133,6 +133,6 @@ export default async function decorate(block) {
     animateFooterDecoText(footerDecoText);
 
     block.append(footerContent);
-    block.append(footerDecoText);    
+    block.append(footerDecoText);
   }
 }

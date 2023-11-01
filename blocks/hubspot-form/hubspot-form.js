@@ -31,9 +31,8 @@ async function loadHubsportLibrary(hubspotSetting) {
     charset: 'utf-8',
   });
 
-  // disable using embed & render form directly on page instead*
-
-  // TODO: styling for form
+  /** disable using embed & render form directly on page instead
+   *  css: "" to allow render form directly & not use default hubspot styles **/
   const initHubSpotScript = createTag(
     'script',
     {},
@@ -45,18 +44,6 @@ async function loadHubsportLibrary(hubspotSetting) {
             target: "${hubspotSetting.target}",
             css: "",
             cssClass: "embed-hbspot-form",
-            onFormReady: function() {
-              const submitButton = document.querySelector('.hs-button');
-              
-              if (submitButton) {
-                // submitButton.setAttribute('tagName', 'button');
-                // const innerSpan = document.createElement('span');
-                // innerSpan.innerText = "Submit"
-                // submitButton.innerHTML = "";
-                // submitButton.append(innerSpan);
-                // submitButton.classList.add('primary-button');
-              }
-            }
         });
     `,
   );

@@ -1,12 +1,4 @@
-// import { addAnimationToSplitTitleSection } from '../blocks/split-title-section/split-title-section.js';
-// import { addFooterRevealAnimation } from '../blocks/footer/footer.js';
-
-// TODO: see if we can strip away GSAP completely
-// call all animations at once after block has loaded in
-export function initAnimationInBlocks() {
-//   addAnimationToSplitTitleSection();
-  // addFooterRevealAnimation();
-}
+import { createTag } from './helpers.js';
 
 // add animation using intersectionObserver
 // .inview .animatedClass to animate element
@@ -25,28 +17,22 @@ export function addInviewObserverToAnimatedElement(triggerElement, animateOnce =
   observer.observe(triggerElement);
 }
 
-// TODO: explore parallax animation
-// export function addParallaxAnimationToElement(triggerElements, translateXpercent = 0, translateYpercent = 0) {
-//   const observerOptions = {
-//     root: null,
-//     threshold: 0,
-//   };
+export function addStaggerAnimation(elements, duration) {
+  elements.forEach((element, index) => {
+    element.style.transitionDelay = `${duration * index}s`;
+  });
+}
 
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         // 1 above viewpoint, -1: inview or below viewpoint
-//         const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
-//         const translateX = (translateXpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint);
-//         const translateY = (translateYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint);
-//         target.style.transform = `translateX(${translateX}%) translateY(${translateY}%)`;
-//       } else {
-//         target.style.transform = 'translateX(0) translateY(0)';
-//       }
-//     });
-//   }, observerOptions);
-//   observer.observe(triggerElements);
-// }
+export function addRevealWrapperToAnimationTarget(element) {
+  const revealWrapper = createTag(
+    'span',
+    { class: 'slide-reveal-inner' },
+    element.innerHTML,
+  );
+  element.classList.add('slide-reveal-wrapper');
+  element.innerHTML = '';
+  element.append(revealWrapper);
+}
 
 /**
  * Marquee Animation: make horizontal scroll animation
@@ -74,6 +60,58 @@ export function addMarqueeAnimationToElements(targetElements, duration) {
 
   requestAnimationFrame(animate);
 }
+
+// TODO: explore animation options based on final design
+// function throttle(fn, wait) {
+//   let time = Date.now();
+//   return function () {
+//     if ((time + wait - Date.now()) < 0) {
+//       fn();
+//       time = Date.now();
+//     }
+//   };
+// }
+
+// TODO: text split animation
+// export function
+
+// TODO: explore parallax animation
+// export function addParallaxAnimationToElement(wrapperElement, animatedElements, translateYpercent = 0) {
+//   const createThreshold = (step) => {
+//     const threshold = [];
+//     for (let i = 0; i <= step; i++) {
+//       threshold.push(i / step);
+//     }
+//     return threshold;
+//   };
+
+//   const observerOptions = {
+//     root: null,
+//     rootMargin: '0px 0px',
+//     threshold: createThreshold(500),
+//   };
+
+//   const observer = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//         if (entry.isIntersecting) {
+
+//         // 1 above viewpoint, -1: inview or below viewpoint
+//         // const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
+//         const translateY = (translateYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint) * -1;
+//         animatedElements.forEach((element) => {
+//           element.style.transform = `translateX(${translateX}%) translateY(${translateY}%)`;
+//         });
+//       } else {
+//           animatedElements.forEach((element) => {
+//               element.style.transform = 'translateX(0) translateY(0)';
+//         });
+//       }
+//     });
+//   }, observerOptions);
+
+//   observer.observe(wrapperElement, observerOptions);
+//   console.log(observer);
+// }
 
 // TODO: bottom reveal animation
 /**

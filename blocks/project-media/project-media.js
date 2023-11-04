@@ -1,7 +1,7 @@
 import { loadEmbed } from '../embed/embed.js';
 import { createTag } from '../../scripts/helpers.js';
 
-const loadVideoByIntersectionObserver = (block, videoLink, hideControls) => {
+const loadEmbedVideoByIntersectionObserver = (block, videoLink, hideControls) => {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
@@ -11,7 +11,7 @@ const loadVideoByIntersectionObserver = (block, videoLink, hideControls) => {
   observer.observe(block);
 };
 
-const loadVideoByClick = (block, videoLink, mediaWrapper, hideControls) => {
+const loadEmbedVideoByClick = (block, videoLink, mediaWrapper, hideControls) => {
   const videoClickArea = createTag(
     'div',
     {
@@ -51,9 +51,9 @@ export default function decorate(block) {
     const isAutoPlay = block.classList.contains('autoplay');
     const hideControls = block.classList.contains('hide-controls');
     if (isAutoPlay) {
-      loadVideoByIntersectionObserver(block, videoLink, hideControls);
+      loadEmbedVideoByIntersectionObserver(block, videoLink, hideControls);
     } else {
-      loadVideoByClick(block, videoLink, mediaWrapper, hideControls);
+      loadEmbedVideoByClick(block, videoLink, mediaWrapper, hideControls);
     }
   }
 }

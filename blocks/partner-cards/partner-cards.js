@@ -1,3 +1,5 @@
+// import { createGlideCarousel } from '../../libs/carousel.js';
+
 export default function decorate(block) {
   [...block.children].forEach((row) => {
     row.classList.add('partner-card-wrapper');
@@ -11,4 +13,7 @@ export default function decorate(block) {
       }
     });
   });
+
+  // TODO: explore carousel options
+  // const cardCarousel = createGlideCarousel(block);
 }

@@ -72,6 +72,20 @@ export function returnLinkTarget(url) {
   return '_self';
 }
 
+// in-view related animations
+
+// run callback function when targetElement is in viewport
+export function observeElementWithCallback(targetElement, callback) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        callback(entry.target);
+      }
+    });
+  });
+  observer.observe(targetElement);
+}
+
 // Animation related
 export function addInviewObserverToTriggerElement(triggerElement) {
   const observerOptions = {

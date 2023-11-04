@@ -165,6 +165,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -269,8 +273,7 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link,
-button {
+a.button:any-link {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -864,6 +867,22 @@ main .section.highlight {
   transform: none;
 }
 
+.fade-in,
+.fade-up {
+  opacity: 0;
+  transition: all 0.5s var(--cubic-bezier-1);
+}
+
+.fade-up {
+  transform: translateY(30px);
+}
+
+.in-view .fade-in,
+.in-view .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
 /* -------------- Animation Classes Ends -------------- */
 
 /* -------------- Section Specific Styles -------------- */
@@ -975,3 +994,75 @@ main .section.contact-info-section {
 }
 
 /* -------------- Section Classes Ends -------------- */
+
+/* ----- TODO: Glide Carousel, depends on final design ---------- */
+.glide {
+  position: relative;
+}
+
+/* stylelint-disable */
+.glide__arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.glide__arrow {
+  position: absolute;
+  width: 25px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-primary-blue);
+  border: 1px solid var(--color-primary-blue);
+}
+
+.glide__arrow--left {
+  left: 0;
+}
+
+.glide__arrow--right {
+  right: 0;
+}
+
+.glide__arrow:hover {
+  color: var(--color-white);
+}
+
+.glide__bullets {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--spacing-xs);
+}
+
+.glide__bullet {
+  border: 0;
+  /* background: var(--color-accent-light-blue); */
+  background: var(--color-light-grey);
+  width: 10px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  margin: 0 2px;
+}
+
+.glide__bullet--active {
+  background: var(--color-primary-blue);
+}
+
+@media (min-width: 600px) {
+  .glide__arrows {
+    display: block;
+  }
+
+  .glide__slide .partner-card-wrapper{
+    padding: 0 8%;
+  }
+}
+/* stylelint-enable */
+
+/* -------------- Glide Carousel Ends -------------- */

@@ -3,7 +3,9 @@ import {
   returnLinkTarget,
   replaceElementType,
   replaceAllChildElements,
+  observeElementWithCallback,
 } from '../../scripts/helpers.js';
+// import { addParallaxAnimationToElement } from '../../scripts/animation.js';
 
 function createProjectLinkWrapper(infoDiv) {
   const projectLink = infoDiv.querySelector('a');
@@ -24,10 +26,41 @@ function createProjectLinkWrapper(infoDiv) {
   return projectLinkWrapper;
 }
 
-function createMediaDiv(div) {
+// accept .mp4
+function createVideoElement(videoUrl) {
+  const attrs = 'playsinline autoplay loop muted';
+  const videoHTML = /* html */`
+    <video ${attrs}>
+      <source src="${videoUrl}" type="video/mp4"> 
+    </video>
+  `;
+  const videoWrapper = createTag('div', {
+    class: 'video-wrapper',
+  }, videoHTML);
+
+  return videoWrapper;
+}
+
+function createMediaDiv(div, block) {
   const picture = div.querySelector('picture');
+  // TODO: testing
+  // const img = picture.querySelector('img');
+  // img.classList.add('parallax');
+
   const mediaDiv = createTag('div', { class: 'project-card-media' }, '');
   mediaDiv.append(picture);
+
+  const videoLinkElement = div.querySelector('a');
+  if (videoLinkElement) {
+    const videoUrl = videoLinkElement.href;
+    if (videoUrl.endsWith('.mp4')) {
+      observeElementWithCallback(block, () => {
+        const mediaVideo = createVideoElement(videoUrl);
+        if (mediaVideo) mediaDiv.append(mediaVideo);
+      });
+    }
+  }
+
   return mediaDiv;
 }
 
@@ -83,14 +116,19 @@ export default function decorate(block) {
 
   const mainInfoWithImage = blockRowArray[0];
   const projectDetailInfo = blockRowArray[1];
+  const mainInfoLinkWrapper = mainInfoWithImage.children[1];
 
-  const projectLinkWrapper = createProjectLinkWrapper(mainInfoWithImage);
+  const projectLinkWrapper = createProjectLinkWrapper(mainInfoLinkWrapper);
 
-  const mediaDiv = createMediaDiv(mainInfoWithImage);
+  const mediaDiv = createMediaDiv(mainInfoWithImage, block);
   if (mediaDiv) projectLinkWrapper.append(mediaDiv);
 
   const infoDiv = createInfoDiv(mainInfoWithImage, projectDetailInfo);
   if (infoDiv) projectLinkWrapper.append(infoDiv);
 
   replaceAllChildElements(block, projectLinkWrapper);
+
+  // testing
+  // const animatedElements = document.querySelectorAll('.project-card-media img')
+  // addParallaxAnimationToElement(block, animatedElements, 5);
 }

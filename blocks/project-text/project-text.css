@@ -24,6 +24,10 @@
   max-width: 560px;
 }
 
+.project-description-wrapper .text-wrapper:first-child {
+  margin-top: 0;
+}
+
 .project-description-wrapper .text-wrapper.empty {
   display: none;
 }

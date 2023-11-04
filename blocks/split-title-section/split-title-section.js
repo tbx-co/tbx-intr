@@ -1,34 +1,4 @@
-// testing
-import { createTag } from '../../scripts/helpers.js';
-import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
-
-export function addRevealWrapperToAnimationTarget(element) {
-  const revealWrapper = createTag(
-    'span',
-    { class: 'slide-reveal-inner' },
-    element.innerHTML,
-  );
-  element.classList.add('slide-reveal-wrapper');
-  element.innerHTML = '';
-  element.append(revealWrapper);
-}
-
-export function addAnimationToSplitTitleSection() {
-  const target = document.querySelectorAll('.animate-target');
-  if (target.length <= 0) return;
-
-  // eslint-disable-next-line no-undef
-  gsap.to(target, {
-    scrollTrigger: {
-      // markers: true,
-      trigger: '.split-title-section',
-      start: 'top center',
-      end: 'bottom center',
-      toggleClass: 'in-view',
-      once: true,
-    },
-  });
-}
+import { addInviewObserverToAnimatedElement, addRevealWrapperToAnimationTarget, addStaggerAnimation } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -40,8 +10,9 @@ export default function decorate(block) {
         titles[0].classList.add('top-left', 'heading-l', 'animate-target');
         titles[1].classList.add('bottom-right', 'heading-l', 'animate-target');
 
-        addRevealWrapperToAnimationTarget(titles[0]);
-        addRevealWrapperToAnimationTarget(titles[1]);
+        titles.forEach((title) => {
+          addRevealWrapperToAnimationTarget(title);
+        });
 
         const description = div.querySelector('p');
         if (description) description.classList.add('caligraphy-text');
@@ -53,5 +24,9 @@ export default function decorate(block) {
   });
 
   addInviewObserverToAnimatedElement(block);
-  // addAnimationToSplitTitleSection();
+
+  // add stagger timing
+  const targets = block.querySelectorAll('.slide-reveal-inner');
+  const staggerTime = 0.2;
+  addStaggerAnimation(targets, staggerTime);
 }

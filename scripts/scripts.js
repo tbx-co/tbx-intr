@@ -14,10 +14,10 @@ import {
   loadScript,
 } from './aem.js';
 import { createTag } from './helpers.js';
-import { initAnimationInBlocks } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
+// TODO: see if we can strip away GSAP completely
 // custom methods, TODO: see best way to load in gsap library
 export async function loadGsapLib() {
   // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
@@ -31,15 +31,25 @@ export async function loadGsapLib() {
     rel: 'preload',
   });
 
-  // const gsapFlipPluginScript = '/libs/gsap/flip.min.js';
-  // await loadScript(gsapFlipPluginScript, {
-  //   rel: 'preload',
-  // });
-
   const initScript = createTag('script', {}, '');
   document.body.append(initScript);
+}
 
-  initAnimationInBlocks();
+// TODO: testing usage on glide.js, depends on final design decision
+export async function loadGlideLib() {
+  const glideCSS = createTag('link', {
+    rel: 'stylesheet',
+    href: '/libs/glide/glide.core.min.css',
+  });
+  document.head.append(glideCSS);
+
+  await loadScript('/libs/glide/glide.min.js');
+  const initScript = createTag('script', {}, `
+      new Glide('.glide', {
+        type: 'carousel',
+      }).mount();
+  `);
+  document.body.append(initScript);
 }
 
 /**
@@ -141,7 +151,10 @@ export function decorateMain(main) {
 
 // load external libraries
 function loadExternalLibraries() {
-  loadGsapLib();
+  if (document.querySelector('.glide')) {
+    loadGlideLib();
+  }
+  // loadGsapLib();
 }
 
 /**

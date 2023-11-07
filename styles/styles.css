@@ -911,20 +911,35 @@ main .section.highlight {
   position: relative;
 }
 
+h4.split-text-wrapper {
+  margin-bottom: -0.15em;
+}
+
+h4.split-text-wrapper .splitted-wrapper {
+  margin-right: -2px;
+}
+
+h4.split-text-wrapper .splitted-letter{
+  padding-bottom: 0.15em;
+  padding-right: 2px;
+}
+
 .split-text-wrapper .cloned .splitted-letter {
   transform: translateX(-110%);
 }
 
-
+.split-text-hover-wrapper:hover .splitted-letter,
 .split-text-wrapper:hover .splitted-letter {
   transform: translateX(110%);
 }
 
+.split-text-hover-wrapper:hover .cloned .splitted-letter,
 .split-text-wrapper:hover .cloned .splitted-letter {
   transform: translateX(0);
   opacity: 1;
   transition-duration: 0;
 }
+
 
 
 /* -------------- Animation Classes Ends -------------- */

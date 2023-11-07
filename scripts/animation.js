@@ -63,7 +63,7 @@ export function addMarqueeAnimationToElements(targetElements, duration) {
 
 // accessibility handling based on this article:
 // https://css-irl.info/how-to-accessibly-split-text/
-export function addTextSplitAnimationToElement(el, duplicateText = true) {
+export function addTextSplitAnimationToElement(el, duplicateText = true, hoverWrapper = null) {
   el.setAttribute('aria-label', el.textContent);
   el.classList.add('split-text-wrapper');
   // eslint-disable-next-line no-useless-escape
@@ -93,6 +93,17 @@ export function addTextSplitAnimationToElement(el, duplicateText = true) {
   // add index for potential stagger animation
   [...el.querySelectorAll('.splitted-letter')].forEach((letter, i) => {
     letter.style = `--index: ${i};`;
+  });
+
+  if (hoverWrapper) {
+    hoverWrapper.classList.add('split-text-hover-wrapper');
+  }
+}
+
+export function addTextSplitAnimationToAllLinks(wrapper) {
+  const linkElements = wrapper.querySelectorAll('a');
+  linkElements.forEach((linkElement) => {
+    addTextSplitAnimationToElement(linkElement);
   });
 }
 

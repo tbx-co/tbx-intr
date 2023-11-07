@@ -39,6 +39,16 @@ export default function decorate(block) {
     [...row.children].forEach((col, index) => {
       col.classList.add(`person-card-col-${index + 1}`);
 
+      // image column
+      if (index === 0) {
+        col.classList.add('person-image-wrapper');
+        const images = col.querySelectorAll('img');
+        if (images.length === 2) {
+          images[0].classList.add('original-image');
+          images[1].classList.add('hover-active-image');
+        }
+      }
+
       // content column
       if (index === 1) {
         const title = col.querySelector('h4');

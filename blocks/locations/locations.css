@@ -1,4 +1,7 @@
-/* hi */
+.locations-container {
+    background: var(--color-white);
+}
+
 .locations {
     width: 100%;
     display: grid;

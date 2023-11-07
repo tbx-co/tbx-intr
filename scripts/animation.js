@@ -107,6 +107,48 @@ export function addTextSplitAnimationToAllLinks(wrapper) {
   });
 }
 
+/**
+ * Reveal Section Animation: parallax bottom reveal animation
+ * @param {targetSection} HTMLElement of section to be revealed
+ * @param {triggerSection} HTMLElement of the top overlay section as trigger
+ * @param {number} transYpercent: percentage of section translated vertically
+ * @param {number} endAnimationPercent: when trggerElement reaches X%
+ * (endAnimationPercent) of viewport, the reveal animation ends
+ */
+export function addRevealAnimationToSection(targetSection, triggerSection, transYpercent = -50, endAnimationPercent = 75) {
+  if (!targetSection || !triggerSection) return;
+
+  const targetSectionZIndex = targetSection.style.zIndex;
+  const triggerSectionZIndex = targetSectionZIndex === '' ? '2' : `${Number(targetSectionZIndex) + 1}`;
+  triggerSection.style.zIndex = triggerSectionZIndex;
+
+  // init start position
+  targetSection.style.transform = `translateY(${transYpercent}%)`;
+
+  window.addEventListener('scroll', () => {
+    // scrolled distance measured from top position of viewport
+    const scrollPosition = window.scrollY;
+    // triggerSection bottom - window's height = start point of window top
+    const triggerStartPoint = triggerSection.offsetTop + triggerSection.clientHeight - window.innerHeight;
+
+    if (scrollPosition >= triggerStartPoint) {
+      const scrollDistanceInTarget = scrollPosition - triggerStartPoint;
+      const targetScrollDistance = window.innerHeight * (endAnimationPercent / 100);
+      const progress = scrollDistanceInTarget / targetScrollDistance;
+      const progressPercent = 1 - progress;
+
+      // if in progress, update element position
+      if (progressPercent >= 0) {
+        const scrubbedTransY = transYpercent * progressPercent;
+        targetSection.style.transform = `translateY(${scrubbedTransY}%)`;
+      } else {
+        // restore to 0 if scroll progress is finished
+        targetSection.style.transform = 'translateY(0%)';
+      }
+    }
+  });
+}
+
 // TODO: explore animation options based on final design
 // function throttle(fn, wait) {
 //   let time = Date.now();
@@ -154,80 +196,4 @@ export function addTextSplitAnimationToAllLinks(wrapper) {
 
 //   observer.observe(wrapperElement, observerOptions);
 //   console.log(observer);
-// }
-
-// TODO: bottom reveal animation
-/**
- * Reveal Section Animation: parallax bottom reveal animation
- * @param {targetSection}  HTMLElement of HTMLElements selected
- * with .querySelectorAll()
- * @param {number} transYpercent: percentage of section translated vertically
- * @param {number} endAnimationPercent: when trggerElement reaches X%
- * (endAnimationPercent), the reveal animation ends
- */
-// ? trigger element / the section above
-// export function addRevealAnimationToSection(targetSection, triggerSection, transYpercent = -50, endAnimationPercent = 75) {
-
-//     // console.log(targetSection)
-//     // console.log(triggerSection)
-
-//     // init start position
-//     // targetSection.style.transform = `translateY(${transYpercent}%)`;
-
-//     const uncoverAnimation = () => {
-//         // Add a keyframe to the timeline (yPercent: 0)
-//         const uncover = new AnimationSequence();
-//         uncover.addKeyframe(new KeyframeEffect(targetSection, { transform: 'translateY(0)' }, { duration: 0, fill: 'both' }));
-
-//         // not sure if that works
-//         document.timeline.play(uncover);
-//     }
-
-//     window.addEventListener('scroll', () => {
-//         const scrollPosition = window.scrollY;
-//         const sectionBottom = triggerSection.offsetTop + targetSection.offsetHeight;
-//         const triggerSectionBottom = triggerSection.offsetTop + triggerSection.offsetHeight;
-//         const targetSectionBottom = targetSection.offsetTop + targetSection.offsetHeight;
-//         const triggerPoint = sectionBottom - window.innerHeight * 0.75;
-
-//         // console.log('sectionBottom', sectionBottom);
-//         // console.log('triggerPoint', triggerPoint);
-
-//         if (scrollPosition >= triggerPoint) {
-//             const scrollDistanceInTarget = triggerSectionBottom - scrollPosition;
-//             const percentage = scrollDistanceInTarget / targetSection.offsetHeight;
-//             console.log('scrollDistanceInTarget', scrollDistanceInTarget);
-//             console.log('percentage', percentage);
-//             // uncoverAnimation();
-//         }
-//     });
-
-//     // Create an Intersection Observer
-//     // const observer = new IntersectionObserver(entries => {
-//     //     let prevRatio = 0.0;
-
-//     //     entries.forEach(entry => {
-//     //         // if (entry.isIntersecting) {
-//     //         if ( entry.intersectionRatio > prevRatio) {
-//     //         // uncoverAnimation();
-//     //         const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
-//     //         // const translateY = (transYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint);
-//     //         const translateY = (1 - entry.intersectionRatio) * transYpercent;
-//     //         console.log(entry.intersectionRatio);
-//     //         console.log(translateY);
-//     //         //     targetSection.style.transform = `translateY(${translateY}%)`;
-//     //         // } else {
-//     //         //     targetSection.style.transform = `translateY(0%)`;
-//     //         }
-
-//     //         prevRatio = entry.intersectionRatio;
-//     //     });
-//     // }, {
-//     //     root: null, // Use the viewport as the root
-//     //     threshold: 0,
-//     //     // threshold: endAnimationPercent / 100, // Trigger when ?% of the element is visible
-//     // });
-
-//     // Observe the last section
-//     // observer.observe(targetSection);
 // }

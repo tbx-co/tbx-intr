@@ -1,3 +1,17 @@
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
+
+function initBlockAnimation(block) {
+  const titleWrapper = block.querySelector('.free-style-title > div > div');
+  titleWrapper.classList.add('fade-up');
+  addInviewObserverToAnimatedElement(block);
+
+  // TODO: cleanup: cannot animate with individual lines
+  // as lines stick together on mobile & the deco lines will look weird
+  // const titles = block.querySelectorAll('.free-style-title-text');
+  // const staggerTime = 0.2;
+  // addStaggerAnimation(titles, staggerTime);
+}
+
 export default function decorate(block) {
   const titleLines = block.querySelectorAll('h1, h2, h3, h4, h5, h6');
   titleLines.forEach((title, index) => {
@@ -44,4 +58,6 @@ export default function decorate(block) {
   if (parentSection.classList.contains('offering-blade')) {
     block.classList.add('long-title');
   }
+
+  initBlockAnimation(block);
 }

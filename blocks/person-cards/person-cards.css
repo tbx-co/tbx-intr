@@ -97,6 +97,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+.person-cards.image-card .person-image-wrapper .hover-active-image {
+  z-index: 2;
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 150% 100%); 
+}
+
+.person-cards.image-card .person-image-wrapper:hover .original-image {
+  filter: blur(15px);
+}
+
+.person-cards.image-card .person-image-wrapper:hover .hover-active-image {
+  clip-path: polygon(-100% 0%, 100% 0%, 100% 100%, -25% 100%);
 }
 
 @media (min-width: 900px) {

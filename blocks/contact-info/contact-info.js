@@ -1,4 +1,5 @@
 import { createTag } from '../../scripts/helpers.js';
+import { addTextSplitAnimationToAllLinks } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   const links = block.querySelectorAll('.button');
@@ -21,4 +22,6 @@ export default function decorate(block) {
       col.append(description);
     });
   });
+
+  addTextSplitAnimationToAllLinks(block);
 }

@@ -17,24 +17,6 @@ import { createTag } from './helpers.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-// TODO: see if we can strip away GSAP completely
-// custom methods, TODO: see best way to load in gsap library
-export async function loadGsapLib() {
-  // const gsapCDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-  const gsapScript = '/libs/gsap/gsap.min.js';
-  await loadScript(gsapScript, {
-    rel: 'preload',
-  });
-
-  const gsapScrollTriggerScript = '/libs/gsap/scrollTrigger.min.js';
-  await loadScript(gsapScrollTriggerScript, {
-    rel: 'preload',
-  });
-
-  const initScript = createTag('script', {}, '');
-  document.body.append(initScript);
-}
-
 // TODO: testing usage on glide.js, depends on final design decision
 export async function loadGlideLib() {
   const glideCSS = createTag('link', {
@@ -102,6 +84,7 @@ export function decorateTitleSection(main) {
   const titleSections = main.querySelectorAll('.title-section');
   if (!titleSections) return;
   titleSections.forEach((section) => {
+    section.classList.add('animated-split-text');
     const elements = section.querySelectorAll('h1,h2,h3,h4,h5,h6,p');
     if (!elements) return;
 
@@ -154,7 +137,6 @@ function loadExternalLibraries() {
   if (document.querySelector('.glide')) {
     loadGlideLib();
   }
-  // loadGsapLib();
 }
 
 /**

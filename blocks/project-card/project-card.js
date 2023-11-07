@@ -5,7 +5,8 @@ import {
   replaceAllChildElements,
   observeElementWithCallback,
 } from '../../scripts/helpers.js';
-// import { addParallaxAnimationToElement } from '../../scripts/animation.js';
+// addParallaxAnimationToElement
+import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 function createProjectLinkWrapper(infoDiv) {
   const projectLink = infoDiv.querySelector('a');
@@ -72,6 +73,7 @@ function createTitleWrapper(div) {
   );
   const title = div.querySelector('h3');
   const newTitle = replaceElementType(title, 'h4');
+  newTitle.classList.add('project-card-title');
   const description = div.querySelector('p');
   description.classList.add('description-s');
   const descriptionItems = description.innerText.split(',');
@@ -115,18 +117,24 @@ export default function decorate(block) {
   }
 
   const mainInfoWithImage = blockRowArray[0];
+  const projectMainInfo = mainInfoWithImage.children[1];
   const projectDetailInfo = blockRowArray[1];
-  const mainInfoLinkWrapper = mainInfoWithImage.children[1];
 
-  const projectLinkWrapper = createProjectLinkWrapper(mainInfoLinkWrapper);
+  const projectLinkWrapper = createProjectLinkWrapper(projectMainInfo);
 
   const mediaDiv = createMediaDiv(mainInfoWithImage, block);
   if (mediaDiv) projectLinkWrapper.append(mediaDiv);
 
-  const infoDiv = createInfoDiv(mainInfoWithImage, projectDetailInfo);
+  const infoDiv = createInfoDiv(projectMainInfo, projectDetailInfo);
   if (infoDiv) projectLinkWrapper.append(infoDiv);
 
   replaceAllChildElements(block, projectLinkWrapper);
+
+  // add animation
+  const mainTitle = block.querySelector('.project-card-title');
+  if (mainTitle) {
+    addTextSplitAnimationToElement(mainTitle, true, projectLinkWrapper);
+  }
 
   // testing
   // const animatedElements = document.querySelectorAll('.project-card-media img')

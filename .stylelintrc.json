@@ -1,6 +1,3 @@
 {
-  "extends": ["stylelint-config-standard"],
-  "globals": {
-    "gsap": "readonly"
-  }
+  "extends": ["stylelint-config-standard"]
 }

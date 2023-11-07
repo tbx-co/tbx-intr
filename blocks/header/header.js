@@ -1,5 +1,6 @@
 import { getMetadata, loadScript } from '../../scripts/aem.js';
 import { createTag } from '../../scripts/helpers.js';
+import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 // constants
 const BRAND_LOGO = '<img loading="lazy" alt="Intr" class="intr-logo placeholder" src="/assets/logo/intr-white-black-logo.svg">';
@@ -214,6 +215,7 @@ export default async function decorate(block) {
     const navSectionLinks = nav.querySelectorAll('.nav-sections a');
     navSectionLinks.forEach((navLink) => {
       navLink.classList.add('nav-link');
+      addTextSplitAnimationToElement(navLink, true);
       if (document.URL === navLink.href) navLink.classList.add('active');
     });
 

@@ -61,6 +61,41 @@ export function addMarqueeAnimationToElements(targetElements, duration) {
   requestAnimationFrame(animate);
 }
 
+// accessibility handling based on this article:
+// https://css-irl.info/how-to-accessibly-split-text/
+export function addTextSplitAnimationToElement(el, duplicateText = true) {
+  el.setAttribute('aria-label', el.textContent);
+  el.classList.add('split-text-wrapper');
+  // eslint-disable-next-line no-useless-escape
+  const textRegex = /[-A-Za-z0-9!$#%^&*@()_+|~=`{}\[\]:";'<>?,.\/]/g;
+  const elChildNodes = el.childNodes;
+
+  elChildNodes.forEach((child) => {
+    if (child.nodeType === Node.TEXT_NODE) {
+      const wrapperDiv = createTag('span', {
+        'aria-hidden': true,
+        class: 'original',
+      });
+      wrapperDiv.innerHTML = child.textContent.replace(textRegex, '<span class="splitted-wrapper"><span class="splitted-letter">$&</span></span>');
+      el.replaceChild(wrapperDiv, child);
+
+      if (duplicateText) {
+        const clonedNode = wrapperDiv.cloneNode(true);
+        clonedNode.classList.add('cloned');
+        el.appendChild(clonedNode);
+      }
+    } else if (child.nodeType === Node.ELEMENT_NODE) {
+      child.innerHTML = child.innerText.replace(textRegex, '<span class="splitted-wrapper"><span class="splitted-letter">$&</span></span>');
+      child.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // add index for potential stagger animation
+  [...el.querySelectorAll('.splitted-letter')].forEach((letter, i) => {
+    letter.style = `--index: ${i};`;
+  });
+}
+
 // TODO: explore animation options based on final design
 // function throttle(fn, wait) {
 //   let time = Date.now();
@@ -71,9 +106,6 @@ export function addMarqueeAnimationToElements(targetElements, duration) {
 //     }
 //   };
 // }
-
-// TODO: text split animation
-// export function
 
 // TODO: explore parallax animation
 // export function addParallaxAnimationToElement(wrapperElement, animatedElements, translateYpercent = 0) {

@@ -102,6 +102,7 @@ export function decorateTitleSection(main) {
   const titleSections = main.querySelectorAll('.title-section');
   if (!titleSections) return;
   titleSections.forEach((section) => {
+    section.classList.add('animated-split-text');
     const elements = section.querySelectorAll('h1,h2,h3,h4,h5,h6,p');
     if (!elements) return;
 

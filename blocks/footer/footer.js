@@ -1,7 +1,7 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 import { createTag } from '../../scripts/helpers.js';
 // addRevealAnimationToSection
-import { addMarqueeAnimationToElements } from '../../scripts/animation.js';
+import { addMarqueeAnimationToElements, addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 // export function addFooterRevealAnimation() {
 //   // eslint-disable-next-line no-undef
@@ -44,6 +44,9 @@ function decorateFooterContent(footer) {
   footerContent.innerHTML = '';
   footerContent.appendChild(topContent);
   footerContent.appendChild(bottomContent);
+
+  const linkElements = footer.querySelectorAll('a');
+  linkElements.forEach((linkElement) => addTextSplitAnimationToElement(linkElement));
 
   return footerContent;
 }

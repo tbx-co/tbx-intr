@@ -184,61 +184,6 @@ header nav .nav-hamburger button {
   background: var(--color-white);
 }
 
-/* TODO: see if we want to keep the mobile hambuger menu */
-
-/* header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
-}
-
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: "";
-  position: absolute;
-  background: currentcolor;
-}
-
-header nav[aria-expanded="false"] .nav-hamburger-icon,
-header nav[aria-expanded="false"] .nav-hamburger-icon::before,
-header nav[aria-expanded="false"] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
-}
-
-header nav[aria-expanded="false"] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded="false"] .nav-hamburger-icon::after {
-  top: 6px;
-}
-
-header nav[aria-expanded="true"] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded="true"] .nav-hamburger-icon::before,
-header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-} */
-
 @media (min-width: 900px) {
   header nav .nav-hamburger {
     display: none;
@@ -327,24 +272,19 @@ header .nav-link {
   position: relative;
 }
 
-/* TODO: active status */
 header .nav-link::after {
   content: url("/assets/img/scribble-sketch-lines.svg");
-  width: 120%;
+  width: 115%;
   position: absolute;
   right: 0;
   bottom: 0;
   transform: translate(0, 35%) rotate(0);
-  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: var(--transition-cubic-bezier-1);
 }
 
 header .nav-link.active::after {
-  opacity: 1;
-}
-
-/* todo active style */
-header .nav-link.active {
-  opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 header .theme-light .nav-link.active::after {

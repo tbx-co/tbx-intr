@@ -1,4 +1,10 @@
+import { setProjectThemeColorToVariable } from '../../scripts/helpers.js'
+
 const addCustomBgColor = (block) => {
+  // use project-theme-color in meta if present
+  setProjectThemeColorToVariable(block, '--bg-color');
+
+  // use block level theme-color meta if block class present
   const bgColorClass = Array.from(block.classList).find((className) => className.startsWith('bg-color-'));
   if (bgColorClass) {
     const bgColor = bgColorClass.replace(/^bg-color-/, '');

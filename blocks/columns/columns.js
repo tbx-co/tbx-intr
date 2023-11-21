@@ -8,6 +8,8 @@ export default function decorate(block) {
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
+      col.classList.add('columns-item');
+
       const bigTitle = col.querySelector('h1, h2, h3, h4');
       if (bigTitle) bigTitle.classList.add('heading-m', 'big-heading');
       const title = col.querySelector('h5, h6');
@@ -23,11 +25,11 @@ export default function decorate(block) {
 
       const pic = col.querySelector('picture');
       if (pic) {
-        const picWrapper = pic.closest('div');
-        if (picWrapper && picWrapper.children.length === 1) {
-          // picture is only content in column
-          picWrapper.classList.add('with-image');
-        }
+        pic.parentElement.remove();
+        const imageWrapper = createTag('div', {
+          class: 'image-wrapper'
+        }, pic);
+        col.append(imageWrapper);
       }
 
       gridContainer.append(col);

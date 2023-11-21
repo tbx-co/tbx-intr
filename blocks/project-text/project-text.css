@@ -1,4 +1,6 @@
 .project-text {
+  --title-text-color: var(--color-primary-blue);
+
   padding: var(--section-spacing-xl) 0;
   display: grid;
   grid-template-columns: 1fr;
@@ -6,7 +8,7 @@
 }
 
 .project-title-wrapper {
-  color: var(--color-primary-blue);
+  color: var(--title-text-color);
 }
 
 .project-title-wrapper .heading {

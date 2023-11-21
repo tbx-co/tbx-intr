@@ -1,4 +1,8 @@
+import { setProjectThemeColorToVariable } from '../../scripts/helpers.js';
+
 export default function decorate(block) {
+  setProjectThemeColorToVariable(block, '--title-text-color');
+
   [...block.children].forEach((row) => {
     const projectTitle = row.querySelectorAll('h1,h2,h3,h4,h5,h6');
     if (projectTitle && projectTitle.length > 0) {

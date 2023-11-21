@@ -72,6 +72,14 @@ export function returnLinkTarget(url) {
   return '_self';
 }
 
+export function setProjectThemeColorToVariable(targetElement, cssVariable) {
+  const projectTheme = document.querySelector('meta[name="project-theme-color"]');
+  if (projectTheme) {
+    const projectThemeColor = projectTheme.getAttribute('content');
+    targetElement.style.setProperty(cssVariable, projectThemeColor);
+  }
+}
+
 // in-view related animations
 
 // run callback function when targetElement is in viewport
@@ -84,20 +92,4 @@ export function observeElementWithCallback(targetElement, callback) {
     });
   });
   observer.observe(targetElement);
-}
-
-// Animation related
-export function addInviewObserverToTriggerElement(triggerElement) {
-  const observerOptions = {
-    threshold: 0.25, // show when is 25% in view
-  };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  observer.observe(triggerElement);
 }

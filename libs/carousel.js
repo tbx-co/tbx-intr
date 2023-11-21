@@ -46,8 +46,8 @@ export function createGlideCarousel(block) {
   glideTrack.append(glideSlideWrapper);
   glideWrapper.append(glideTrack);
   
-  const arrowNav = createArrowNavGlideCarousel();
-  glideWrapper.append(arrowNav);
+  // const arrowNav = createArrowNavGlideCarousel();
+  // glideWrapper.append(arrowNav);
 
   const bulletNav = createBulletNavGlideCarousel(slides);
   glideWrapper.append(bulletNav);

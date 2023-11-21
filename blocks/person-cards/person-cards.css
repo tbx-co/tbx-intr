@@ -102,7 +102,7 @@
 
 .person-cards.image-card .person-image-wrapper .hover-active-image {
   z-index: 2;
-  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 150% 100%); 
+  clip-path: var(--clip-path-diagonal-wipe-1-start);
 }
 
 .person-cards.image-card .person-image-wrapper:hover .original-image {
@@ -110,7 +110,7 @@
 }
 
 .person-cards.image-card .person-image-wrapper:hover .hover-active-image {
-  clip-path: polygon(-100% 0%, 100% 0%, 100% 100%, -25% 100%);
+  clip-path: var(--clip-path-diagonal-wipe-1-end);
 }
 
 @media (min-width: 900px) {

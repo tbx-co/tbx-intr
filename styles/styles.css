@@ -108,6 +108,12 @@
   --border-radius-m: 20px;
   --border-radius-xl: 50px;
 
+  /* clip-path */
+  --clip-path-diagonal-wipe-1-start: polygon(100% 0%, 100% 0%, 100% 100%, 150% 100%); 
+  --clip-path-diagonal-wipe-1-end: polygon(-100% 0%, 100% 0%, 100% 100%, -25% 100%);
+  --clip-path-horizontal-wipe-1: inset(0 100% 0 0);
+  --clip-path-reveal: inset(0 0 0 0);
+
   /* transition */
   --cubic-bezier-1: cubic-bezier(0.802, 0, 0.2, 1);
   --transition-cubic-bezier-1: all 0.4s var(--cubic-bezier-1);
@@ -166,7 +172,18 @@
 }
 
 html {
+  --hero-bg-color: var(--color-black);
+  
   scroll-behavior: smooth;
+}
+
+html::before {
+  content: "";
+  z-index: -1;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	background: linear-gradient(to bottom, var(--hero-bg-color), var(--color-black));
 }
 
 body {
@@ -175,7 +192,6 @@ body {
   font-family: var(--body-font-family);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
   display: none;
   min-height: 100vh;
 }
@@ -318,6 +334,10 @@ main {
   margin-top: calc(var(--nav-height) * -1);
   z-index: 2;
   position: relative;
+}
+
+main > div {
+  background: var(--color-white);
 }
 
 /* highlight for italic element */
@@ -1114,7 +1134,7 @@ main .section.contact-info-section {
 .glide__bullets {
   display: flex;
   justify-content: center;
-  padding-top: var(--spacing-xs);
+  padding-top: var(--spacing-s);
 }
 
 .glide__bullet {
@@ -1125,7 +1145,7 @@ main .section.contact-info-section {
   height: auto;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  margin: 0 2px;
+  margin: 0 4px;
 }
 
 .glide__bullet--active {
@@ -1135,6 +1155,10 @@ main .section.contact-info-section {
 @media (min-width: 600px) {
   .glide__arrows {
     display: block;
+  }
+
+  .glide__bullet {
+    margin: 0 8px; 
   }
 
   .glide__slide .partner-card-wrapper{

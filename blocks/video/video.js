@@ -1,6 +1,6 @@
 import { sampleRUM } from '../../scripts/aem.js';
 
-function decorateVideoBlock(block, videoURL) {
+export function embedVideo(block, videoURL) {
   if (videoURL.endsWith('.mp4')) {
     let attrs = '';
     attrs = 'playsinline controls';
@@ -24,7 +24,7 @@ export default function decorate(block) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        decorateVideoBlock(block, videoURL);
+        embedVideo(block, videoURL);
       }
     });
   });

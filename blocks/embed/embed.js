@@ -24,6 +24,18 @@ export const getDefaultEmbed = (
     </iframe>
   </div>`;
 
+
+export const embedVideo = (url, autoplay = true, hideControls = false) => {
+  let autoPlayAttrs = autoplay ? 'playsinline autoplay muted loop' : 'playsinline';
+  let hideControlsAttrs = hideControls ? '' : 'controls';
+  const embedHTML = /* html */ `
+    <div class="vid-wrapper">
+      <video ${autoPlayAttrs} ${hideControlsAttrs} name="media"><source src="${url}" type="video/mp4"></video>
+    </div>
+  `
+  return embedHTML;
+}
+
 export const embedYoutube = (url, autoplay = false, hideControls = false) => {
   const usp = new URLSearchParams(url.search);
   const hideControlSuffix = hideControls ? '&controls=0' : '';
@@ -84,6 +96,10 @@ export const loadEmbed = (
       match: ['twitter'],
       embed: embedTwitter,
     },
+    {
+      match: ['mp4'],
+      embed: embedVideo,
+    }
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));

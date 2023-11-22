@@ -23,6 +23,7 @@ export default function decorate(block) {
           href: linkEl.href,
           title: linkEl.title,
           target: returnLinkTarget(linkEl.href),
+          class: 'hover-shine'
         },
         picture,
       );

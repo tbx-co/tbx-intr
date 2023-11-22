@@ -120,7 +120,7 @@ header nav.mobile-menu {
   grid-template:
     "hamburger brand" var(--nav-height)
     "sections sections" 1fr
-    "cta cta" 120px / auto 1fr;
+    "cta cta" 15vh / auto 1fr;
   overflow-y: auto;
   min-height: 100vh;
 }
@@ -321,6 +321,10 @@ header .theme-light .nav-link.active::after {
 /* tools */
 header nav .nav-cta {
   grid-area: cta;
+}
+
+header nav.mobile-menu .nav-cta {
+  align-self: start;
 }
 
 /* TODO: not sure if that's in use */

@@ -42,9 +42,9 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* .brand-list .brand-logo-item:hover {
-  opacity: 1;
-} */
+.brand-list .brand-logo-item:hover {
+  opacity: 0.6;
+}
 
 .brand-list .brand-logo-item a {
   display: grid;

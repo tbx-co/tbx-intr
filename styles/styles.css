@@ -1232,3 +1232,32 @@ main .section.contact-info-section {
 /* stylelint-enable */
 
 /* -------------- Glide Carousel Ends -------------- */
+
+/* -------------- 404 page starts ------------ */
+main.error {
+  min-height: 100vh;
+  background: var(--color-light-grey);
+  width: 100%;
+}
+
+main.error > .section {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background: transparent;
+}
+
+main.error .error-number {
+  width: 50% !important;
+  max-width: 200px;
+  padding-left: 4px;
+  margin-bottom: 16px;
+}
+
+main.error > .section .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -------------- 404 page Ends -------------- */

@@ -18,7 +18,6 @@ import { addInviewObserverToAnimatedElement } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-// TODO: testing usage on glide.js, depends on final design decision
 export async function loadGlideLib() {
   const glideCSS = createTag('link', {
     rel: 'stylesheet',

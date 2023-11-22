@@ -113,7 +113,17 @@ function decoratePageTheme() {
   const theme = document.querySelector('meta[name="page-theme-color"]');
   if (theme) {
     const main = document.querySelector('main');
-    main.style.backgroundColor = theme.getAttribute('content');
+    const mainBgColor = theme.getAttribute('content');
+    main.style.setProperty('--main-bg-color', mainBgColor);
+  }
+}
+
+function decorateBodyOverflowBgColor() {
+  const firstSection = document.querySelector('main > div:first-child');
+  const html = document.querySelector('html');
+  if (firstSection) {
+    const heroBgColor = firstSection.style.background;
+    html.style.setProperty('--hero-bg-color', heroBgColor);
   }
 }
 
@@ -179,6 +189,8 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   decoratePageTheme();
+  // TODO: tbc apply this function after the class is applied on hero section
+  decorateBodyOverflowBgColor();
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
@@ -197,7 +209,9 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    import('./delayed.js');
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 

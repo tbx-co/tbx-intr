@@ -34,25 +34,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0 0 0 0%),
-    rgba(0 0 0 1%) 6.67%,
-    rgba(0 0 0 2%) 13.33%,
-    rgba(0 0 0 5%) 20%,
-    rgba(0 0 0 9%) 26.67%,
-    rgba(0 0 0 14%) 33.33%,
-    rgba(0 0 0 20%) 40%,
-    rgba(0 0 0 27%) 46.67%,
-    rgba(0 0 0 33%) 53.33%,
-    rgba(0 0 0 40%) 60%,
-    rgba(0 0 0 46%) 66.67%,
-    rgba(0 0 0 51%) 73.33%,
-    rgba(0 0 0 55%) 80%,
-    rgba(0 0 0 58%) 86.67%,
-    rgba(0 0 0 59%) 93.33%,
-    rgba(0 0 0 60%) 100%
-  );
+  background: var(--overlay-grey-linear-gradient);
 }
 
 .project-hero .copy-wrapper {

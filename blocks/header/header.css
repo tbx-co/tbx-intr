@@ -120,7 +120,7 @@ header nav.mobile-menu {
   grid-template:
     "hamburger brand" var(--nav-height)
     "sections sections" 1fr
-    "cta cta" var(--nav-height) / auto 1fr;
+    "cta cta" 120px / auto 1fr;
   overflow-y: auto;
   min-height: 100vh;
 }
@@ -252,7 +252,7 @@ header nav .nav-sections {
 header nav.mobile-menu .nav-sections {
   display: block;
   visibility: visible;
-  align-self: start;
+  align-self: center;
 }
 
 header nav .nav-sections ul {

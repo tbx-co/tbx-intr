@@ -1,7 +1,8 @@
 :root {
   --project-card-content-z-index: 3;
-  --project-card-video-z-index: 2;
-  --project-card-img-z-index: 1;
+  --project-card-video-z-index: 1;
+  --project-card-img-z-index: 0;
+  --project-card-overlay-index: 2;
 }
 
 .project-card {
@@ -21,6 +22,17 @@
   aspect-ratio: 1 / 1;
   border-radius: var(--border-radius-m);
   overflow: hidden;
+}
+
+.project-card .project-card-media::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-grey-linear-gradient);
+  z-index: var(--project-card-overlay-index);
+  transition: var(--transition-cubic-bezier-1);
 }
 
 .project-card .project-card-media img {
@@ -87,6 +99,10 @@
 
 .project-card-link-wrapper:hover h4::before {
   opacity: 1;
+}
+
+.project-card-link-wrapper:hover .project-card-media::before {
+  opacity: 0.7;
 }
 
 .project-card-title-wrapper p {

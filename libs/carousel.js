@@ -22,6 +22,7 @@ export function createBulletNavGlideCarousel(slides) {
     const glideBulletHTML = createTag('button', {
       class: "glide__bullet",
       'data-glide-dir': `=${index}`,
+      'aria-label': `glide-slider-bullet-button-${index + 1}`
     });
     glideBulletWrapper.append(glideBulletHTML);
   });
@@ -46,8 +47,8 @@ export function createGlideCarousel(block) {
   glideTrack.append(glideSlideWrapper);
   glideWrapper.append(glideTrack);
   
-  const arrowNav = createArrowNavGlideCarousel();
-  glideWrapper.append(arrowNav);
+  // const arrowNav = createArrowNavGlideCarousel();
+  // glideWrapper.append(arrowNav);
 
   const bulletNav = createBulletNavGlideCarousel(slides);
   glideWrapper.append(bulletNav);

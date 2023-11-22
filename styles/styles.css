@@ -41,6 +41,28 @@
   --highlight-background-color: #ccc;
   --text-color: #000;
 
+  /* stylelint-disable */
+  --overlay-grey-linear-gradient: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.00) 0%,
+    rgba(0, 0, 0, 0.01) 6.67%,
+    rgba(0, 0, 0, 0.02) 13.33%,
+    rgba(0, 0, 0, 0.05) 20%,
+    rgba(0, 0, 0, 0.09) 26.67%,
+    rgba(0, 0, 0, 0.14) 33.33%,
+    rgba(0, 0, 0, 0.20) 40%,
+    rgba(0, 0, 0, 0.27) 46.67%,
+    rgba(0, 0, 0, 0.33) 53.33%,
+    rgba(0, 0, 0, 0.40) 60%,
+    rgba(0, 0, 0, 0.46) 66.67%,
+    rgba(0, 0, 0, 0.51) 73.33%,
+    rgba(0, 0, 0, 0.55) 80%,
+    rgba(0, 0, 0, 0.58) 86.67%,
+    rgba(0, 0, 0, 0.59) 93.33%,
+    rgba(0, 0, 0, 0.60) 100%
+  );
+  /* stylelint-enable */
+
   /* styelint rule is preventing font setup like this, TODO: see if we can switch to better one: --body-font-family: inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
 
   /* fonts */
@@ -108,6 +130,12 @@
   --border-radius-m: 20px;
   --border-radius-xl: 50px;
 
+  /* clip-path */
+  --clip-path-diagonal-wipe-1-start: polygon(100% 0%, 100% 0%, 100% 100%, 150% 100%); 
+  --clip-path-diagonal-wipe-1-end: polygon(-100% 0%, 100% 0%, 100% 100%, -25% 100%);
+  --clip-path-horizontal-wipe-1: inset(0 100% 0 0);
+  --clip-path-reveal: inset(0 0 0 0);
+
   /* transition */
   --cubic-bezier-1: cubic-bezier(0.802, 0, 0.2, 1);
   --transition-cubic-bezier-1: all 0.4s var(--cubic-bezier-1);
@@ -166,7 +194,18 @@
 }
 
 html {
+  --hero-bg-color: var(--color-black);
+
   scroll-behavior: smooth;
+}
+
+html::before {
+  content: "";
+  z-index: -1;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	background: linear-gradient(to bottom, var(--hero-bg-color), var(--color-black));
 }
 
 body {
@@ -175,7 +214,6 @@ body {
   font-family: var(--body-font-family);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
   display: none;
   min-height: 100vh;
 }
@@ -315,9 +353,15 @@ button.secondary {
 }
 
 main {
+  --main-bg-color: var(--color-white);
+
   margin-top: calc(var(--nav-height) * -1);
   z-index: 2;
   position: relative;
+}
+
+main > div {
+  background: var(--main-bg-color);
 }
 
 /* highlight for italic element */
@@ -493,7 +537,7 @@ main .section.highlight {
 
 .heading-ml {
   font-feature-settings: "salt" on;
-  font-size: clamp(34px, 5.4vw, 52px);
+  font-size: clamp(30px, 5.4vw, 52px);
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -590,12 +634,23 @@ main .section.highlight {
 
 /* inline circle */
 .deco-bold-circle-inline strong::before {
-  width: 190%;
+  /* single word style */
+
+  /* width: 190%;
   top: 0;
   right: 0;
   left: auto;
   bottom: auto;
-  transform: scale(-1, -1) translate(-15%, 15%);
+  transform: scale(-1, -1) translate(-15%, 15%); */
+
+  width: auto;
+  top: 0;
+  right: 0;
+  left: auto;
+  bottom: auto;
+  transform: scale(-1, -1) translate(0%, 10%);
+  height: 110%;
+  aspect-ratio: 597 /134;
 }
 
 /* triple circle */
@@ -1114,7 +1169,7 @@ main .section.contact-info-section {
 .glide__bullets {
   display: flex;
   justify-content: center;
-  padding-top: var(--spacing-xs);
+  padding-top: var(--spacing-s);
 }
 
 .glide__bullet {
@@ -1125,7 +1180,7 @@ main .section.contact-info-section {
   height: auto;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  margin: 0 2px;
+  margin: 0 4px;
 }
 
 .glide__bullet--active {
@@ -1135,6 +1190,10 @@ main .section.contact-info-section {
 @media (min-width: 600px) {
   .glide__arrows {
     display: block;
+  }
+
+  .glide__bullet {
+    margin: 0 8px; 
   }
 
   .glide__slide .partner-card-wrapper{

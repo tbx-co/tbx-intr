@@ -7,6 +7,7 @@ Notes:
 |--------|------------|
 | N/A | Default columns Layout - text color black |  
 | text-white | All text color white |
+| hover-image-active | Show image when hover in column |
 
 #### Example:
 See Live output (Link):
@@ -22,6 +23,7 @@ https://docs.google.com/document/d/1TJD8V1fV7oBR6d70W1l4nIpNWGosfpQL-3MtrNX3ngA/
 - Big heading: h1/h2/h3/h4 in column
 - Heading: h5/h6 in column
 - Descrption: normal text in column
+- image will show on hover if .hover-image-active is added
 
 [Decoration Code](columns.js)
 

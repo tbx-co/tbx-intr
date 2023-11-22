@@ -1,4 +1,8 @@
+import { setProjectThemeColorToVariable, createTag } from '../../scripts/helpers.js';
+
 export default function decorate(block) {
+  setProjectThemeColorToVariable(block, '--title-text-color');
+
   [...block.children].forEach((row) => {
     const projectTitle = row.querySelectorAll('h1,h2,h3,h4,h5,h6');
     if (projectTitle && projectTitle.length > 0) {
@@ -12,6 +16,24 @@ export default function decorate(block) {
       div.classList.add('text-wrapper', 'description-m');
       if (div.innerHTML.trim() === '') {
         div.classList.add('empty');
+      }
+
+      // change structure into testimonial if image present
+      const image = div.querySelector('picture');
+      if (image) {
+        image.parentNode.remove();
+        const imageWrapper = createTag('div', { class: 'testimonial-img-wrapper' }, '');
+        imageWrapper.append(image);
+
+        const texts = div.querySelectorAll('p');
+        const textWrapper = createTag('div', { class: 'testimonial-text-wrapper' }, '');
+        texts.forEach((text) => {
+          textWrapper.append(text);
+        });
+
+        div.append(imageWrapper);
+        div.append(textWrapper);
+        div.classList.add('project-text-testimonial');
       }
     });
   });

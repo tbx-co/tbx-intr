@@ -1,4 +1,4 @@
-// import { createGlideCarousel } from '../../libs/carousel.js';
+import { createGlideCarousel } from '../../libs/carousel.js';
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -15,5 +15,8 @@ export default function decorate(block) {
   });
 
   // TODO: explore carousel options
-  // const cardCarousel = createGlideCarousel(block);
+  const slides = block.querySelectorAll('.partner-card-wrapper');
+  if (slides.length > 1) {
+    createGlideCarousel(block);
+  }
 }

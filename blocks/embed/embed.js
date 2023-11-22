@@ -90,8 +90,6 @@ export const loadEmbed = (
   const url = new URL(link);
 
   if (config) {
-    // block.innerHTML += config.embed(url, autoplay, hideControls);
-
     block.innerHTML = config.embed(url, autoplay, hideControls);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {

@@ -125,7 +125,6 @@
 }
 
 .person-cards.testimonial .person-card-col-1 img {
-  /* width: clamp(120px, 7vw, 140px); */
   height: 100%;
   object-fit: contain;
 }

@@ -23,6 +23,23 @@ export function addStaggerAnimation(elements, duration) {
   });
 }
 
+// staggerDuration = last item delay
+export function addAnimationClassWithStaggering(elements, animationClass, staggerDuration, triggerElement) {
+  elements.forEach((element, index) => {
+    element.classList.add(animationClass);
+
+    // ease-like delay
+    const delayFactor = ((index + 1) / elements.length) ** 2;
+    const calculatedDelay = staggerDuration * delayFactor;
+    element.style.transitionDelay = `${calculatedDelay}s`;
+
+    // linear
+    // element.style.transitionDelay = `${staggerDuration * index}s`;
+  });
+
+  addInviewObserverToAnimatedElement(triggerElement);
+}
+
 export function addRevealWrapperToAnimationTarget(element) {
   const revealWrapper = createTag(
     'span',

@@ -1,4 +1,5 @@
 import { createTag } from '../../scripts/helpers.js';
+import { addAnimationClassWithStaggering } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   const picture = block.querySelector('picture');
@@ -25,4 +26,10 @@ export default function decorate(block) {
   const backdrop = createTag('div', { class: 'project-hero-backdrop' }, '');
 
   block.append(backgroundWrapper, backdrop, content);
+
+  // block animation
+  const animatedTargets = [...headings];
+  addAnimationClassWithStaggering(animatedTargets, 'fade-up', 0.7, block);
+  subtitle.classList.add('fade-in');
+  subtitle.style.transitionDelay = '1.2s';
 }

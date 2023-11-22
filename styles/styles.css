@@ -41,6 +41,28 @@
   --highlight-background-color: #ccc;
   --text-color: #000;
 
+  /* stylelint-disable */
+  --overlay-grey-linear-gradient: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.00) 0%,
+    rgba(0, 0, 0, 0.01) 6.67%,
+    rgba(0, 0, 0, 0.02) 13.33%,
+    rgba(0, 0, 0, 0.05) 20%,
+    rgba(0, 0, 0, 0.09) 26.67%,
+    rgba(0, 0, 0, 0.14) 33.33%,
+    rgba(0, 0, 0, 0.20) 40%,
+    rgba(0, 0, 0, 0.27) 46.67%,
+    rgba(0, 0, 0, 0.33) 53.33%,
+    rgba(0, 0, 0, 0.40) 60%,
+    rgba(0, 0, 0, 0.46) 66.67%,
+    rgba(0, 0, 0, 0.51) 73.33%,
+    rgba(0, 0, 0, 0.55) 80%,
+    rgba(0, 0, 0, 0.58) 86.67%,
+    rgba(0, 0, 0, 0.59) 93.33%,
+    rgba(0, 0, 0, 0.60) 100%
+  );
+  /* stylelint-enable */
+
   /* styelint rule is preventing font setup like this, TODO: see if we can switch to better one: --body-font-family: inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
 
   /* fonts */
@@ -173,7 +195,7 @@
 
 html {
   --hero-bg-color: var(--color-black);
-  
+
   scroll-behavior: smooth;
 }
 
@@ -331,13 +353,15 @@ button.secondary {
 }
 
 main {
+  --main-bg-color: var(--color-white);
+
   margin-top: calc(var(--nav-height) * -1);
   z-index: 2;
   position: relative;
 }
 
 main > div {
-  background: var(--color-white);
+  background: var(--main-bg-color);
 }
 
 /* highlight for italic element */
@@ -513,7 +537,7 @@ main .section.highlight {
 
 .heading-ml {
   font-feature-settings: "salt" on;
-  font-size: clamp(34px, 5.4vw, 52px);
+  font-size: clamp(30px, 5.4vw, 52px);
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -610,12 +634,23 @@ main .section.highlight {
 
 /* inline circle */
 .deco-bold-circle-inline strong::before {
-  width: 190%;
+  /* single word style */
+
+  /* width: 190%;
   top: 0;
   right: 0;
   left: auto;
   bottom: auto;
-  transform: scale(-1, -1) translate(-15%, 15%);
+  transform: scale(-1, -1) translate(-15%, 15%); */
+
+  width: auto;
+  top: 0;
+  right: 0;
+  left: auto;
+  bottom: auto;
+  transform: scale(-1, -1) translate(0%, 10%);
+  height: 110%;
+  aspect-ratio: 597 /134;
 }
 
 /* triple circle */

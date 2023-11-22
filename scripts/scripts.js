@@ -113,16 +113,16 @@ function decoratePageTheme() {
   const theme = document.querySelector('meta[name="page-theme-color"]');
   if (theme) {
     const main = document.querySelector('main');
-    main.style.backgroundColor = theme.getAttribute('content');
+    const mainBgColor = theme.getAttribute('content');
+    main.style.setProperty('--main-bg-color', mainBgColor);
   }
 }
 
 function decorateBodyOverflowBgColor() {
   const firstSection = document.querySelector('main > div:first-child');
   const html = document.querySelector('html');
-  if (firstSection) { 
+  if (firstSection) {
     const heroBgColor = firstSection.style.background;
-    console.log(firstSection)
     html.style.setProperty('--hero-bg-color', heroBgColor);
   }
 }

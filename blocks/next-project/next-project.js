@@ -4,6 +4,15 @@ import {
   replaceAllChildElements,
 } from '../../scripts/helpers.js';
 
+const addCustomTextColor = (block) => {
+  const titleColorClass = Array.from(block.classList).find((className) => className.startsWith('title-color-'));
+
+  if (titleColorClass) {
+    const titleColor = titleColorClass.replace(/^title-color-/, '');
+    block.style = `--title-color: #${titleColor}`;
+  }
+};
+
 export default function decorate(block) {
   const nextProjectLink = block.querySelector('a');
   const projectImage = block.querySelector('img');
@@ -31,4 +40,5 @@ export default function decorate(block) {
   nextProjectLinkWrapper.append(projectImageWrapper);
 
   replaceAllChildElements(block, nextProjectLinkWrapper);
+  addCustomTextColor(block);
 }

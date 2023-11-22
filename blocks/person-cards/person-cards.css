@@ -120,8 +120,14 @@
 }
 
 /* testimonial */
+.person-cards.testimonial .person-image-wrapper{
+  height: 28px;
+}
+
 .person-cards.testimonial .person-card-col-1 img {
-  width: clamp(120px, 7vw, 140px);
+  /* width: clamp(120px, 7vw, 140px); */
+  height: 100%;
+  object-fit: contain;
 }
 
 .person-cards.testimonial .person-card-person-info {
@@ -155,6 +161,12 @@
   }
 }
 
+@media (min-width: 900px) {
+  .person-cards.testimonial .person-image-wrapper{
+    height: 32px;
+  }
+}
+
 @media (min-width: 1024px) {
   .person-cards.testimonial .person-card-person-info {
     grid-template-columns: 55px 1fr;
@@ -163,5 +175,11 @@
 
   .person-cards.testimonial .person-info-icon {
     place-items: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .person-cards.testimonial .person-image-wrapper{
+    height: 36px;
   }
 }

@@ -1,4 +1,4 @@
-import { setProjectThemeColorToVariable } from '../../scripts/helpers.js'
+import { setProjectThemeColorToVariable } from '../../scripts/helpers.js';
 
 const addCustomBgColor = (block) => {
   // use project-theme-color in meta if present

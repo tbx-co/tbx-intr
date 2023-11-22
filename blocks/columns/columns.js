@@ -27,7 +27,7 @@ export default function decorate(block) {
       if (pic) {
         pic.parentElement.remove();
         const imageWrapper = createTag('div', {
-          class: 'image-wrapper'
+          class: 'image-wrapper',
         }, pic);
         col.append(imageWrapper);
       }

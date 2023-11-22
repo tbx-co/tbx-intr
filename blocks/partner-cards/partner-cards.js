@@ -16,7 +16,7 @@ export default function decorate(block) {
 
   // TODO: explore carousel options
   const slides = block.querySelectorAll('.partner-card-wrapper');
-  if (slides.length > 1) { 
-     createGlideCarousel(block);
+  if (slides.length > 1) {
+    createGlideCarousel(block);
   }
 }

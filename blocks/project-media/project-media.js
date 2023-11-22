@@ -23,7 +23,6 @@ const loadEmbedVideoByClick = (block, videoLink, mediaWrapper, hideControls) => 
   block.classList.add('has-video');
   const targetEmbedElement = videoClickArea;
 
-
   mediaWrapper.addEventListener('click', () => {
     loadEmbed(targetEmbedElement, videoLink, true, hideControls);
   });

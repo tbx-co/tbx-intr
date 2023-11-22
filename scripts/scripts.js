@@ -14,6 +14,7 @@ import {
   loadScript,
 } from './aem.js';
 import { createTag } from './helpers.js';
+import  {addInviewObserverToAnimatedElement } from './animation.js'
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
@@ -90,11 +91,12 @@ export function decorateTitleSection(main) {
 
     const headingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-    elements.forEach((el) => {
+    elements.forEach((el, index) => {
       const currentTag = el.tagName.toLowerCase();
       if (headingTags.includes(currentTag)) {
         if (currentTag === 'h1' || currentTag === 'h2') {
-          el.classList.add('heading-xl', 'section-title');
+          el.classList.add('heading-xl', 'section-title', 'fade-up');
+          el.style.transitionDelay = `${0.15 * index}s`;
         } else {
           el.classList.add('heading-l');
         }
@@ -102,6 +104,8 @@ export function decorateTitleSection(main) {
         el.classList.add('section-description');
       }
     });
+
+    addInviewObserverToAnimatedElement(section);
   });
 }
 

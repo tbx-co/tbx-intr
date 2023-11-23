@@ -816,6 +816,10 @@ main .section.highlight {
   overflow: hidden;
 }
 
+a:any-link.primary-button {
+  color: var(--color-white);
+}
+
 .primary-button::before,
 .primary-button::after {
   content: "";
@@ -1233,22 +1237,26 @@ main .section.contact-info-section {
 
 /* -------------- 404 page starts ------------ */
 main.error {
-  min-height: 100vh;
-  background: var(--color-light-grey);
+  background: var(--color-primary-blue);
+  color: white;
   width: 100%;
 }
 
-main.error > .section {
+main.error .error-section {
   display: grid;
   place-items: center;
   width: 100%;
   background: transparent;
+  min-height: 100vh;
+}
+
+.main.error .error-section text {
+  fill: var(--color-white);
 }
 
 main.error .error-number {
   width: 50% !important;
   max-width: 200px;
-  padding-left: 4px;
   margin-bottom: 16px;
 }
 

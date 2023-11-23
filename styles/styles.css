@@ -927,7 +927,7 @@ main .section.highlight {
 .fade-left,
 .fade-right {
   opacity: 0;
-  transition: all 0.5s var(--cubic-bezier-1);
+  transition: all 0.4s linear;
 }
 
 .fade-up {
@@ -1014,7 +1014,34 @@ h4.split-text-wrapper .splitted-letter {
   transition-duration: 0;
 }
 
+/* hover shine animation */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
 
+.hover-shine::before {
+  position: absolute;
+  left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	height: 100%;
+	transform: skewX(-25deg);
+  width: 60%;
+  /* stylelint-disable-next-line */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255,255,255, 0.4) 40%, rgba(255, 255, 255, 0) 40%, rgba(255,255,255, 0.4) 100%);
+}
+
+.hover-shine:hover::before {
+	animation: hover-shine 1s;
+}
+
+@keyframes hover-shine {
+	100% {
+		left: 120%;
+	}
+}
 
 /* -------------- Animation Classes Ends -------------- */
 
@@ -1203,3 +1230,47 @@ main .section.contact-info-section {
 /* stylelint-enable */
 
 /* -------------- Glide Carousel Ends -------------- */
+
+/* -------------- 404 page starts ------------ */
+main.error {
+  background: var(--color-primary-blue);
+  color: white;
+  width: 100%;
+}
+
+main.error .error-section {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background: transparent;
+  min-height: 100vh;
+}
+
+.main.error .error-section text {
+  fill: var(--color-white);
+}
+
+main.error .error-number {
+  width: 50% !important;
+  max-width: 180px;
+  aspect-ratio: 160 / 85;
+  margin-bottom: 16px;
+  padding: 10px 0;
+  padding-right: clamp(8px, 2vw, 12px);
+}
+
+main.error .error-section .primary-button {
+  color: var(--color-white);
+}
+
+main.error .error-section .primary-button:hover {
+  color: var(--color-primary-blue);
+}
+
+main.error > .section .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -------------- 404 page Ends -------------- */

@@ -1,4 +1,11 @@
 import { setProjectThemeColorToVariable, createTag } from '../../scripts/helpers.js';
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
+
+function initBlockAnimation(block) {
+  const titleWrapper = block.querySelector('.project-title-wrapper');
+  titleWrapper.classList.add('fade-up');
+  addInviewObserverToAnimatedElement(block);
+}
 
 export default function decorate(block) {
   setProjectThemeColorToVariable(block, '--title-text-color');
@@ -37,4 +44,6 @@ export default function decorate(block) {
       }
     });
   });
+
+  initBlockAnimation(block);
 }

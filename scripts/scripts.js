@@ -14,10 +14,10 @@ import {
   loadScript,
 } from './aem.js';
 import { createTag } from './helpers.js';
+import { addInviewObserverToAnimatedElement } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-// TODO: testing usage on glide.js, depends on final design decision
 export async function loadGlideLib() {
   const glideCSS = createTag('link', {
     rel: 'stylesheet',
@@ -94,7 +94,7 @@ export function decorateTitleSection(main) {
       const currentTag = el.tagName.toLowerCase();
       if (headingTags.includes(currentTag)) {
         if (currentTag === 'h1' || currentTag === 'h2') {
-          el.classList.add('heading-xl', 'section-title');
+          el.classList.add('heading-xl', 'section-title', 'fade-up');
         } else {
           el.classList.add('heading-l');
         }
@@ -102,6 +102,8 @@ export function decorateTitleSection(main) {
         el.classList.add('section-description');
       }
     });
+
+    addInviewObserverToAnimatedElement(section);
   });
 }
 

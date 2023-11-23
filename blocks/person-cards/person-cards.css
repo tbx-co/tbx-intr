@@ -45,6 +45,7 @@
 .person-card-person-info .person-title {
   font-weight: 400;
   margin: 0;
+  padding-right: 7%;
 }
 
 @media (min-width: 600px) {

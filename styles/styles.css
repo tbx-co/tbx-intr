@@ -844,6 +844,10 @@ a:any-link.primary-button {
   color: var(--color-primary-blue);
 }
 
+a:any-link.primary-button:hover {
+  color: var(--color-primary-blue);
+}
+
 .primary-button:hover::before,
 .primary-button:hover::after {
   transform: translate3d(0, 100%, 0);

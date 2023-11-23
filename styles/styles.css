@@ -816,10 +816,6 @@ main .section.highlight {
   overflow: hidden;
 }
 
-a:any-link.primary-button {
-  color: var(--color-white);
-}
-
 .primary-button::before,
 .primary-button::after {
   content: "";
@@ -841,10 +837,6 @@ a:any-link.primary-button {
 }
 
 .primary-button:hover {
-  color: var(--color-primary-blue);
-}
-
-a:any-link.primary-button:hover {
   color: var(--color-primary-blue);
 }
 
@@ -1260,8 +1252,19 @@ main.error .error-section {
 
 main.error .error-number {
   width: 50% !important;
-  max-width: 200px;
+  max-width: 180px;
+  aspect-ratio: 160 / 85;
   margin-bottom: 16px;
+  padding: 10px 0;
+  padding-right: clamp(8px, 2vw, 12px);
+}
+
+main.error .error-section .primary-button {
+  color: var(--color-white);
+}
+
+main.error .error-section .primary-button:hover {
+  color: var(--color-primary-blue);
 }
 
 main.error > .section .default-content-wrapper {

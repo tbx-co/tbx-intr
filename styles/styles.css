@@ -1031,8 +1031,6 @@ h4.split-text-wrapper .splitted-letter {
   width: 60%;
   /* stylelint-disable-next-line */
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255,255,255, 0.4) 40%, rgba(255, 255, 255, 0) 40%, rgba(255,255,255, 0.4) 100%);
-  /* stylelint-disable-next-line */
-	/* background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255,255,255, 0.4) 100%); */
 }
 
 .hover-shine:hover::before {

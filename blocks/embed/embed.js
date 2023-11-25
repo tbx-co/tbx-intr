@@ -55,8 +55,8 @@ export const embedYoutube = (url, autoplay = false, hideControls = false) => {
 
 export const embedVimeo = (url, autoplay = false, hideControls = false) => {
   const [, video] = url.pathname.split('/');
-  const hideControlSuffix = hideControls ? '&controls=0' : '';
-  const suffix = autoplay ? '?muted=1&autoplay=1&loop=1' : '';
+  const hideControlSuffix = hideControls ? '&controls=0&muted=1' : '';
+  const suffix = autoplay ? '?autoplay=1&loop=1' : '';
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="https://player.vimeo.com/video/${video}${suffix}${hideControlSuffix}" 
       style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 

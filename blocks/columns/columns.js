@@ -1,5 +1,15 @@
 import { createTag, replaceAllChildElements } from '../../scripts/helpers.js';
 
+function decorateStatsItems(statsItems) {
+  const descriptions = statsItems.querySelectorAll('p');
+  descriptions.forEach((description) => description.classList.add('stats-items-description', 'description-m'));
+
+  const headings = statsItems.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  headings.forEach((heading) => {
+    heading.innerHTML = heading.innerHTML.replace(/\D+/g, (match) => `<span class="stats-deco-text">${match}</span>`);
+  });
+}
+
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
@@ -35,6 +45,10 @@ export default function decorate(block) {
       gridContainer.append(col);
     });
   });
+
+  if (block.classList.contains('stats-items')) {
+    decorateStatsItems(gridContainer);
+  }
 
   replaceAllChildElements(block, gridContainer);
 }

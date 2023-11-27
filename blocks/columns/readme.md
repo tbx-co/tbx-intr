@@ -8,6 +8,7 @@ Notes:
 | N/A | Default columns Layout - text color black |  
 | text-white | All text color white |
 | hover-image-active | Show image when hover in column |
+| stats-items | Show stats number with text |
 
 #### Example:
 See Live output (Link):

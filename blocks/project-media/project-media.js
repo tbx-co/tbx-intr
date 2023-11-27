@@ -5,6 +5,7 @@ const loadEmbedVideoByIntersectionObserver = (block, videoLink, hideControls) =>
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
+      block.classList.add('has-video');
       loadEmbed(block, videoLink, true, hideControls);
     }
   });
@@ -28,7 +29,6 @@ const loadEmbedVideoByClick = (block, videoLink, mediaWrapper, hideControls) => 
   });
 };
 
-// TODO: see if add in support for .mp4 is needed
 export default function decorate(block) {
   if (block.classList.contains('full-width')) {
     block.parentNode.classList.add('full-width');
@@ -41,8 +41,8 @@ export default function decorate(block) {
   const mediaWrapper = createTag('div', { class: 'media-wrapper' }, '');
   if (image) {
     mediaWrapper.append(image);
-    block.append(mediaWrapper);
   }
+  block.append(mediaWrapper);
 
   if (videoLinkElement) {
     const videoLink = videoLinkElement.href;

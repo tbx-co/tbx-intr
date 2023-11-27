@@ -12,6 +12,10 @@
   display: inline;
 }
 
+.free-style-title.text-blue {
+  color: var(--color-primary-blue);
+}
+
 /* width */
 .free-style-title.full-width {
   max-width: inherit;

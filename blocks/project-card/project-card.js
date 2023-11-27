@@ -5,7 +5,6 @@ import {
   replaceAllChildElements,
   observeElementWithCallback,
 } from '../../scripts/helpers.js';
-// addParallaxAnimationToElement
 import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 function createProjectLinkWrapper(infoDiv) {
@@ -44,9 +43,6 @@ function createVideoElement(videoUrl) {
 
 function createMediaDiv(div, block) {
   const picture = div.querySelector('picture');
-  // TODO: testing
-  // const img = picture.querySelector('img');
-  // img.classList.add('parallax');
 
   const mediaDiv = createTag('div', { class: 'project-card-media' }, '');
   mediaDiv.append(picture);

@@ -1,4 +1,6 @@
 import { createGlideCarousel } from '../../libs/carousel.js';
+import { returnLinkTarget } from '../../scripts/helpers.js';
+import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -14,7 +16,15 @@ export default function decorate(block) {
     });
   });
 
-  // TODO: explore carousel options
+  // decorate link elements
+  const linkElements = block.querySelectorAll('a');
+  linkElements.forEach((linkElement) => {
+    linkElement.setAttribute('target', returnLinkTarget(linkElement.href));
+    linkElement.classList.add('arrow-link');
+    addTextSplitAnimationToElement(linkElement);
+  });
+
+  // used glide.js for carousel
   const slides = block.querySelectorAll('.partner-card-wrapper');
   if (slides.length > 1) {
     createGlideCarousel(block);

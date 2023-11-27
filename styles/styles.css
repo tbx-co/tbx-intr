@@ -605,6 +605,15 @@ main .section.highlight {
   }
 }
 
+/* spacing */
+.section.pt-0 {
+  padding-top: 0;
+}
+
+.section.pb-0 {
+  padding-bottom: 0;
+}
+
 /* ---------- drawing styles, .deco-bold-xxxx ----------- */
 .deco-bold-curly strong,
 .deco-bold-circle strong,

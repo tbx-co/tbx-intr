@@ -11,6 +11,7 @@
 
 .section-description .text-wrapper {
   max-width: 560px;
+  margin: 0 auto;
 }
 
 @media (min-width: 900px) {
@@ -21,5 +22,10 @@
   .section-description .row-wrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-m);
+  }
+
+  .section-description .text-wrapper {
+    max-width: 560px;
+    margin: 0;
   }
 }

@@ -100,6 +100,20 @@
   --section-max-width: var(--section-mobile-max-width);
   --contained-content-max-width: 1080px;
 
+  /* section side padding */
+  --section-side-padding-mobile: calc((100vw - var(--section-mobile-max-width)) / 2);
+  --section-side-padding-tablet: calc((100vw - var(--section-tablet-max-width)) / 2);
+  --section-side-padding-laptop: calc((100vw - var(--section-laptop-max-width)) / 2);
+  --section-side-padding-desktop: calc((100vw - var(--section-desktop-max-width)) / 2);
+  --section-side-padding: var(--section-side-padding-mobile);
+
+  /*  max-width, single side overflow */
+  --section-single-side-mobile-max-width: calc((100vw - var(--section-mobile-max-width)) / 2 + var(--section-mobile-max-width));
+  --section-single-side-tablet-max-width:  calc((100vw - var(--section-tablet-max-width)) / 2 + var(--section-tablet-max-width));
+  --section-single-side-laptop-max-width:  calc((100vw - var(--section-laptop-max-width)) / 2 + var(--section-laptop-max-width));
+  --section-single-side-desktop-max-width: calc((100vw - var(--section-desktop-max-width)) / 2 + var(--section-desktop-max-width));
+  --section-single-side-max-width: var(--section-single-side-mobile-max-width);
+
   /* Spacing (Consonant) */
   --spacing-xxxs: 4px;
   --spacing-xxs: 8px;
@@ -145,6 +159,8 @@
 @media (min-width: 600px) {
   :root {
     --section-max-width: var(--section-tablet-max-width);
+    --section-single-side-max-width: var(--section-single-side-tablet-max-width);
+    --section-side-padding: var(--section-side-padding-tablet);
 
     /* gap */
     --columns-gap: 36px 7vw;
@@ -174,6 +190,8 @@
     /* max-width */
     --section-max-width: var(--section-laptop-max-width);
     --contained-content-max-width: 1080px;
+    --section-side-padding: var(--section-side-padding-laptop);
+    --section-single-side-max-width: var(--section-single-side-laptop-max-width);
 
     /* Section spacing */
     --section-spacing-l: var(--spacing-4xl);
@@ -190,6 +208,8 @@
 @media (min-width: 1500px) {
   :root {
     --section-max-width: var(--section-desktop-max-width);
+    --section-side-padding: var(--section-side-padding-desktop);
+    --section-single-side-max-width: var(--section-single-side-desktop-max-width);
   }
 }
 
@@ -1214,6 +1234,26 @@ main .section.contact-info-section {
 @media (min-width: 900px) {
   .contact-info-section .split-title-section {
     margin-bottom: var(--spacing-ml);
+  }
+}
+
+/* About Us */
+.about-team .free-style-title {
+  margin-bottom: var(--spacing-m);
+}
+
+.about-team .section-description {
+  margin-bottom: var(--section-spacing-xl);
+}
+
+
+@media (min-width: 900px) {
+  .about-team .free-style-title {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  main .section.about-clients {
+    padding-bottom: calc(128px * 1.5);
   }
 }
 

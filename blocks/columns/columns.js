@@ -1,4 +1,4 @@
-import { createTag, replaceAllChildElements } from '../../scripts/helpers.js';
+import { createTag, replaceAllChildElements, returnLinkTarget } from '../../scripts/helpers.js';
 
 function decorateStatsItems(statsItems) {
   const descriptions = statsItems.querySelectorAll('p');
@@ -7,6 +7,22 @@ function decorateStatsItems(statsItems) {
   const headings = statsItems.querySelectorAll('h1,h2,h3,h4,h5,h6');
   headings.forEach((heading) => {
     heading.innerHTML = heading.innerHTML.replace(/\D+/g, (match) => `<span class="stats-deco-text">${match}</span>`);
+  });
+}
+
+function decorateImageList(list) {
+  [...list.children].forEach((item) => {
+    const image = item.querySelector('.image-wrapper');
+    const linkEl = item.querySelector('a');
+    if (!linkEl) return;
+    const linkWrapper = createTag('a', {
+      href: linkEl.href,
+      title: linkEl.title,
+      target: returnLinkTarget(linkEl.href),
+      class: 'image-link-wrapper hover-shine',
+    });
+    linkWrapper.append(image);
+    replaceAllChildElements(item, linkWrapper);
   });
 }
 
@@ -48,6 +64,10 @@ export default function decorate(block) {
 
   if (block.classList.contains('stats-items')) {
     decorateStatsItems(gridContainer);
+  }
+
+  if (block.classList.contains('image-list')) {
+    decorateImageList(gridContainer);
   }
 
   replaceAllChildElements(block, gridContainer);

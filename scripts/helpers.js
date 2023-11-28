@@ -80,6 +80,14 @@ export function setProjectThemeColorToVariable(targetElement, cssVariable) {
   }
 }
 
+// patternArray, currentIndex
+/**
+ * * @param {string} patternArray array of pattern
+ * * @param {number} currentIndex
+ * * result: return index of pattern
+ */
+export const getPatternIndex = (patternArray, currentIndex) => (currentIndex % patternArray.length);
+
 // in-view related animations
 
 // run callback function when targetElement is in viewport

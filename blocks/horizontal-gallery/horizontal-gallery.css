@@ -1,0 +1,95 @@
+.section > div.horizontal-gallery-wrapper {
+    max-width: 100vw;
+    margin-right: 0;
+}
+
+.horizontal-gallery {
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: relative;
+}
+
+.horizontal-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.horizontal-gallery.active {
+    cursor: grab;
+}
+
+.horizontal-gallery-inner-wrapper {
+	display: flex;
+    white-space: nowrap;
+	flex-flow: row nowrap;
+    width: fit-content;
+    padding: 0 var(--section-side-padding);
+}
+
+.horizontal-gallery-item {
+    display: flex;
+    width: 60vw;
+    height: 100%;
+    padding-right: var(--spacing-xs);
+}
+
+.horizontal-gallery-item.align-top {
+    padding-top: 0;
+}
+
+.horizontal-gallery-item.align-center {
+    padding-top: var(--spacing-s);
+}
+
+.horizontal-gallery-item.align-bottom {
+    padding-top: calc(var(--spacing-s) * 2);
+}
+
+.horizontal-gallery-item-inner-wrapper {
+    width: 100%;
+    aspect-ratio: 8 / 5;
+    position: relative;
+    overflow: hidden;
+}
+
+.horizontal-gallery-item-inner-wrapper img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-cubic-bezier-1);
+}
+
+/* TODO: see if transition style can be applied or not
+.horizontal-gallery.is-transitioning .horizontal-gallery-item-inner-wrapper img{
+    transform: scale(1);
+} */
+
+@media (min-width: 600px) {
+    .horizontal-gallery-item {
+        display: flex;
+        height: 100%;
+        padding-right: var(--spacing-s);
+    }
+
+    .horizontal-gallery-item.align-center {
+        padding-top: var(--spacing-ml);
+    }
+
+    .horizontal-gallery-item.align-bottom {
+        padding-top: calc(var(--spacing-ml) * 2);
+    }
+}
+
+@media (min-width: 900px) {
+    .horizontal-gallery-item {
+        width: 40vw;
+        padding-right: var(--spacing-m);
+    }
+
+    .diff-alignment .horizontal-gallery-item {
+        width: 37.5vw;
+        padding-right: var(--spacing-l);
+    }
+}

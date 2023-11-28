@@ -59,12 +59,12 @@
     height: 100%;
     object-fit: cover;
     transition: var(--transition-cubic-bezier-1);
-    transform: scale(1.1);
 }
 
+/* TODO: see if transition style can be applied or not
 .horizontal-gallery.is-transitioning .horizontal-gallery-item-inner-wrapper img{
     transform: scale(1);
-}
+} */
 
 @media (min-width: 600px) {
     .horizontal-gallery-item {

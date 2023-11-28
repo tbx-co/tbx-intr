@@ -9,6 +9,7 @@ Notes:
 | text-white | All text color white |
 | hover-image-active | Show image when hover in column |
 | stats-items | Show stats number with text |
+| image-list | Show image list with maximum 4 columns |
 
 #### Example:
 See Live output (Link):

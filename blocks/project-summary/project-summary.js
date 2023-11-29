@@ -1,4 +1,5 @@
 import { setProjectThemeColorToVariable } from '../../scripts/helpers.js';
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 const addCustomBgColor = (block) => {
   // use project-theme-color in meta if present
@@ -10,6 +11,12 @@ const addCustomBgColor = (block) => {
     const bgColor = bgColorClass.replace(/^bg-color-/, '');
     block.style = `--bg-color: #${bgColor}`;
   }
+};
+
+const initBlockAnimation = (block) => {
+  const target = block.querySelector('.project-summary-row');
+  target.classList.add('fade-up');
+  addInviewObserverToAnimatedElement(block);
 };
 
 export default function decorate(block) {
@@ -25,4 +32,5 @@ export default function decorate(block) {
   });
 
   addCustomBgColor(block);
+  initBlockAnimation(block);
 }

@@ -88,13 +88,18 @@
 .project-card-title-wrapper h4::before {
   content: url("/assets/img/scribble-circle-single-cross.svg");
   position: absolute;
-  width: clamp(100px, 125%, 370px);
-  height: fit-content;
+  height: 1.3em;
+  width: auto;
+  aspect-ratio: 3 / 1;
   opacity: 0;
   top: 0%;
   right: 0%;
-  transform: rotate(-19.4deg) translate(10%, 5%);
+  transform: rotate(-19.4deg) translate(10%, 2.5%);
   transition: var(--transition-cubic-bezier-1);
+
+  /* width: clamp(100px, 125%, 370px);
+  height: fit-content;
+  transform: rotate(-19.4deg) translate(10%, 5%); */
 }
 
 .project-card-link-wrapper:hover h4::before {

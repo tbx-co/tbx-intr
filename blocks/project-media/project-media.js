@@ -12,7 +12,8 @@ const loadEmbedVideoByIntersectionObserver = (block, videoLink, hideControls) =>
   observer.observe(block);
 };
 
-const loadEmbedVideoByClick = (block, videoLink, mediaWrapper, hideControls) => {
+const loadEmbedVideoByClick = (block, videoLink, mediaWrapper) => {
+  const hideControls = false;
   const videoClickArea = createTag(
     'div',
     {
@@ -55,7 +56,7 @@ export default function decorate(block) {
     if (isAutoPlay) {
       loadEmbedVideoByIntersectionObserver(block, videoLink, hideControls);
     } else {
-      loadEmbedVideoByClick(block, videoLink, mediaWrapper, hideControls);
+      loadEmbedVideoByClick(block, videoLink, mediaWrapper);
     }
   }
 }

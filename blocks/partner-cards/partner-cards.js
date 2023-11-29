@@ -1,6 +1,5 @@
 import { createGlideCarousel } from '../../libs/carousel.js';
-import { returnLinkTarget } from '../../scripts/helpers.js';
-import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
+import { addTextSplitArrowLink } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -19,9 +18,7 @@ export default function decorate(block) {
   // decorate link elements
   const linkElements = block.querySelectorAll('a');
   linkElements.forEach((linkElement) => {
-    linkElement.setAttribute('target', returnLinkTarget(linkElement.href));
-    linkElement.classList.add('arrow-link');
-    addTextSplitAnimationToElement(linkElement);
+    addTextSplitArrowLink(linkElement);
   });
 
   // used glide.js for carousel

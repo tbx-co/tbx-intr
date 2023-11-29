@@ -1,5 +1,5 @@
 import { createTag } from '../../scripts/helpers.js';
-import { addAnimationClassWithStaggering } from '../../scripts/animation.js';
+import { addAnimationClassWithStaggering, addParallaxAnimationToElement } from '../../scripts/animation.js';
 
 export default function decorate(block) {
   const picture = block.querySelector('picture');
@@ -9,7 +9,9 @@ export default function decorate(block) {
   block.innerHTML = '';
 
   const backgroundWrapper = createTag('div', { class: 'background-wrapper' }, '');
-  if (picture) backgroundWrapper.append(picture);
+  if (picture) {
+    backgroundWrapper.append(picture);
+  }
 
   const content = createTag('div', { class: 'copy-wrapper' }, '');
   if (headings.length > 0) {
@@ -32,4 +34,7 @@ export default function decorate(block) {
   addAnimationClassWithStaggering(animatedTargets, 'fade-up', 0.7, block);
   subtitle.classList.add('fade-in');
   subtitle.style.transitionDelay = '1.2s';
+
+  const backgroundImage = picture.querySelector('img');
+  addParallaxAnimationToElement(backgroundImage, 7, 5);
 }

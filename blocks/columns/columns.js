@@ -1,13 +1,18 @@
 import { createTag, replaceAllChildElements, returnLinkTarget } from '../../scripts/helpers.js';
+import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
 
 function decorateStatsItems(statsItems) {
   const descriptions = statsItems.querySelectorAll('p');
-  descriptions.forEach((description) => description.classList.add('stats-items-description', 'description-m'));
+  descriptions.forEach((description) => description.classList.add('stats-items-description', 'description-m', 'stats-item-content'));
 
   const headings = statsItems.querySelectorAll('h1,h2,h3,h4,h5,h6');
   headings.forEach((heading) => {
+    heading.classList.add('stats-item-content');
     heading.innerHTML = heading.innerHTML.replace(/\D+/g, (match) => `<span class="stats-deco-text">${match}</span>`);
   });
+
+  // animation
+  addInviewObserverToAnimatedElement(statsItems);
 }
 
 function decorateImageList(list) {
@@ -63,7 +68,7 @@ export default function decorate(block) {
   });
 
   if (block.classList.contains('stats-items')) {
-    decorateStatsItems(gridContainer);
+    decorateStatsItems(gridContainer, block);
   }
 
   if (block.classList.contains('image-list')) {

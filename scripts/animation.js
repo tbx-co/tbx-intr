@@ -1,4 +1,4 @@
-import { createTag } from './helpers.js';
+import { createTag, returnLinkTarget } from './helpers.js';
 
 // add animation using intersectionObserver
 // .inview .animatedClass to animate element
@@ -124,6 +124,13 @@ export function addTextSplitAnimationToAllLinks(wrapper) {
   });
 }
 
+export function addTextSplitArrowLink(linkElement) {
+  linkElement.setAttribute('target', returnLinkTarget(linkElement.href));
+  linkElement.classList.remove('button');
+  linkElement.classList.add('arrow-link');
+  addTextSplitAnimationToElement(linkElement);
+}
+
 /**
  * Reveal Section Animation: parallax bottom reveal animation
  * @param {targetSection} HTMLElement of section to be revealed
@@ -166,25 +173,29 @@ export function addRevealAnimationToSection(targetSection, triggerSection, trans
   });
 }
 
-// TODO: explore parallax animation
-// export function addParallaxAnimationToElement(wrapperElement, animatedElements, translateYpercent = 0) {
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//         // 1 above viewpoint, -1: inview or below viewpoint
-//         if (entry.isIntersecting) {
-//         // const isElementAboveViewpoint = entry.boundingClientRect.y < 0 ? 1 : -1;
-//         const translateY = (translateYpercent * (1 - entry.intersectionRatio)) * (isElementAboveViewpoint) * -1;
-//         animatedElements.forEach((element) => {
-//           element.style.transform = `translateX(${translateX}%) translateY(${translateY}%)`;
-//         });
-//       } else {
-//           animatedElements.forEach((element) => {
-//               element.style.transform = 'translateX(0) translateY(0)';
-//         });
-//       }
-//     });
-//   }, observerOptions);
+/**
+ * *
+ * @param {targetElement} HTMLElement: targetElement to be animated
+ * @param {number} targetTransYpercent: 1-100%
+ * @param {number} targetScalePercent: 1-100%
+ * */
+export function addParallaxAnimationToElement(targetElement, targetTransYpercent, targetScalePercent) {
+  window.addEventListener('scroll', () => {
+    const distanceToTop = window.scrollY + targetElement.getBoundingClientRect().top;
+    const elementHeight = targetElement.offsetHeight;
+    const { scrollTop } = document.documentElement;
+    let inViewProgress = 0; // 0 - 1, > 1 passed viewport
 
-//   observer.observe(wrapperElement, observerOptions);
-//   // console.log(observer);
-// }
+    if (scrollTop > distanceToTop) {
+      inViewProgress = (scrollTop - distanceToTop) / elementHeight;
+
+      // in viewport
+      if (inViewProgress <= 1) {
+        const scrubbedTransY = inViewProgress * targetTransYpercent;
+        const scrubbedScale = inViewProgress * (targetScalePercent / 100) + 1;
+
+        targetElement.style.transform = `translateY(${scrubbedTransY}%) scale(${scrubbedScale})`;
+      }
+    }
+  });
+}

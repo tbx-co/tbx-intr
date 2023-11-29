@@ -131,8 +131,4 @@ export default function decorate(block) {
   if (mainTitle) {
     addTextSplitAnimationToElement(mainTitle, true, projectLinkWrapper);
   }
-
-  // testing
-  // const animatedElements = document.querySelectorAll('.project-card-media img')
-  // addParallaxAnimationToElement(block, animatedElements, 5);
 }

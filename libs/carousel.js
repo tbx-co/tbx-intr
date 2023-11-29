@@ -1,6 +1,5 @@
 import { createTag } from '../../scripts/helpers.js';
 
-// TODO: see if glide fits the final design
 export function createArrowNavGlideCarousel() {
   const arrowHTML = `
     <button class="glide__arrow glide__arrow--left" data-glide-dir="<"> < </button>

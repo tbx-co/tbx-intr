@@ -25,8 +25,8 @@ export const getDefaultEmbed = (
   </div>`;
 
 export const embedVideo = (url, autoplay = true, hideControls = false) => {
-  const autoPlayAttrs = autoplay ? 'playsinline autoplay muted loop' : 'playsinline';
-  const hideControlsAttrs = hideControls ? '' : 'controls';
+  const autoPlayAttrs = autoplay ? 'playsinline autoplay loop' : 'playsinline';
+  const hideControlsAttrs = hideControls ? 'muted' : 'controls';
   const embedHTML = /* html */ `
     <div class="vid-wrapper">
       <video ${autoPlayAttrs} ${hideControlsAttrs} name="media"><source src="${url}" type="video/mp4"></video>

@@ -1,5 +1,5 @@
 import { setProjectThemeColorToVariable, createTag } from '../../scripts/helpers.js';
-import { addInviewObserverToAnimatedElement } from '../../scripts/animation.js';
+import { addInviewObserverToAnimatedElement, addTextSplitArrowLink } from '../../scripts/animation.js';
 
 function initBlockAnimation(block) {
   const titleWrapper = block.querySelector('.project-title-wrapper');
@@ -41,6 +41,13 @@ export default function decorate(block) {
         div.append(imageWrapper);
         div.append(textWrapper);
         div.classList.add('project-text-testimonial');
+      }
+
+      const links = div.querySelectorAll('a');
+      if (links.length > 0) {
+        links.forEach((link) => {
+          addTextSplitArrowLink(link);
+        });
       }
     });
   });

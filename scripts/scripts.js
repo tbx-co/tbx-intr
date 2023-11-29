@@ -120,15 +120,6 @@ function decoratePageTheme() {
   }
 }
 
-function decorateBodyOverflowBgColor() {
-  const firstSection = document.querySelector('main > div:first-child');
-  const html = document.querySelector('html');
-  if (firstSection) {
-    const heroBgColor = firstSection.style.background;
-    html.style.setProperty('--hero-bg-color', heroBgColor);
-  }
-}
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -191,8 +182,6 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   decoratePageTheme();
-  // TODO: tbc apply this function after the class is applied on hero section
-  decorateBodyOverflowBgColor();
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

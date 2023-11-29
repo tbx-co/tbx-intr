@@ -34,6 +34,17 @@
   display: none;
 }
 
+.project-description-wrapper .button-container {
+  margin: 0;
+  display: flex;
+  justify-content: end;
+}
+
+.project-description-wrapper .arrow-link {
+  font-weight: 700;
+  margin-top: var(--spacing-xxs);
+}
+
 /* testimonial look */
 .project-description-wrapper .text-wrapper.project-text-testimonial {
   display: grid;

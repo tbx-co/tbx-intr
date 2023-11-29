@@ -193,8 +193,6 @@
   .columns.stats-items .columns-item {
     border: 0;
     padding: var(--spacing-xs) 0;
-
-    /* border-right: 1px solid var(--color-black); */
   }
 
   .columns.stats-items .columns-item::after {

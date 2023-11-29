@@ -96,10 +96,6 @@
   right: 0%;
   transform: rotate(-19.4deg) translate(10%, 2.5%);
   transition: var(--transition-cubic-bezier-1);
-
-  /* width: clamp(100px, 125%, 370px);
-  height: fit-content;
-  transform: rotate(-19.4deg) translate(10%, 5%); */
 }
 
 .project-card-link-wrapper:hover h4::before {

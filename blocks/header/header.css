@@ -109,7 +109,7 @@ header nav {
     "hamburger brand cta" var(--nav-height)
     "sections sections sections" 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 1em;
+  gap: 0 0.8em;
   margin: auto;
   max-width: var(--section-max-width);
   height: var(--nav-height);
@@ -209,9 +209,7 @@ header nav .nav-brand img {
   width: auto;
   height: 25px;
   object-fit: contain;
-
-  /* TODO: cleanup if confirmed new logo 
-  aspect-ratio: 2.1 / 1; */
+  aspect-ratio: 146 / 23;
 }
 
 header .intr-logo-wrapper {

@@ -16,6 +16,7 @@ import {
 import { createTag } from './helpers.js';
 import { addInviewObserverToAnimatedElement } from './animation.js';
 
+const GAcodeID = 'G-X2NK8ZFC38';
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
 export async function loadGlideLib() {
@@ -206,9 +207,6 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
-  // GA code update
-  const GAcodeID = 'G-X2NK8ZFC38';
-  addGAtagCode(GAcodeID);
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
@@ -223,6 +221,8 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => {
     import('./delayed.js');
+    // ga code
+    addGAtagCode(GAcodeID);
   }, 3000);
   // load anything that can be postponed to the latest here
 }

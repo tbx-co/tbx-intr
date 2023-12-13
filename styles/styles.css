@@ -1260,6 +1260,10 @@ main .section.contact-info-section {
   margin-bottom: var(--spacing-s);
 }
 
+main .section.contact-info-section .split-title-section-wrapper{  
+  padding-top: 32px;
+}
+
 .contact-location-section.locations-container {
   background: var(--color-light-grey);
 }

@@ -34,9 +34,13 @@ export async function loadGlideLib() {
   document.body.append(initScript);
 }
 
-async function addGAtagCode(gaCodeID) {
+function addGAtagCode(gaCodeID) {
   const gaScriptSrc = `https://www.googletagmanager.com/gtag/js?id=${gaCodeID}`;
-  await loadScript(gaScriptSrc);
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = gaScriptSrc;
+  document.body.append(gaScript);
+
   const gaInitScript = createTag('script', {
   }, `
       window.dataLayer = window.dataLayer || [];
@@ -202,6 +206,8 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
+
+  // GA code update
   const GAcodeID = 'G-X2NK8ZFC38';
   addGAtagCode(GAcodeID);
 

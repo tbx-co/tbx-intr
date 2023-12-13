@@ -45,7 +45,6 @@
 .person-card-person-info .person-title {
   font-weight: 400;
   margin: 0;
-  padding-right: 7%;
 }
 
 .person-card-wrapper a, 
@@ -160,6 +159,7 @@
   .person-cards.testimonial .person-card-person-info {
     grid-template-columns: 1fr;
     gap: 12px;
+    min-height: 97px;
   }
 
   .person-cards.testimonial .person-info-icon {
@@ -174,7 +174,7 @@
 }
 
 @media (min-width: 1024px) {
-  .person-cards.testimonial .person-card-person-info {
+  .person-cards.testimonial .person-card-person-info.with-icon {
     grid-template-columns: 55px 1fr;
     gap: 12px;
   }
@@ -185,6 +185,10 @@
 }
 
 @media (min-width: 1200px) {
+  .person-card-person-info em {
+    display: inline-block;
+  }
+
   .person-cards.testimonial .person-image-wrapper {
     height: 36px;
   }

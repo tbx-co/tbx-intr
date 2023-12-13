@@ -15,20 +15,24 @@ function createPersonInfo(div) {
   return personInfo;
 }
 
-function addPersonIconToPersonInfo(div, personInfo) {
-  const icon = div.querySelector('picture');
-  if (!icon) return;
-  const iconWrapper = createTag('div', { class: 'person-info-icon' }, '');
-  const parentWrapper = icon.parentNode;
-  iconWrapper.append(icon);
-  parentWrapper.remove();
-
+function addPersonInfoTextWrapper(personInfo) {
   const personInfoTextHTML = personInfo.innerHTML;
   const personTextWrapper = createTag(
     'div',
     { class: 'person-info-text' },
     personInfoTextHTML,
   );
+  replaceAllChildElements(personInfo, personTextWrapper)
+}
+
+function addPersonIconToPersonInfo(div, personInfo) {
+  const icon = div.querySelector('picture');
+  const iconWrapper = createTag('div', { class: 'person-info-icon' }, '');
+  const parentWrapper = icon.parentNode;
+  iconWrapper.append(icon);
+  parentWrapper.remove();
+
+  const personTextWrapper = personInfo.querySelector('.person-info-text');
 
   replaceAllChildElements(personInfo, iconWrapper, personTextWrapper);
 }
@@ -62,7 +66,14 @@ export default function decorate(block) {
 
         const personInfo = createPersonInfo(col);
         if (block.classList.contains('testimonial')) {
-          addPersonIconToPersonInfo(col, personInfo);
+          addPersonInfoTextWrapper(personInfo);
+
+          // add icon if has icon
+          const icon = col.querySelector('picture');
+          if (icon) {
+            personInfo.classList.add("with-icon");
+            addPersonIconToPersonInfo(col, personInfo);
+          }
         }
 
         if (personInfo) col.append(personInfo);

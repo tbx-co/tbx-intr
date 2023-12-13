@@ -39,7 +39,7 @@ function addGAtagCode(gaCodeID) {
   const gaScript = document.createElement('script');
   gaScript.async = true;
   gaScript.src = gaScriptSrc;
-  document.body.append(gaScript);
+  document.head.append(gaScript);
 
   const gaInitScript = createTag('script', {
   }, `
@@ -49,7 +49,7 @@ function addGAtagCode(gaCodeID) {
 
     gtag('config', '${gaCodeID}');
   `);
-  document.body.append(gaInitScript);
+  document.head.append(gaInitScript);
 }
 
 /**
@@ -206,7 +206,6 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
-
   // GA code update
   const GAcodeID = 'G-X2NK8ZFC38';
   addGAtagCode(GAcodeID);

@@ -48,6 +48,11 @@
   padding-right: 7%;
 }
 
+.person-card-wrapper a, 
+.person-card-wrapper a:any-link {
+  color: inherit;
+}
+
 @media (min-width: 600px) {
   .person-card-person-info .person-name {
     margin-bottom: 12px;

@@ -65,7 +65,9 @@
 @media (min-width: 900px) {
   .free-style-title {
     text-align: inherit;
-    max-width: clamp(700px, 60vw, 1200px);
+    max-width: clamp(700px, 60vw, 1000px);
+
+    /* max-width: clamp(700px, 60vw, 1200px); */
     margin-bottom: var(--spacing-4xl);
   }
 

@@ -1,5 +1,5 @@
 .contact-info {
-    margin-bottom: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
     margin-left: auto;
     margin-right: auto;
 }
@@ -47,7 +47,7 @@
 
 @media (min-width: 900px) {
     .contact-info {
-        margin-bottom: var(--spacing-4xl);
+        padding-top: var(--spacing-4xl);
     }
 
     .contact-info .grid-container {

@@ -1,4 +1,5 @@
 import { createTag, replaceAllChildElements } from '../../scripts/helpers.js';
+import { addTextSplitAnimationToAllLinks } from '../../scripts/animation.js';
 
 function createPersonInfo(div) {
   const personTitles = div.querySelectorAll('h5');
@@ -68,4 +69,6 @@ export default function decorate(block) {
       }
     });
   });
+
+  addTextSplitAnimationToAllLinks(block);
 }

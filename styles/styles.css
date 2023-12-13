@@ -44,22 +44,22 @@
   /* stylelint-disable */
   --overlay-grey-linear-gradient: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.00) 0%,
+    rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.01) 6.67%,
     rgba(0, 0, 0, 0.02) 13.33%,
     rgba(0, 0, 0, 0.05) 20%,
     rgba(0, 0, 0, 0.09) 26.67%,
     rgba(0, 0, 0, 0.14) 33.33%,
-    rgba(0, 0, 0, 0.20) 40%,
+    rgba(0, 0, 0, 0.2) 40%,
     rgba(0, 0, 0, 0.27) 46.67%,
     rgba(0, 0, 0, 0.33) 53.33%,
-    rgba(0, 0, 0, 0.40) 60%,
+    rgba(0, 0, 0, 0.4) 60%,
     rgba(0, 0, 0, 0.46) 66.67%,
     rgba(0, 0, 0, 0.51) 73.33%,
     rgba(0, 0, 0, 0.55) 80%,
     rgba(0, 0, 0, 0.58) 86.67%,
     rgba(0, 0, 0, 0.59) 93.33%,
-    rgba(0, 0, 0, 0.60) 100%
+    rgba(0, 0, 0, 0.6) 100%
   );
   /* stylelint-enable */
 
@@ -101,17 +101,37 @@
   --contained-content-max-width: 1080px;
 
   /* section side padding */
-  --section-side-padding-mobile: calc((100vw - var(--section-mobile-max-width)) / 2);
-  --section-side-padding-tablet: calc((100vw - var(--section-tablet-max-width)) / 2);
-  --section-side-padding-laptop: calc((100vw - var(--section-laptop-max-width)) / 2);
-  --section-side-padding-desktop: calc((100vw - var(--section-desktop-max-width)) / 2);
+  --section-side-padding-mobile: calc(
+    (100vw - var(--section-mobile-max-width)) / 2
+  );
+  --section-side-padding-tablet: calc(
+    (100vw - var(--section-tablet-max-width)) / 2
+  );
+  --section-side-padding-laptop: calc(
+    (100vw - var(--section-laptop-max-width)) / 2
+  );
+  --section-side-padding-desktop: calc(
+    (100vw - var(--section-desktop-max-width)) / 2
+  );
   --section-side-padding: var(--section-side-padding-mobile);
 
   /*  max-width, single side overflow */
-  --section-single-side-mobile-max-width: calc((100vw - var(--section-mobile-max-width)) / 2 + var(--section-mobile-max-width));
-  --section-single-side-tablet-max-width:  calc((100vw - var(--section-tablet-max-width)) / 2 + var(--section-tablet-max-width));
-  --section-single-side-laptop-max-width:  calc((100vw - var(--section-laptop-max-width)) / 2 + var(--section-laptop-max-width));
-  --section-single-side-desktop-max-width: calc((100vw - var(--section-desktop-max-width)) / 2 + var(--section-desktop-max-width));
+  --section-single-side-mobile-max-width: calc(
+    (100vw - var(--section-mobile-max-width)) / 2 +
+      var(--section-mobile-max-width)
+  );
+  --section-single-side-tablet-max-width: calc(
+    (100vw - var(--section-tablet-max-width)) / 2 +
+      var(--section-tablet-max-width)
+  );
+  --section-single-side-laptop-max-width: calc(
+    (100vw - var(--section-laptop-max-width)) / 2 +
+      var(--section-laptop-max-width)
+  );
+  --section-single-side-desktop-max-width: calc(
+    (100vw - var(--section-desktop-max-width)) / 2 +
+      var(--section-desktop-max-width)
+  );
   --section-single-side-max-width: var(--section-single-side-mobile-max-width);
 
   /* Spacing (Consonant) */
@@ -145,8 +165,18 @@
   --border-radius-xl: 50px;
 
   /* clip-path */
-  --clip-path-diagonal-wipe-1-start: polygon(100% 0%, 100% 0%, 100% 100%, 150% 100%); 
-  --clip-path-diagonal-wipe-1-end: polygon(-100% 0%, 100% 0%, 100% 100%, -25% 100%);
+  --clip-path-diagonal-wipe-1-start: polygon(
+    100% 0%,
+    100% 0%,
+    100% 100%,
+    150% 100%
+  );
+  --clip-path-diagonal-wipe-1-end: polygon(
+    -100% 0%,
+    100% 0%,
+    100% 100%,
+    -25% 100%
+  );
   --clip-path-horizontal-wipe-1: inset(0 100% 0 0);
   --clip-path-reveal: inset(0 0 0 0);
 
@@ -159,7 +189,9 @@
 @media (min-width: 600px) {
   :root {
     --section-max-width: var(--section-tablet-max-width);
-    --section-single-side-max-width: var(--section-single-side-tablet-max-width);
+    --section-single-side-max-width: var(
+      --section-single-side-tablet-max-width
+    );
     --section-side-padding: var(--section-side-padding-tablet);
 
     /* gap */
@@ -191,7 +223,9 @@
     --section-max-width: var(--section-laptop-max-width);
     --contained-content-max-width: 1080px;
     --section-side-padding: var(--section-side-padding-laptop);
-    --section-single-side-max-width: var(--section-single-side-laptop-max-width);
+    --section-single-side-max-width: var(
+      --section-single-side-laptop-max-width
+    );
 
     /* Section spacing */
     --section-spacing-l: var(--spacing-4xl);
@@ -209,7 +243,9 @@
   :root {
     --section-max-width: var(--section-desktop-max-width);
     --section-side-padding: var(--section-side-padding-desktop);
-    --section-single-side-max-width: var(--section-single-side-desktop-max-width);
+    --section-single-side-max-width: var(
+      --section-single-side-desktop-max-width
+    );
   }
 }
 
@@ -222,10 +258,14 @@ html {
 html::before {
   content: "";
   z-index: -1;
-	position: fixed;
-	height: 100vh;
-	width: 100vw;
-	background: linear-gradient(to bottom, var(--hero-bg-color), var(--color-black));
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    to bottom,
+    var(--hero-bg-color),
+    var(--color-black)
+  );
 }
 
 body {
@@ -939,8 +979,8 @@ a:any-link.arrow-link {
 }
 
 a:any-link.arrow-link::after {
-  content: '';
-  background-image: url('/assets/svg/arrow-up-right-black.svg');
+  content: "";
+  background-image: url("/assets/svg/arrow-up-right-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -956,7 +996,6 @@ a:any-link.arrow-link::after {
 a:any-link.arrow-link:hover::after {
   transform: translate(4px) rotate(45deg);
 }
-
 
 /* -------------- Utility Classes Ends -------------- */
 
@@ -1015,7 +1054,7 @@ a:any-link.arrow-link:hover::after {
 }
 
 .split-text-wrapper .original {
-   white-space: nowrap;
+  white-space: nowrap;
 }
 
 .split-text-wrapper .cloned {
@@ -1080,24 +1119,31 @@ h4.split-text-wrapper .splitted-letter {
 .hover-shine::before {
   position: absolute;
   left: -75%;
-	z-index: 2;
-	display: block;
-	content: '';
-	height: 100%;
-	transform: skewX(-25deg);
+  z-index: 2;
+  display: block;
+  content: "";
+  height: 100%;
+  transform: skewX(-25deg);
   width: 60%;
-  /* stylelint-disable-next-line */
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255,255,255, 0.4) 40%, rgba(255, 255, 255, 0) 40%, rgba(255,255,255, 0.4) 100%);
+  /* stylelint-disable */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  /* stylelint-enable */
 }
 
 .hover-shine:hover::before {
-	animation: hover-shine 1s;
+  animation: hover-shine 1s;
 }
 
 @keyframes hover-shine {
-	100% {
-		left: 120%;
-	}
+  100% {
+    left: 120%;
+  }
 }
 
 /* -------------- Animation Classes Ends -------------- */
@@ -1134,16 +1180,15 @@ main .section.work-hero {
   padding-top: 20%;
 }
 
-.about-hero .free-style-title { 
+.about-hero .free-style-title {
   margin-top: 15vh;
   margin-bottom: 12vh;
 }
 
-.about-hero img { 
+.about-hero img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-
 
 @media (min-width: 600px) {
   .home-hero .section-description {
@@ -1176,12 +1221,12 @@ main .section.work-hero {
     padding-bottom: 0;
   }
 
-  .about-hero img { 
+  .about-hero img {
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
 
-  .about-hero .free-style-title { 
+  .about-hero .free-style-title {
     margin-top: 17.5vh;
     margin-bottom: 20vh;
   }
@@ -1246,10 +1291,13 @@ main .section.contact-info-section {
   margin-bottom: var(--section-spacing-xl);
 }
 
-
 @media (min-width: 900px) {
   .about-team .free-style-title {
     margin-bottom: var(--spacing-xl);
+  }
+
+  .about-team .heading-ml {
+    font-size: clamp(58px, 5vw, 80px);
   }
 
   main .section.about-clients {
@@ -1324,10 +1372,10 @@ main .section.contact-info-section {
   }
 
   .glide__bullet {
-    margin: 0 8px; 
+    margin: 0 8px;
   }
 
-  .glide__slide .partner-card-wrapper{
+  .glide__slide .partner-card-wrapper {
     padding: 0 8%;
   }
 }

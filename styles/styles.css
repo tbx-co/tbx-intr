@@ -1125,7 +1125,7 @@ h4.split-text-wrapper .splitted-letter {
   height: 100%;
   transform: skewX(-25deg);
   width: 60%;
-  /* stylelint-disable-next-line */
+  /* stylelint-disable */
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
@@ -1133,6 +1133,7 @@ h4.split-text-wrapper .splitted-letter {
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0.4) 100%
   );
+  /* stylelint-enable */
 }
 
 .hover-shine:hover::before {

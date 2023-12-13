@@ -646,20 +646,20 @@ main .section.highlight {
   }
 
   .heading-sl {
-    font-size: clamp(32px, 6vw, 90px);
+    font-size: clamp(32px, 6vw, 82px);
     line-height: 0.9;
   }
 
   .heading-ml {
-    font-size: clamp(64px, 5.4vw, 110px);
+    font-size: clamp(64px, 5.4vw, 90px);
   }
 
   .heading-l {
-    font-size: clamp(64px, 6.4vw, 110px);
+    font-size: clamp(64px, 6vw, 90px);
   }
 
   .heading-xl {
-    font-size: clamp(64px, 7vw, 150px);
+    font-size: clamp(64px, 6.4vw, 102px);
     line-height: 0.96;
     margin: 0;
   }
@@ -1199,6 +1199,7 @@ main .section.work-hero {
 @media (min-width: 900px) {
   .home-hero {
     min-height: 90vh;
+    max-height: min(95vh, 990px);
   }
 
   .home-hero .section-description {

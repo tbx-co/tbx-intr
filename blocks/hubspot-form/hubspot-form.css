@@ -36,6 +36,13 @@
   margin-top: var(--spacing-xs);
   min-height: 120px;
   padding: var(--spacing-xxs) !important;
+  background: transparent;
+  border-color: var(--color-black);
+}
+
+.embed-hbspot-form textarea:focus {
+  outline: none;
+  border: 1px solid var(--color-black);
 }
 
 .embed-hbspot-form .hs-form-required {

@@ -255,19 +255,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html::before {
-  content: "";
-  z-index: -1;
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(
-    to bottom,
-    var(--hero-bg-color),
-    var(--color-black)
-  );
-}
-
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -1273,8 +1260,8 @@ main .section.contact-info-section {
   margin-bottom: var(--spacing-s);
 }
 
-.locations-container {
-  background: var(--color-white);
+.contact-location-section.locations-container {
+  background: var(--color-light-grey);
 }
 
 @media (min-width: 900px) {

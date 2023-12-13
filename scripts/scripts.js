@@ -34,6 +34,20 @@ export async function loadGlideLib() {
   document.body.append(initScript);
 }
 
+async function addGAtagCode(gaCodeID) {
+  const gaScriptSrc = `https://www.googletagmanager.com/gtag/js?id=${gaCodeID}`;
+  await loadScript(gaScriptSrc);
+  const gaInitScript = createTag('script', {
+  }, `
+      window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '${gaCodeID}');
+  `);
+  document.body.append(gaInitScript);
+}
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -188,6 +202,8 @@ async function loadLazy(doc) {
 
   // copied how 3rd library is loaded in Adobe Helix official site
   loadExternalLibraries();
+  const GAcodeID = 'G-X2NK8ZFC38';
+  addGAtagCode(GAcodeID);
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

@@ -137,9 +137,16 @@
 
 .person-cards.testimonial .person-card-person-info {
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.person-cards.testimonial .person-card-person-info.with-icon {
+  display: grid;
   grid-template-columns: 55px 1fr;
   gap: 12px;
 }
+
 
 .person-cards.testimonial .person-info-icon {
   display: grid;

@@ -22,7 +22,7 @@ function addPersonInfoTextWrapper(personInfo) {
     { class: 'person-info-text' },
     personInfoTextHTML,
   );
-  replaceAllChildElements(personInfo, personTextWrapper)
+  replaceAllChildElements(personInfo, personTextWrapper);
 }
 
 function addPersonIconToPersonInfo(div, personInfo) {
@@ -71,7 +71,7 @@ export default function decorate(block) {
           // add icon if has icon
           const icon = col.querySelector('picture');
           if (icon) {
-            personInfo.classList.add("with-icon");
+            personInfo.classList.add('with-icon');
             addPersonIconToPersonInfo(col, personInfo);
           }
         }

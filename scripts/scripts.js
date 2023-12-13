@@ -40,17 +40,23 @@ function addGAtagCode(gaCodeID) {
   const gaScript = document.createElement('script');
   gaScript.async = true;
   gaScript.src = gaScriptSrc;
-  document.head.append(gaScript);
-
-  const gaInitScript = createTag('script', {
-  }, `
+  gaScript.onload = () => { 
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
+    gtag('config', gaCodeID);
+  }
+  document.body.append(gaScript);
+  
+  // const gaInitScript = createTag('script', {
+  // }, `
+  //   window.dataLayer = window.dataLayer || [];
+  //   function gtag() { dataLayer.push(arguments); }
+  //   gtag('js', new Date());
 
-    gtag('config', '${gaCodeID}');
-  `);
-  document.head.append(gaInitScript);
+  //   gtag('config', '${gaCodeID}');
+  // `);
+  // document.body.append(gaInitScript);
 }
 
 /**
@@ -221,8 +227,6 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => {
     import('./delayed.js');
-    // ga code
-    addGAtagCode(GAcodeID);
   }, 3000);
   // load anything that can be postponed to the latest here
 }
@@ -234,3 +238,4 @@ async function loadPage() {
 }
 
 loadPage();
+window.addEventListener('load', addGAtagCode(GAcodeID));

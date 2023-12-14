@@ -10,7 +10,7 @@
 
 @media (min-width: 1200px) {
   :root {
-    --columns-gap: clamp(36px, 3vw, 46px) clamp(72px, 7vw, 120px);
+    --columns-gap: clamp(32px, 3vw, 46px) clamp(40px, 4.8vw, 120px);
   }
 }
 
@@ -260,6 +260,5 @@
 
   .columns .big-heading {
     word-spacing: 9999px;
-    margin-bottom: var(--spacing-m);
   }
 }

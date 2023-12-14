@@ -34,7 +34,7 @@
 
 .brand-list .brand-logo-item {
   list-style-type: none;
-  width: clamp(135px, 20vw, 150px);
+  width: clamp(120px, 20vw, 150px);
   opacity: 1;
   display: grid;
   place-items: center;

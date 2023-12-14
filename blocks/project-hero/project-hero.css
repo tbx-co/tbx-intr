@@ -51,7 +51,13 @@
 }
 
 .project-hero .project-hero-subtitle {
-  font-size: clamp(14.5px, 5vw, 16px);
+  font-size: clamp(14.5px, 3.5vw, 16px);
   letter-spacing: -0.04em;
   text-decoration: uppercase;
+}
+
+@media (min-width: 768px) {
+  .project-hero .project-hero-subtitle {
+    padding-top: 0.5em;
+  }
 }

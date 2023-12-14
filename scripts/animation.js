@@ -120,6 +120,7 @@ export function addTextSplitAnimationToElement(el, duplicateText = true, hoverWr
 export function addTextSplitAnimationToAllLinks(wrapper) {
   const linkElements = wrapper.querySelectorAll('a');
   linkElements.forEach((linkElement) => {
+    linkElement.setAttribute('target', returnLinkTarget(linkElement.href));
     addTextSplitAnimationToElement(linkElement);
   });
 }

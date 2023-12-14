@@ -586,20 +586,20 @@ main .section.highlight {
 .heading-ml {
   font-feature-settings: "salt" on;
   font-size: clamp(30px, 5.4vw, 52px);
-  line-height: 1;
+  line-height: 1.025;
   letter-spacing: -0.04em;
 }
 
 .heading-l {
   font-feature-settings: "salt" on;
   font-size: clamp(36px, 5.8vw, 52px);
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
 .heading-xl {
   font-size: clamp(36px, 8.4vw, 64px);
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
@@ -634,7 +634,7 @@ main .section.highlight {
 
   .heading-sl {
     font-size: clamp(32px, 6vw, 82px);
-    line-height: 0.9;
+    line-height: 1;
   }
 
   .heading-ml {
@@ -647,7 +647,7 @@ main .section.highlight {
 
   .heading-xl {
     font-size: clamp(64px, 6.4vw, 102px);
-    line-height: 0.96;
+    line-height: 1;
     margin: 0;
   }
 }

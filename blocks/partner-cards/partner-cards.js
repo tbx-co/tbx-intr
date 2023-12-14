@@ -1,5 +1,6 @@
 import { createGlideCarousel } from '../../libs/carousel.js';
 import { addTextSplitArrowLink } from '../../scripts/animation.js';
+import { observeElementWithCallback } from '../../scripts/helpers.js';
 
 export default function decorate(block) {
   [...block.children].forEach((row) => {
@@ -24,6 +25,8 @@ export default function decorate(block) {
   // used glide.js for carousel
   const slides = block.querySelectorAll('.partner-card-wrapper');
   if (slides.length > 1) {
-    createGlideCarousel(block);
+    observeElementWithCallback(block, () => {
+      createGlideCarousel(block);
+    });
   }
 }

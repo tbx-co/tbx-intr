@@ -68,7 +68,7 @@
     max-width: clamp(700px, 60vw, 1000px);
 
     /* max-width: clamp(700px, 60vw, 1200px); */
-    margin-bottom: var(--spacing-4xl);
+    margin-bottom: var(--spacing-3xl);
   }
 
   .free-style-title.full-width {

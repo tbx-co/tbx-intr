@@ -478,15 +478,9 @@ main .section {
   padding: 64px 0;
 }
 
-/* @media (min-width: 600px) {
-  main .section {
-    padding: 82px 0;
-  }
-} */
-
 @media (min-width: 900px) {
   main .section {
-    padding: 128px 0;
+    padding: var(--spacing-4xl) 0;
   }
 
   .section > div {
@@ -578,28 +572,28 @@ main .section.highlight {
 
 .heading-sl {
   font-feature-settings: "salt" on;
-  font-size: clamp(28px, 6vw, 48px);
-  line-height: 1;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.05;
   letter-spacing: -0.04em;
 }
 
 .heading-ml {
   font-feature-settings: "salt" on;
   font-size: clamp(30px, 5.4vw, 52px);
-  line-height: 1;
+  line-height: 1.025;
   letter-spacing: -0.04em;
 }
 
 .heading-l {
   font-feature-settings: "salt" on;
-  font-size: clamp(36px, 5.8vw, 52px);
-  line-height: 1;
+  font-size: clamp(32px, 5.8vw, 52px);
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
 .heading-xl {
   font-size: clamp(36px, 8.4vw, 64px);
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
@@ -633,21 +627,23 @@ main .section.highlight {
   }
 
   .heading-sl {
-    font-size: clamp(32px, 6vw, 82px);
-    line-height: 0.9;
+    font-size: clamp(32px, 5.6vw, 82px);
+    line-height: 1.025;
   }
 
   .heading-ml {
-    font-size: clamp(64px, 5.4vw, 90px);
+    font-size: clamp(64px, 5.4vw, 86px);
+    line-height: 1.025;
   }
 
   .heading-l {
     font-size: clamp(64px, 6vw, 90px);
+    line-height: 1.05;
   }
 
   .heading-xl {
     font-size: clamp(64px, 6.4vw, 102px);
-    line-height: 0.96;
+    line-height: 1;
     margin: 0;
   }
 }
@@ -1227,7 +1223,7 @@ main .section.testimonial-section {
 
 @media (min-width: 900px) {
   main .section.testimonial-section {
-    padding-bottom: 192px;
+    padding-bottom: calc(var(--spacing-3xl) * 1.3);
   }
 }
 

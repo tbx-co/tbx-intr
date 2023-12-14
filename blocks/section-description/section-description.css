@@ -16,7 +16,7 @@
 
 @media (min-width: 900px) {
   .section-description {
-    margin-bottom: var(--spacing-5xl);
+    margin-bottom: var(--spacing-4xl);
   }
 
   .section-description .row-wrapper {

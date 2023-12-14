@@ -136,11 +136,11 @@ export function decorateMain(main) {
 }
 
 // load external libraries
-function loadExternalLibraries() {
-  if (document.querySelector('.glide')) {
-    loadGlideLib();
-  }
-}
+// function loadExternalLibraries() {
+//   if (document.querySelector('.glide')) {
+//     loadGlideLib();
+//   }
+// }
 
 /**
  * Loads everything needed to get to LCP.
@@ -187,7 +187,7 @@ async function loadLazy(doc) {
   loadFonts();
 
   // copied how 3rd library is loaded in Adobe Helix official site
-  loadExternalLibraries();
+  // loadExternalLibraries();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

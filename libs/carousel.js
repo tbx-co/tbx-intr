@@ -1,4 +1,5 @@
 import { createTag } from '../../scripts/helpers.js';
+import { loadGlideLib } from '../scripts/scripts.js';
 
 export function createArrowNavGlideCarousel() {
   const arrowHTML = `
@@ -29,6 +30,8 @@ export function createBulletNavGlideCarousel(slides) {
 }
 
 export function createGlideCarousel(block) {
+  loadGlideLib();
+
   const slides = [...block.children];
 
   const glideWrapper = createTag('div', { class: 'glide' }, '');

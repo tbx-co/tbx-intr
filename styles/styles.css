@@ -478,15 +478,9 @@ main .section {
   padding: 64px 0;
 }
 
-/* @media (min-width: 600px) {
-  main .section {
-    padding: 82px 0;
-  }
-} */
-
 @media (min-width: 900px) {
   main .section {
-    padding: 128px 0;
+    padding: var(--spacing-4xl) 0;
   }
 
   .section > div {
@@ -1229,7 +1223,7 @@ main .section.testimonial-section {
 
 @media (min-width: 900px) {
   main .section.testimonial-section {
-    padding-bottom: 192px;
+    padding-bottom: calc(var(--spacing-3xl) * 1.3);
   }
 }
 

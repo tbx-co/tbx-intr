@@ -88,7 +88,7 @@
   }
 
   .split-title-section {
-    margin-bottom: var(--spacing-4xl);
+    margin-bottom: var(--spacing-3xl);
   }
 
   .split-title-section.deco-bold-curly .split-title::before {

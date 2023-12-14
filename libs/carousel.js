@@ -32,6 +32,11 @@ export function createBulletNavGlideCarousel(slides) {
 export function createGlideCarousel(block) {
   loadGlideLib();
 
+  // if carousel has already been created, dont create again
+  if (block.querySelector('.glide')) {
+    return;
+  }
+
   const slides = [...block.children];
 
   const glideWrapper = createTag('div', { class: 'glide' }, '');

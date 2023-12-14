@@ -6,27 +6,6 @@ import { createTag } from './helpers.js';
 sampleRUM('cwv');
 
 // add more delayed functionality here
-
-// GA4 setup
-const GAcodeID = 'G-X2NK8ZFC38';
-function addGAtagCode(gaCodeID) {
-  const gaScriptSrc = `https://www.googletagmanager.com/gtag/js?id=${gaCodeID}`;
-  const gaScript = document.createElement('script');
-  gaScript.async = true;
-  gaScript.src = gaScriptSrc;
-  document.body.append(gaScript);
-
-  const gaInitScript = createTag('script', {
-  }, `
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', '${gaCodeID}');
-  `);
-  document.body.append(gaInitScript);
-}
-
 // GTM code setup
 const GTMcodeID = 'GTM-523X9Q42';
 function addGTMtagCode(gtmcodeID) {
@@ -46,4 +25,3 @@ function addGTMtagCode(gtmcodeID) {
 }
 
 addGTMtagCode(GTMcodeID);
-addGAtagCode(GAcodeID);

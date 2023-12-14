@@ -90,11 +90,12 @@ export const getPatternIndex = (patternArray, currentIndex) => (currentIndex % p
 
 // in-view related animations
 
-// run callback function when targetElement is in viewport
+// run callback function once when targetElement is in viewport
 export function observeElementWithCallback(targetElement, callback) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        observer.disconnect();
         callback(entry.target);
       }
     });

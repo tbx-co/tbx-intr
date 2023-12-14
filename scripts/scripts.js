@@ -16,7 +16,6 @@ import {
 import { createTag } from './helpers.js';
 import { addInviewObserverToAnimatedElement } from './animation.js';
 
-const GAcodeID = 'G-X2NK8ZFC38';
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
 export async function loadGlideLib() {
@@ -33,30 +32,6 @@ export async function loadGlideLib() {
       }).mount();
   `);
   document.body.append(initScript);
-}
-
-function addGAtagCode(gaCodeID) {
-  const gaScriptSrc = `https://www.googletagmanager.com/gtag/js?id=${gaCodeID}`;
-  const gaScript = document.createElement('script');
-  gaScript.async = true;
-  gaScript.src = gaScriptSrc;
-  gaScript.onload = () => { 
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', gaCodeID);
-  }
-  document.body.append(gaScript);
-  
-  // const gaInitScript = createTag('script', {
-  // }, `
-  //   window.dataLayer = window.dataLayer || [];
-  //   function gtag() { dataLayer.push(arguments); }
-  //   gtag('js', new Date());
-
-  //   gtag('config', '${gaCodeID}');
-  // `);
-  // document.body.append(gaInitScript);
 }
 
 /**
@@ -238,4 +213,3 @@ async function loadPage() {
 }
 
 loadPage();
-window.addEventListener('load', addGAtagCode(GAcodeID));

@@ -146,6 +146,7 @@
 @media (min-width: 900px) {
   .project-card .project-card-media {
     aspect-ratio: 16 / 9;
+    max-height: 90vh;
   }
 
   .project-card-title-wrapper h4 {

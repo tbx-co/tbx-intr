@@ -623,11 +623,11 @@ main .section.highlight {
   }
 
   .heading-m {
-    font-size: clamp(32px, 3.4vw, 42px);
+    font-size: clamp(32px, 3vw, 42px);
   }
 
   .heading-sl {
-    font-size: clamp(32px, 5.6vw, 82px);
+    font-size: clamp(32px, 5.4vw, 82px);
     line-height: 1.025;
   }
 

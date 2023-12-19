@@ -18,6 +18,26 @@ import { addInviewObserverToAnimatedElement } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
+function adjustSiteViewpointWithMetatag() {
+  const viewportMetaTag = document.querySelector('meta[name="viewport"]');
+  if (viewportMetaTag) {
+    viewportMetaTag.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0';
+  } else {
+    const newViewportMetaTag = createTag('meda', {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
+    })
+    document.head.appendChild(newViewportMetaTag);
+  }
+}
+
+function adjustSiteViewpointOnIOS() {
+  var isIOS = navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+  if (isIOS) {
+    adjustSiteViewpointWithMetatag();
+  }
+}
+
 export async function loadGlideLib() {
   const glideCSS = createTag('link', {
     rel: 'stylesheet',
@@ -135,13 +155,6 @@ export function decorateMain(main) {
   decorateTitleSection(main);
 }
 
-// load external libraries
-// function loadExternalLibraries() {
-//   if (document.querySelector('.glide')) {
-//     loadGlideLib();
-//   }
-// }
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -187,11 +200,12 @@ async function loadLazy(doc) {
   loadFonts();
 
   // copied how 3rd library is loaded in Adobe Helix official site
-  // loadExternalLibraries();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  adjustSiteViewpointOnIOS();
 }
 
 /**

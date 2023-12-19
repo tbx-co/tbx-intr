@@ -43,6 +43,10 @@ header .mobile-menu-wrapper[data-active="true"] {
   visibility: visible;
 }
 
+#mobile-nav[aria-expanded="false"] {
+  pointer-events: none;
+}
+
 /* header theme setup, default theme as theme-dark */
 header .theme-dark .nav-wrapper,
 header .theme-dark .mobile-menu-wrapper {
@@ -184,6 +188,12 @@ header nav .nav-hamburger button {
   background: var(--color-white);
 }
 
+@supports not (aspect-ratio: 1 / 1) {
+  header nav .nav-hamburger button {
+    width: calc(var(--circular-nav-radius) * 2);
+  } 
+}
+
 @media (min-width: 900px) {
   header nav .nav-hamburger {
     display: none;
@@ -203,6 +213,10 @@ header .nav-brand-logo-link {
   display: flex;
   align-items: center;
   margin-bottom: -5px;
+}
+
+#mobile-nav .nav-brand-logo-link {
+  width: fit-content;
 }
 
 header nav .nav-brand img {

@@ -18,26 +18,6 @@ import { addInviewObserverToAnimatedElement } from './animation.js';
 
 const LCP_BLOCKS = ['project-card']; // add your LCP blocks to the list
 
-function adjustSiteViewpointWithMetatag() {
-  const viewportMetaTag = document.querySelector('meta[name="viewport"]');
-  if (viewportMetaTag) {
-    viewportMetaTag.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0';
-  } else {
-    const newViewportMetaTag = createTag('meda', {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0',
-    });
-    document.head.appendChild(newViewportMetaTag);
-  }
-}
-
-function adjustSiteViewpointOnIOS() {
-  const isIOS = navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-  if (isIOS) {
-    adjustSiteViewpointWithMetatag();
-  }
-}
-
 export async function loadGlideLib() {
   const glideCSS = createTag('link', {
     rel: 'stylesheet',
@@ -204,8 +184,6 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
-
-  adjustSiteViewpointOnIOS();
 }
 
 /**

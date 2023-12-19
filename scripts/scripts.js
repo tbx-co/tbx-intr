@@ -25,14 +25,14 @@ function adjustSiteViewpointWithMetatag() {
   } else {
     const newViewportMetaTag = createTag('meda', {
       name: 'viewport',
-      content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
-    })
+      content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0',
+    });
     document.head.appendChild(newViewportMetaTag);
   }
 }
 
 function adjustSiteViewpointOnIOS() {
-  var isIOS = navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+  const isIOS = navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
   if (isIOS) {
     adjustSiteViewpointWithMetatag();
   }

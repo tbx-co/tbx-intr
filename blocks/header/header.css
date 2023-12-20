@@ -28,6 +28,8 @@ header .nav-wrapper.hide {
 
 /* mobile nav: circular animation */
 header .mobile-menu-wrapper {
+  --circular-clip-path: circle(var(--circular-nav-radius) at calc(100% - 55px) 47px);
+
   position: fixed;
   inset: 0;
   width: 100%;
@@ -35,8 +37,17 @@ header .mobile-menu-wrapper {
   z-index: 2;
 
   /* setting for circular nav animation to work */
-  visibility: hidden;
-  clip-path: circle(var(--circular-nav-radius) at calc(100% - 55px) 47px);
+  visibility: hidden;  
+  transform: translateZ(0);
+  will-change: transform;
+  clip-path: var(--circular-clip-path); 
+  /* stylelint-disable-next-line */ 
+  -webkit-clip-path: var(--circular-clip-path);
+}
+
+.mobile-nav-js.hide {
+  display: none;
+  pointer-events: none;
 }
 
 header .mobile-menu-wrapper[data-active="true"] {

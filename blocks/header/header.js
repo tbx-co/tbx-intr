@@ -75,6 +75,7 @@ function toggleMenu(mobileMenuWrapper, toggleMenuButton, forceExpanded = null) {
     expanded ? 'Open navigation' : 'Close navigation',
   );
   toggleMenuButton.setAttribute('data-open', expanded ? 'false' : 'true');
+  mobileMenuWrapper.setAttribute('data-open', expanded ? 'false' : 'true');
 
   // enable menu collapse on escape keypress
   if (!expanded || isDesktop.matches) {
@@ -107,6 +108,7 @@ function createMobileMenu(nav) {
     'div',
     {
       class: `mobile-menu-wrapper ${animateClass}`,
+      id: animateClass,
     },
     mobileMenu,
   );
@@ -160,6 +162,9 @@ async function initCircularNavAnimation() {
       anchorSelector: '.nav-btn-js',
     },
   });
+
+  const revealerMenu = document.querySelector('.mobile-nav-js');
+  revealerMenu.setAttribute('data-open', false);
 
   const actionBtn = document.querySelector('.nav-btn-js');
   actionBtn.addEventListener('click', () => {

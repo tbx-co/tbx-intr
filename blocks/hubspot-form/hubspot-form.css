@@ -30,6 +30,7 @@
 .embed-hbspot-form .hs-input {
   border-bottom: 1px solid var(--color-black);
   padding: var(--spacing-xxs) 0 !important;
+  font-size: 16px;
 }
 
 .embed-hbspot-form textarea.hs-input {
@@ -89,6 +90,9 @@
   overflow: hidden;
   width: 120px;
   text-align: center;
+
+  /* fix for safari bug on overflow hidden not working */
+  z-index: 0;
 }
 
 .embed-hbspot-form .actions .hs-button{
@@ -143,6 +147,10 @@
 
   .embed-hbspot-form label {
     padding-bottom: var(--spacing-xxs);
+  }
+
+  .embed-hbspot-form .hs-input {
+    font-size: var(--body-font-size-s);
   }
 
   .hs_message {  /* stylelint-disable */

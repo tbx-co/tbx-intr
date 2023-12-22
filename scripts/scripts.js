@@ -100,6 +100,7 @@ export function decorateTitleSection(main) {
         }
       } else {
         el.classList.add('section-description');
+        section.classList.add('with-section-description');
       }
     });
 
@@ -134,13 +135,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateTitleSection(main);
 }
-
-// load external libraries
-// function loadExternalLibraries() {
-//   if (document.querySelector('.glide')) {
-//     loadGlideLib();
-//   }
-// }
 
 /**
  * Loads everything needed to get to LCP.
@@ -187,7 +181,6 @@ async function loadLazy(doc) {
   loadFonts();
 
   // copied how 3rd library is loaded in Adobe Helix official site
-  // loadExternalLibraries();
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

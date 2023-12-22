@@ -22,6 +22,9 @@
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: var(--border-radius-s);
+
+    /* fix for safari bug on overflow hidden not working with br */
+    z-index: 0;
 }
 
 .location-item .image-wrapper::before {

@@ -95,6 +95,9 @@
   border-radius: var(--border-radius-m);
   overflow: hidden;
   position: relative;
+
+  /* fix for safari bug on overflow hidden not working */
+  z-index: 0;
 }
 
 .person-cards.image-card .person-card-col-1 img {

@@ -67,9 +67,6 @@ function toggleMenu(mobileMenuWrapper, toggleMenuButton, forceExpanded = null) {
     ? !forceExpanded
     : mobileNav.getAttribute('aria-expanded') === 'true';
 
-  // document.body.style.overflowY = expanded || isDesktop.matches ? '' : 'hidden';
-  // document.body.style.position = expanded || isDesktop.matches ? '' : 'fixed';
-
   document.body.classList.toggle('disable-scroll');
   mobileNav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
 

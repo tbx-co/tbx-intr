@@ -37,15 +37,15 @@ header .mobile-menu-wrapper {
   height: 100%;
   z-index: 3;
   opacity: 0;
-  transform: rotate(-5deg);
-  transform-origin: top left;
   will-change: transform;
-  transition: var(--transition-cubic-bezier-1);
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
 }
 
 header .mobile-menu-wrapper[data-open="true"] {
   opacity: 1;
   transform: none;
+  pointer-events: auto;
 }
 
 #mobile-nav[aria-expanded="false"] {

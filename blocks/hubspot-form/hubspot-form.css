@@ -90,6 +90,9 @@
   overflow: hidden;
   width: 120px;
   text-align: center;
+
+  /* fix for safari bug on overflow hidden not working */
+  z-index: 0;
 }
 
 .embed-hbspot-form .actions .hs-button{

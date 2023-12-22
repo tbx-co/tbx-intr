@@ -22,6 +22,9 @@
   aspect-ratio: 1 / 1;
   border-radius: var(--border-radius-m);
   overflow: hidden;
+
+  /* fix for safari bug on overflow hidden not working with border-radius */
+  z-index: 0;
 }
 
 .project-card .project-card-media::before {

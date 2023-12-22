@@ -377,6 +377,9 @@ a.button:any-link {
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 30px;
+
+  /* fix for safari bug on overflow hidden not working */
+  z-index: 0;
 }
 
 a.button:hover,
@@ -867,6 +870,9 @@ main .section.highlight {
   display: inline-block;
   position: relative;
   overflow: hidden;
+
+  /* fix for safari bug on overflow hidden not working */
+  z-index: 0;
 }
 
 .primary-button::before,

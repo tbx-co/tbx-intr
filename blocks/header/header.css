@@ -41,14 +41,16 @@ header .mobile-menu-wrapper {
   transform: translateZ(0);
   will-change: transform;
   clip-path: var(--circular-clip-path); 
-  /* stylelint-disable-next-line */ 
+  /* stylelint-disable-next-line */
   -webkit-clip-path: var(--circular-clip-path);
+
+  /* TODO: remove clip-path logic 
+  opacity: 0; */
 }
 
-.mobile-nav-js.hide {
-  display: none;
-  pointer-events: none;
-}
+/* header .mobile-menu-wrapper.active {
+  opacity: 1;
+} */
 
 header .mobile-menu-wrapper[data-active="true"] {
   visibility: visible;

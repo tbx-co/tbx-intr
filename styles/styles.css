@@ -1147,7 +1147,7 @@ h4.split-text-wrapper .splitted-letter {
   padding: var(--spacing-3xl) 0;
 }
 
-.home-hero .default-content-wrapper {
+.home-hero.with-section-description .default-content-wrapper {
   padding-bottom: 20%;
 }
 
@@ -1185,13 +1185,13 @@ main .section.work-hero {
     max-height: min(95vh, 990px);
   }
 
+  .home-hero.with-section-description .default-content-wrapper {
+    padding: 10% 0 15%;
+  }
+
   .home-hero .section-description {
     margin-bottom: 7.5%;
     max-width: 520px;
-  }
-
-  .home-hero .default-content-wrapper {
-    padding: 10% 0 15%;
   }
 
   main .section.services-hero,

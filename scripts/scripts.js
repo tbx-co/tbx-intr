@@ -100,6 +100,7 @@ export function decorateTitleSection(main) {
         }
       } else {
         el.classList.add('section-description');
+        section.classList.add('with-section-description');
       }
     });
 

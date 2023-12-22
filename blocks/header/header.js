@@ -145,7 +145,7 @@ const setScrollRevealAnimation = (navWrapper) => {
   let { scrollY } = window;
   const myFunc = () => {
     if (document.body.classList.contains('disable-scroll')) return;
-    
+
     if (scrollY > 80) {
       if (scrollY < window.scrollY) {
         navWrapper.classList.add('hide');

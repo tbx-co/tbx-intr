@@ -1,4 +1,4 @@
-import { getMetadata, loadScript } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 import { createTag } from '../../scripts/helpers.js';
 import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
@@ -67,7 +67,10 @@ function toggleMenu(mobileMenuWrapper, toggleMenuButton, forceExpanded = null) {
     ? !forceExpanded
     : mobileNav.getAttribute('aria-expanded') === 'true';
 
-  document.body.style.overflowY = expanded || isDesktop.matches ? '' : 'hidden';
+  // document.body.style.overflowY = expanded || isDesktop.matches ? '' : 'hidden';
+  // document.body.style.position = expanded || isDesktop.matches ? '' : 'fixed';
+
+  document.body.classList.toggle('disable-scroll');
   mobileNav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
 
   toggleMenuButton.setAttribute(
@@ -141,6 +144,8 @@ const updateNavMenuThemeBasedOnNavThemeSetting = (block) => {
 const setScrollRevealAnimation = (navWrapper) => {
   let { scrollY } = window;
   const myFunc = () => {
+    if (document.body.classList.contains('disable-scroll')) return;
+    
     if (scrollY > 80) {
       if (scrollY < window.scrollY) {
         navWrapper.classList.add('hide');
@@ -153,32 +158,7 @@ const setScrollRevealAnimation = (navWrapper) => {
   window.addEventListener('scroll', myFunc);
 };
 
-async function initCircularNavAnimation() {
-  await loadScript('/libs/circularNav.js');
-
-  const revealerNav = window.revealer({
-    revealElementSelector: '.mobile-nav-js',
-    options: {
-      anchorSelector: '.nav-btn-js',
-    },
-  });
-
-  const revealerMenu = document.querySelector('.mobile-nav-js');
-  revealerMenu.setAttribute('data-open', false);
-
-  const actionBtn = document.querySelector('.nav-btn-js');
-  actionBtn.addEventListener('click', () => {
-    if (!revealerNav.isRevealed()) {
-      revealerNav.reveal();
-      actionBtn.setAttribute('data-open', true);
-    } else {
-      revealerNav.hide();
-      actionBtn.setAttribute('data-open', false);
-    }
-  });
-}
-
-function updateCircularRevealState() {
+function updateMobileNavState() {
   const actionBtn = document.querySelector('.nav-btn-js');
   actionBtn.click();
 }
@@ -234,7 +214,7 @@ export default async function decorate(block) {
     isDesktop.addEventListener('change', () => {
       const isMobileMenuExpanded = getMobileMenuExpandedStatus();
       if (isMobileMenuExpanded && isDesktop.matches) {
-        updateCircularRevealState();
+        updateMobileNavState();
       }
     });
 
@@ -256,6 +236,5 @@ export default async function decorate(block) {
 
     // animation setup
     setScrollRevealAnimation(navWrapper);
-    initCircularNavAnimation();
   }
 }

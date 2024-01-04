@@ -134,9 +134,9 @@ header nav.mobile-menu {
   grid-template:
     "hamburger brand" var(--nav-height)
     "sections sections" 1fr
-    "cta cta" 15vh / auto 1fr;
+    "cta cta" 12.5vh / auto 1fr;
   overflow-y: auto;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 @media (max-width: 899px) {

@@ -1,6 +1,0 @@
-version: 1
-indices:
-  default:
-    include:
-      - /**
-    target: /query-index.json

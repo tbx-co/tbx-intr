@@ -1,4 +1,2 @@
 mountpoints:
-  /:
-    url: https://content.da.live/tbx-co/tbx-intr/
-    type: markup
+  /: https://drive.google.com/drive/folders/14dsNS9Dnj7aNpa7zqqMp7wx1FwA623iU

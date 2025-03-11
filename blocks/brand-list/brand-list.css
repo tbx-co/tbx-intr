@@ -34,11 +34,10 @@
 
 .brand-list .brand-logo-item {
   list-style-type: none;
-  width: clamp(120px, 20vw, 150px);
+  width: clamp(120px, 25%, 150px);
   opacity: 1;
   display: grid;
   place-items: center;
-  margin: 0 auto;
   transition: all 0.3s ease-in-out;
 }
 
@@ -82,8 +81,7 @@
   }
 
   .brand-list .brand-logo-item {
-    /* width: 23%; */
-    width: 12.5%;
+    width: 24%;
   }
 
   .brand-list .brand-logo-item img {

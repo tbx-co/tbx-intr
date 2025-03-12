@@ -3,10 +3,8 @@ import { createTag } from '../../scripts/helpers.js';
 import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 // constants
-const BRAND_LOGO = '<img loading="lazy" alt="Intr" class="intr-logo placeholder" src="/assets/logo/intr-white-black-logo.svg">';
-const BRAND_LOGO_WHITE = '<img loading="lazy" alt="Intr" class="intr-logo white" src="/assets/logo/intr-white-logo.svg">';
-const BRAND_LOGO_WHITE_BLACK = '<img loading="lazy" alt="Intr" class="intr-logo white-black" src="/assets/logo/intr-white-black-logo.svg">';
-const BRAND_LOGO_BLUE_BLACK = '<img loading="lazy" alt="Intr" class="intr-logo blue-black" src="/assets/logo/intr-blue-black-logo.svg">';
+const BRAND_LOGO = '<img loading="lazy" alt="Intr" class="intr-logo blue-black" src="/assets/logo/thinkingbox_logotype_black.svg">';
+const BRAND_LOGO_WHITE = '<img loading="lazy" alt="Intr" class="intr-logo white-black" src="/assets/logo/thinkingbox_logotype_white.svg">';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -27,8 +25,8 @@ function decorateBrandLogo(nav) {
   brandLink.innerHTML = `<span class="d-none">${brandLink.textContent}</span>`;
   brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO);
   brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO_WHITE);
-  brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO_WHITE_BLACK);
-  brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO_BLUE_BLACK);
+  // brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO_WHITE_BLACK);
+  // brandLink.insertAdjacentHTML('afterbegin', BRAND_LOGO_BLUE_BLACK);
   brandBlock.innerHTML = '';
   brandBlock.appendChild(brandLink);
 }

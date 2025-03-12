@@ -242,7 +242,6 @@ header .intr-logo-wrapper {
 
 header .intr-logo {
   position: absolute;
-  inset: 0;
 }
 
 header .intr-logo.placeholder {

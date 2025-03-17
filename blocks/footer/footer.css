@@ -58,10 +58,6 @@ footer .footer p {
   margin-right: var(--spacing-xxxs);
 }
 
-.footer-bottom-content ul li::after {
-  content: ".";
-}
-
 .footer-bottom-content a {
   color: var(--color-white);
 }

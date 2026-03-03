@@ -3,8 +3,8 @@ import { createTag } from '../../scripts/helpers.js';
 import { addTextSplitAnimationToElement } from '../../scripts/animation.js';
 
 // constants
-const BRAND_LOGO = '<img loading="lazy" alt="Intr" class="intr-logo blue-black" src="/assets/logo/thinkingbox_logotype_black.svg">';
-const BRAND_LOGO_WHITE = '<img loading="lazy" alt="Intr" class="intr-logo white-black" src="/assets/logo/thinkingbox_logotype_white.svg">';
+const BRAND_LOGO = '<img loading="lazy" alt="Intr" class="intr-logo blue-black" src="/assets/logo/new-thinkingbox-logo-black.svg">';
+const BRAND_LOGO_WHITE = '<img loading="lazy" alt="Intr" class="intr-logo white-black" src="/assets/logo/new-thinkingbox-logo-white.svg">';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
